@@ -30,10 +30,20 @@ export function useCredentialsLoginForm() {
       setLoading(false);
       return;
     }
-    await authAction({
-      type: "loginWithCredentials",
-      payload: parsed.data,
-    });
+
+    try {
+      const result = await authAction({
+        type: "loginWithCredentials",
+        payload: parsed.data,
+      });
+
+      return result;
+    } catch (error) {
+      setLoading(false);
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+    }
 
     setLoading(false);
   };
