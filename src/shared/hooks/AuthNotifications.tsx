@@ -1,0 +1,23 @@
+// AuthEffects.tsx
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import { useAuthStore } from "../../features/auth/store/useAuthStore";
+
+export function AuthNotifications() {
+  const { ready, authEvent, clearAuthEvent } = useAuthStore();
+
+  if (!ready) return null;
+
+  useEffect(() => {
+    if (authEvent === "SIGNED_IN") {
+      toast.success("Logged in successfully!");
+      clearAuthEvent();
+    }
+    if (authEvent === "SIGNED_OUT") {
+      toast.success("Logged  out successfully!");
+      clearAuthEvent();
+    }
+  }, [ready, authEvent]);
+
+  return null;
+}
