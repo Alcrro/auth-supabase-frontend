@@ -4,7 +4,7 @@ const server = express();
 
 server.use(express.json());
 server.use((req, res, next) => {
-  res.setHeader("access-control-allow-origin", "http://localhost:5173");
+  res.setHeader("access-control-allow-origin", "http://localhost:3000");
 
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");

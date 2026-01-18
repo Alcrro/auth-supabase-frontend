@@ -5,7 +5,7 @@ export function supabaseLoginWithGithub() {
   return supabase.auth.signInWithOAuth({
     provider: "github",
     options: {
-      redirectTo: `${API_URL}/dashboard`,
+      redirectTo: `${API_URL}/verify-email`,
     },
   });
 }
