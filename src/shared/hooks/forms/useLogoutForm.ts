@@ -14,7 +14,7 @@ export function useLogoutForm() {
 
     await authAction({ type: "logout" });
 
-    navigate("/auth/logout");
+    navigate("/auth/login");
     setLoading(false);
   };
 
