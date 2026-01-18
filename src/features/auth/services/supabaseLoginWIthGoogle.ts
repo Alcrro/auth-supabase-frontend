@@ -5,7 +5,7 @@ export function supabaseLoginWithGoogle() {
   return supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: `${API_URL}/verify-email`,
+      redirectTo: `${API_URL}/dashboard`,
     },
   });
 }

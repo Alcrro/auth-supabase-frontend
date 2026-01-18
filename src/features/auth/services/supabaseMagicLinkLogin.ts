@@ -6,7 +6,7 @@ export function supabaseMagicLinkLogin(email: string) {
     email,
     options: {
       shouldCreateUser: false,
-      emailRedirectTo: `${API_URL}/verify-email`,
+      emailRedirectTo: `${API_URL}/dashboard`,
     },
   });
 }
