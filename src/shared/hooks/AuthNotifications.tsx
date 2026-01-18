@@ -14,8 +14,11 @@ export function AuthNotifications() {
       clearAuthEvent();
     }
     if (authEvent === "SIGNED_OUT") {
-      toast.success("Logged  out successfully!");
+      toast.info("Logged  out successfully!");
       clearAuthEvent();
+    }
+    if (authEvent === "ERROR") {
+      toast.error("Authentication error");
     }
   }, [ready, authEvent]);
 

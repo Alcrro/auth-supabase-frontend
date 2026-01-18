@@ -9,7 +9,8 @@ interface AuthStore {
   user: User | null;
   ready: boolean;
   hydrated: boolean;
-  authEvent: "SIGNED_IN" | "SIGNED_OUT" | null;
+  isLoggedIn: boolean;
+  authEvent: "SIGNED_IN" | "SIGNED_OUT" | "ERROR" | null;
   clearAuthEvent: () => void;
   setReady: (s: boolean) => void;
   setSession: (session: Session | null) => void;
@@ -21,6 +22,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
   session: null,
   user: null,
   ready: false,
+  isLoggedIn: false,
   authEvent: null,
   hydrated: false,
   clearAuthEvent: () => set({ authEvent: null }),
@@ -48,18 +50,32 @@ supabase.auth.onAuthStateChange((event, session) => {
     store.setSession(session);
     useAuthStore.setState({ hydrated: true });
 
+    const oauthIntent = localStorage.getItem("oauth_intent");
+    console.log({ oauthIntent });
+
+    if (session && oauthIntent) {
+      localStorage.removeItem("oauth_intent");
+      useAuthStore.setState({ authEvent: "SIGNED_IN" });
+    }
+
     return;
   }
 
   // login REAL (după ce app e hydrated)
   if (event === "SIGNED_IN") {
     store.setSession(session);
-    useAuthStore.setState({ authEvent: "SIGNED_IN" });
+
+    if (store.hydrated) {
+      useAuthStore.setState({ authEvent: "SIGNED_IN" });
+    }
     return;
   }
 
   if (event === "SIGNED_OUT") {
     store.setSession(null);
+    if (store.hydrated) {
+      useAuthStore.setState({ authEvent: "SIGNED_OUT" });
+    }
     return;
   }
 
