@@ -1,7 +1,6 @@
 import { type FC } from "react";
 import CurrentSessionRow from "../../molecules/CurrentSessionRow";
-import { BsPerson, BsPersonCircle } from "react-icons/bs";
-import { FaPerson } from "react-icons/fa6";
+import { BsPersonCircle } from "react-icons/bs";
 
 export type CurrentSessionVM = {
   userId: string;

@@ -19,7 +19,7 @@ export function App() {
         <Route path="/auth/signup" element={<SignUp />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route
-          path="/"
+          path="/dashboard"
           element={
             <RequireAuth>
               <Dashboard />
