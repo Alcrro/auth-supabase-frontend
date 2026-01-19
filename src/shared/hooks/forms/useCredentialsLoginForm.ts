@@ -19,11 +19,16 @@ export function useCredentialsLoginForm() {
       password: formData.get("password"),
     };
 
+    console.log(typeof rawData.email);
+
     const parsed = credentialsLoginSchema.safeParse(rawData);
+    console.log(parsed.error);
 
     if (!parsed.success) {
       Object.entries(parsed.error.flatten().fieldErrors).forEach((errors) => {
-        errors.forEach((message) => {
+        console.log(errors);
+
+        errors[1].forEach((message) => {
           toast.error(message);
         });
       });
