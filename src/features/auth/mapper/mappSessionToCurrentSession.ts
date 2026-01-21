@@ -1,5 +1,5 @@
 import type { Session } from "@supabase/supabase-js";
-import type { CurrentSessionVM } from "../../../components/organisms/dashboard/CurrentSession";
+import type { CurrentSessionVM } from "../types/auth.types";
 
 export function mapperSessionToCurrentSession(
   session: Session,

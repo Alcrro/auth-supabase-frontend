@@ -13,7 +13,7 @@ export function LoginForm() {
         <PasswordGroup />
       </div>
       <div className="btn w-full ">
-        <DefaultButton className={"w-full "} disabled={loading}>
+        <DefaultButton className={"w-full "}>
           {loading ? (
             <LoadingSpinner className="size-6 mx-auto" />
           ) : (

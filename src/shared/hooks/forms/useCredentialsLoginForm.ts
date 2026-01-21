@@ -15,43 +15,35 @@ export function useCredentialsLoginForm() {
 
     const formData = new FormData(e.currentTarget);
     const rawData = {
-      email: formData.get("email"),
-      password: formData.get("password"),
+      email: formData.get("email") as string,
+      password: formData.get("password") as string,
     };
 
-    console.log(typeof rawData.email);
-
     const parsed = credentialsLoginSchema.safeParse(rawData);
-    console.log(parsed.error);
 
     if (!parsed.success) {
-      Object.entries(parsed.error.flatten().fieldErrors).forEach((errors) => {
-        console.log(errors);
-
-        errors[1].forEach((message) => {
-          toast.error(message);
+      Object.values(parsed.error.flatten().fieldErrors)
+        .flat()
+        .forEach((message) => {
+          if (message) toast.error(message);
         });
-      });
       setLoading(false);
       return;
     }
 
     try {
-      const result = await authAction({
+      await authAction({
         type: "loginWithCredentials",
         payload: parsed.data,
       });
-
-      return result;
     } catch (error) {
       setLoading(false);
       if (error instanceof Error) {
         toast.error(error.message);
       }
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
-
   return { submitHandler, loading };
 }

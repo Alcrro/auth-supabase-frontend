@@ -4,80 +4,51 @@ import type { Session, User } from "@supabase/supabase-js";
 import { supabaseResetPassword } from "../services/supabaseResetPassword";
 import { supabaseUpdatePassword } from "../services/supabaseUpdatePassword";
 
+type AuthEvent = "SIGNED_IN" | "SIGNED_OUT" | "ERROR" | null;
+
 interface AuthStore {
   session: Session | null;
   user: User | null;
-  ready: boolean;
   hydrated: boolean;
-  isLoggedIn: boolean;
-  authEvent: "SIGNED_IN" | "SIGNED_OUT" | "ERROR" | null;
-  clearAuthEvent: () => void;
-  setReady: (s: boolean) => void;
+  authEvent: AuthEvent;
+
   setSession: (session: Session | null) => void;
-  updatePassword: (newPassword: string) => void;
-  resetPassword: (email: string) => void;
+  setHydrated: () => void;
+  setAuthEvent: (event: AuthEvent) => void;
+  clearAuthEvent: () => void;
+
   logout: () => Promise<void>;
+  updatePassword: (newPassword: string) => Promise<void>;
+  resetPassword: (email: string) => Promise<void>;
 }
+
 export const useAuthStore = create<AuthStore>((set) => ({
   session: null,
   user: null,
-  ready: false,
-  isLoggedIn: false,
-  authEvent: null,
   hydrated: false,
+  authEvent: null,
+
+  setSession: (session) =>
+    set({
+      session,
+      user: session?.user ?? null,
+    }),
+
+  setHydrated: () => set({ hydrated: true }),
+
+  setAuthEvent: (event) => set({ authEvent: event }),
   clearAuthEvent: () => set({ authEvent: null }),
 
-  setReady: (ready) => set({ ready }),
-  setSession: (session) => set({ session, user: session?.user, ready: true }),
   logout: async () => {
     await supabase.auth.signOut();
-    set({ session: null, user: null, ready: false });
+    set({ session: null, user: null });
   },
 
-  updatePassword: async (password: string) => {
+  updatePassword: async (password) => {
     await supabaseUpdatePassword({ password });
   },
+
   resetPassword: async (email) => {
     await supabaseResetPassword(email);
   },
 }));
-
-supabase.auth.onAuthStateChange((event, session) => {
-  const store = useAuthStore.getState();
-
-  // prima sesiune (rehydrate)
-  if (event === "INITIAL_SESSION") {
-    store.setSession(session);
-    useAuthStore.setState({ hydrated: true });
-
-    const oauthIntent = localStorage.getItem("oauth_intent");
-    console.log({ oauthIntent });
-
-    if (session && oauthIntent) {
-      localStorage.removeItem("oauth_intent");
-      useAuthStore.setState({ authEvent: "SIGNED_IN" });
-    }
-
-    return;
-  }
-
-  // login REAL (după ce app e hydrated)
-  if (event === "SIGNED_IN") {
-    store.setSession(session);
-
-    if (store.hydrated) {
-      useAuthStore.setState({ authEvent: "SIGNED_IN" });
-    }
-    return;
-  }
-
-  if (event === "SIGNED_OUT") {
-    store.setSession(null);
-    if (store.hydrated) {
-      useAuthStore.setState({ authEvent: "SIGNED_OUT" });
-    }
-    return;
-  }
-
-  store.setSession(session);
-});

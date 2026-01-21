@@ -1,11 +1,6 @@
-import { render } from "preact";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router.tsx";
 import "./index.scss";
-import { App } from "./app.tsx";
-import { BrowserRouter } from "react-router";
+import { render } from "preact";
 
-render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  document.getElementById("app")!
-);
+render(<RouterProvider router={router} />, document.getElementById("app")!);

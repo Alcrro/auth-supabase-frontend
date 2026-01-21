@@ -4,8 +4,8 @@ import AuditLogTable from "../../components/organisms/dashboard/auditLogTable/Au
 import CurrentSession from "../../components/organisms/dashboard/CurrentSession";
 import EmailVerified from "../../components/organisms/dashboard/EmailVerified";
 import LoginHistory from "../../components/organisms/dashboard/LoginHistory";
+
 import type { DashboardTab } from "../../shared/data/dashboard/dashboardTabsData";
-import { mapperSessionToCurrentSession } from "../../features/auth/mapper/mappSessionToCurrentSession";
 
 export const DashboardContent = ({
   tab,
@@ -15,13 +15,11 @@ export const DashboardContent = ({
   session: Session | null;
 }) => {
   if (!session) return null;
+  console.log(tab);
+
   switch (tab) {
     case "current":
-      return (
-        <CurrentSession
-          currentSession={mapperSessionToCurrentSession(session)}
-        />
-      );
+      return <CurrentSession />;
     case "devices":
       return <ActiveDevices />;
     case "history":

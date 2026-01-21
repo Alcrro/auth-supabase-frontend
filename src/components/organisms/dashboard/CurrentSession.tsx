@@ -1,36 +1,17 @@
-import { type FC } from "react";
 import CurrentSessionRow from "../../molecules/CurrentSessionRow";
 import { BsPersonCircle } from "react-icons/bs";
+import { useAuthStore } from "../../../features/auth/store/useAuthStore";
+import { mapperSessionToCurrentSession } from "../../../features/auth/mapper/mappSessionToCurrentSession";
+import SessionProfile from "./currentSession/SessionProfile";
 
-export type CurrentSessionVM = {
-  userId: string;
-  email: string;
-  provider: string;
-  image?: string;
-  ip?: string;
-  createdAt: string;
-  expiresAt: string;
-};
-
-type CurrentSessionVMProps = {
-  currentSession: CurrentSessionVM;
-};
-
-const CurrentSession: FC<CurrentSessionVMProps> = ({ currentSession }) => {
+const CurrentSession = () => {
+  const { session } = useAuthStore();
+  if (!session) return null;
+  const currentSession = mapperSessionToCurrentSession(session);
   return (
     <>
       {currentSession.image ? (
-        <img
-          src={currentSession.image}
-          alt={"profile"}
-          referrerPolicy={"no-referrer"}
-          style={{
-            margin: "2rem auto",
-            width: 120,
-            height: 120,
-            borderRadius: "50%",
-          }}
-        ></img>
+        <SessionProfile image={currentSession.image} />
       ) : (
         <div className="size-30 bg-gray-400 mx-auto rounded-full mb-8 flex items-center justify-center">
           <BsPersonCircle className={"text-gray-200 size-30"} />
