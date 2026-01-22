@@ -15,7 +15,7 @@ const LoginPage = () => {
   }
 
   return (
-    <LoginLayout>
+    <LoginLayout description="Login">
       <LoginMethodSwitcher method={method} onChange={setMethod} />
     </LoginLayout>
   );

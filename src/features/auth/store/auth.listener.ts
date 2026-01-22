@@ -20,11 +20,10 @@ supabase.auth.onAuthStateChange((event, session) => {
   }
 
   if (event === "SIGNED_IN") {
-    const wasLoggedIn = !!store.session;
-
+    const prevSession = store.session;
     store.setSession(session);
 
-    if (store.hydrated && !wasLoggedIn) {
+    if (store.hydrated && !prevSession) {
       useAuthStore.setState({ authEvent: "SIGNED_IN" });
     }
     return;

@@ -40,6 +40,7 @@ export function useCredentialsLoginForm() {
       setLoading(false);
       if (error instanceof Error) {
         toast.error(error.message);
+        throw new Error(error.message);
       }
     } finally {
       setLoading(false);

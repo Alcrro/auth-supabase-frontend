@@ -1,48 +1,59 @@
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../../features/auth/store/useAuthStore";
-import LogoutForm from "../LogoutForm";
-import DefaultButton from "../../atoms/DefaultButton";
-import { tabs } from "../../../shared/data/dashboard/dashboardTabsData";
 import { useCurrentDashboardTab } from "../../../shared/hooks/currentDashboardTab";
+import SettingsMenu from "./settingsMenu/SettingsMenu";
+import DashboardTabs from "./DashboardTabs";
+import { BiCaretDown, BiCaretUp } from "react-icons/bi";
+import { useRef, useState } from "preact/hooks";
+import useToggleDiv from "../../../shared/hooks/useToggleDiv";
 
 export const DashboardHeader = () => {
-  const { session, hydrated, resetPassword } = useAuthStore();
+  const [active, setActive] = useState(false);
+  const ref = useRef(null);
   const navigate = useNavigate();
-  const email = session?.user.email ?? "";
 
   const currentTab = useCurrentDashboardTab();
+  const { session, hydrated } = useAuthStore();
+
+  const isAuthenticated = hydrated && Boolean(session);
+
+  const handleTabChange = (tabKey: string) => {
+    navigate(`/dashboard?tab=${tabKey}`);
+  };
+
+  const handleLogin = () => {
+    navigate("/auth/login");
+  };
+
+  useToggleDiv({ ref, active, setActive });
+  console.log(active);
 
   return (
-    <div className={"flex gap-2 justify-center bg-blue-400 p-4"}>
-      {tabs.map((item) => (
+    <div
+      className={
+        "flex gap-2 justify-center bg-blue-400 p-2 max-sm:flex-col max-sm:text-center relative"
+      }
+    >
+      <div className="dashboard_menu  hidden max-sm:block">
         <div
-          key={item.key}
-          className={`capitalize cursor-pointer ${
-            currentTab === item.key && "font-semibold"
-          } `}
-          onClick={() => navigate(`/dashboard?tab=${item.key}`)}
+          className="dashboard_title relative inline"
+          onClick={() => setActive((prev) => !prev)}
         >
-          {item.label}
+          Dashboard
+          <div className={"sm:hidden absolute -right-6 top-3 -translate-y-1/2"}>
+            <BiCaretDown className={""} />
+            <BiCaretUp className={"hidden"} />
+          </div>
         </div>
-      ))}
-      <div className={"absolute right-0 px-4 cursor-pointer group"}>
-        <div>Settings</div>
-        {!hydrated && session ? (
-          <div onClick={() => navigate("/auth/login")} className={""}>
-            Login
-          </div>
-        ) : (
-          <div className="absolute right-0.5 text-nowrap text-center  py-2 group-hover:block">
-            <div onClick={() => resetPassword(email)} className={""}>
-              Reset password
-            </div>
-            <LogoutForm>
-              <DefaultButton>Logout</DefaultButton>
-            </LogoutForm>
-          </div>
-        )}
-        {!session && <div onClick={() => navigate("/auth/login")}>Login</div>}
       </div>
+
+      <div
+        className={`gap-2 justify-center bg-blue-400 max-sm:flex-col max-sm:text-center p-3 sm:flex ${active ? "flex absolute z-20 top-8 left-1/2 -translate-x-1/2" : "hidden"} rounded-2xl`}
+        ref={ref}
+      >
+        <DashboardTabs currentTab={currentTab} onTabChange={handleTabChange} />
+      </div>
+      <SettingsMenu isAuthenticated={isAuthenticated} onLogin={handleLogin} />
     </div>
   );
 };

@@ -11,7 +11,6 @@ interface AuthStore {
   user: User | null;
   hydrated: boolean;
   authEvent: AuthEvent;
-
   setSession: (session: Session | null) => void;
   setHydrated: () => void;
   setAuthEvent: (event: AuthEvent) => void;
@@ -41,7 +40,6 @@ export const useAuthStore = create<AuthStore>((set) => ({
 
   logout: async () => {
     await supabase.auth.signOut();
-    set({ session: null, user: null });
   },
 
   updatePassword: async (password) => {

@@ -25,13 +25,23 @@ export function useLoginMagicLinkForm() {
       return;
     }
 
-    await authAction({
-      type: "loginWithMagicLink",
-      payload: { email: parsed.data.email },
-    });
+    try {
+      await authAction({
+        type: "loginWithMagicLink",
+        payload: { email: parsed.data.email },
+      });
 
-    toast.success("Check your email to confirm!");
-    setLoading(false);
+      toast.success("Check your email to confirm!");
+    } catch (error) {
+      if (error instanceof Error) {
+        if (error.message === "Signups not allowed for otp") {
+          toast.error("Sign-ups with one-time passwords are disabled.");
+          return;
+        }
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return { submitHandler, loading };

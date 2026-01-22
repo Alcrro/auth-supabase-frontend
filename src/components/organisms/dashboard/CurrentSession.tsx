@@ -9,7 +9,7 @@ const CurrentSession = () => {
   if (!session) return null;
   const currentSession = mapperSessionToCurrentSession(session);
   return (
-    <>
+    <div className={"flex flex-col justify-center mx-auto"}>
       {currentSession.image ? (
         <SessionProfile image={currentSession.image} />
       ) : (
@@ -17,6 +17,7 @@ const CurrentSession = () => {
           <BsPersonCircle className={"text-gray-200 size-30"} />
         </div>
       )}
+
       <CurrentSessionRow name="userId" sessionTag={currentSession.userId} />
       <CurrentSessionRow name="email" sessionTag={currentSession.email} />
       <CurrentSessionRow name="provider" sessionTag={currentSession.provider} />
@@ -28,7 +29,7 @@ const CurrentSession = () => {
         name="expires in"
         sessionTag={currentSession.expiresAt}
       />
-    </>
+    </div>
   );
 };
 
