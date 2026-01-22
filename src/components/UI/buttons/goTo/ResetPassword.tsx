@@ -1,4 +1,3 @@
-import React from "react";
 import DefaultButton from "../../../atoms/DefaultButton";
 import { useNavigate } from "react-router-dom";
 
