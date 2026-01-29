@@ -7,7 +7,10 @@ import { App } from "./app";
 import SignUpPage from "./features/auth/pages/SignUpPage";
 import ConfirmEmailPage from "./features/auth/pages/ConfirmEmailPage";
 import ResetPasswordPage from "./features/auth/pages/ResetPasswordPage";
+import OAuthCallback from "./features/auth/pages/OauthCallback";
+import { initAuth } from "./features/auth/store/auth.listener";
 
+await initAuth();
 export const router = createBrowserRouter([
   {
     element: <App />,
@@ -30,6 +33,12 @@ export const router = createBrowserRouter([
         path: "/auth/set-protected",
         element: <ConfirmEmailPage />,
       },
+
+      {
+        path: "/auth/callback",
+        element: <OAuthCallback />,
+      },
+
       {
         path: "/auth/reset-password",
         element: <ResetPasswordPage />,

@@ -1,40 +1,52 @@
 import { supabase } from "../../../shared/libs/supabase/supabaseinsta";
 import { useAuthStore } from "./useAuthStore";
 
-supabase.auth.onAuthStateChange((event, session) => {
-  const store = useAuthStore.getState();
+export function initAuth() {
+  return new Promise<void>((resolve) => {
+    const { setSession, setHydrated } = useAuthStore.getState();
 
-  // prima sesiune (rehydrate)
-  if (event === "INITIAL_SESSION") {
-    store.setSession(session);
-    store.setHydrated();
+    const { data: subscription } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        const store = useAuthStore.getState();
 
-    const oauthIntent = localStorage.getItem("oauth_intent");
+        // prima sesiune (rehydrate)
 
-    if (session && oauthIntent) {
-      localStorage.removeItem("oauth_intent");
-      useAuthStore.setState({ authEvent: "SIGNED_IN" });
-    }
+        if (event === "INITIAL_SESSION") {
+          setSession(session);
+          setHydrated();
+          resolve();
 
-    return;
-  }
+          const oauthIntent = localStorage.getItem("oauth_intent");
 
-  if (event === "SIGNED_IN") {
-    const prevSession = store.session;
-    store.setSession(session);
+          if (session && oauthIntent) {
+            localStorage.removeItem("oauth_intent");
+            useAuthStore.setState({ authEvent: "SIGNED_IN" });
+          }
 
-    if (store.hydrated && !prevSession) {
-      useAuthStore.setState({ authEvent: "SIGNED_IN" });
-    }
-    return;
-  }
+          return;
+        }
 
-  if (event === "SIGNED_OUT") {
-    store.setSession(null);
+        if (event === "SIGNED_IN") {
+          const prevSession = store.session;
+          store.setSession(session);
 
-    if (store.hydrated) {
-      useAuthStore.setState({ authEvent: "SIGNED_OUT" });
-    }
-    return;
-  }
-});
+          if (store.hydrated && !prevSession) {
+            useAuthStore.setState({ authEvent: "SIGNED_IN" });
+          }
+          return;
+        }
+
+        if (event === "SIGNED_OUT") {
+          store.setSession(null);
+
+          if (store.hydrated) {
+            useAuthStore.setState({ authEvent: "SIGNED_OUT" });
+          }
+          return;
+        }
+      },
+    );
+
+    setTimeout(() => resolve(), 1000);
+  });
+}

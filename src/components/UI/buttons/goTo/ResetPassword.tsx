@@ -5,8 +5,9 @@ const ResetPassword = () => {
   const navigate = useNavigate();
   return (
     <DefaultButton
+      variant={"link"}
       onClick={() => navigate("/auth/reset-password")}
-      className={""}
+      className={"default_button"}
     >
       Reset password
     </DefaultButton>

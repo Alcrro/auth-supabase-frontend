@@ -12,7 +12,7 @@ const ResetPasswordPage = () => {
         className={"flex flex-col justify-center gap-2 py-2"}
       >
         <PasswordInputGroup />
-        <DefaultButton>
+        <DefaultButton variant="default">
           <span className={"text-md md:text-xl"}>Change password</span>
         </DefaultButton>
       </form>

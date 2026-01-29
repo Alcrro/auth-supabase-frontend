@@ -27,7 +27,10 @@ export type AuthCommand =
   | { type: "loginWithGithub" }
   | { type: "loginWithGoogle" }
   | { type: "resetPassword"; payload: { email: string } }
-  | { type: "updatePassword"; payload: Partial<AuthCredentials> }
+  | {
+      type: "updatePassword";
+      payload: Pick<AuthCredentials, "password">;
+    }
   | { type: "registerAccount"; payload: AuthCredentials }
   | { type: "logout" };
 

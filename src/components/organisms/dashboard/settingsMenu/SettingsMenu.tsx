@@ -35,11 +35,16 @@ const SettingsMenu = ({ isAuthenticated, onLogin }: SettingsMenuProps) => {
         </div>
       ) : (
         <div
-          className={`absolute right-0.5 max-sm:right-1/2 max-sm:translate-x-1/2 text-nowrap text-center ${!active ? "hidden" : "flex"} group-hover:flex flex-col gap-1`}
+          className={`flex gap-2 absolute right-0.5 bg-[#251f25] rounded-md p-2 max-sm:right-1/2 max-sm:translate-x-1/2 text-nowrap text-center ${!active ? "hidden" : "flex"} group-hover:flex flex-col gap-1 shadow-xl`}
         >
           <ResetPassword />
           <LogoutForm>
-            <DefaultButton className={"w-full"}>Logout</DefaultButton>
+            <DefaultButton
+              variant="default"
+              className={"default_button w-full"}
+            >
+              Logout
+            </DefaultButton>
           </LogoutForm>
         </div>
       )}

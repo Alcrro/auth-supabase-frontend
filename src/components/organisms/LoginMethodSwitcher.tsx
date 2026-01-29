@@ -20,12 +20,18 @@ const LoginMethodSwitcher = ({ method, onChange }: Props) => {
 
       <div className="flex flex-col gap-2">
         {method !== "loginWithCredentials" && (
-          <DefaultButton onClick={() => onChange("loginWithCredentials")}>
+          <DefaultButton
+            variant="default"
+            onClick={() => onChange("loginWithCredentials")}
+          >
             Email & Password
           </DefaultButton>
         )}
         {method !== "loginWithMagicLink" && (
-          <DefaultButton onClick={() => onChange("loginWithMagicLink")}>
+          <DefaultButton
+            variant="default"
+            onClick={() => onChange("loginWithMagicLink")}
+          >
             Magic Link
           </DefaultButton>
         )}

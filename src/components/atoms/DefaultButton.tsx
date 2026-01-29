@@ -1,13 +1,40 @@
 import type { ButtonHTMLAttributes } from "preact";
 import type { FC, ReactNode } from "preact/compat";
+import { cn } from "../../shared/utils/cn";
+import {
+  variantButtonMapper,
+  type ButtonVariant,
+  type VariantTypes,
+} from "../UI/buttons/styles/ButtonStyles";
 
-interface IButtonProps extends ButtonHTMLAttributes {
+interface IButtonPropsAtr extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  onClick?: () => void;
+  className?: string;
 }
 
-const DefaultButton: FC<IButtonProps> = ({ children, ...props }) => {
-  return <button {...props}>{children}</button>;
+interface IButtonProps extends IButtonPropsAtr {
+  variant: VariantTypes;
+}
+
+const DefaultButton: FC<IButtonProps> = ({
+  children,
+  variant = "default",
+  className,
+  ...props
+}) => {
+  return (
+    <button
+      {...props}
+      className={cn(
+        `${variant}_button`,
+
+        variantButtonMapper[variant as ButtonVariant],
+        className,
+      )}
+    >
+      {children}
+    </button>
+  );
 };
 
 export default DefaultButton;
