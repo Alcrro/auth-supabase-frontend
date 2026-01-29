@@ -13,7 +13,7 @@ interface IButtonPropsAtr extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 interface IButtonProps extends IButtonPropsAtr {
-  variant: VariantTypes;
+  variant?: VariantTypes;
 }
 
 const DefaultButton: FC<IButtonProps> = ({
