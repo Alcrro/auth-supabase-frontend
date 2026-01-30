@@ -10,7 +10,11 @@ const ActiveDevices = () => {
       <div>
         OS - {os.name} {os.version}
       </div>
-      {device.model && <div>device - {device.model}</div>}
+      {device.model && (
+        <div>
+          device - {device.vendor} | `{device.type} | {device.model}
+        </div>
+      )}
     </div>
   );
 };
