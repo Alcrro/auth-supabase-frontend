@@ -1,4 +1,5 @@
 import type { ActiveDevice } from "../types/auth.types";
+import { isValidDeviceModel } from "../validation/iValidDeviceModel";
 
 export function mapperActiveDevices(result: UAParser.IResult): ActiveDevice {
   const rawType = result.device.type;
@@ -12,8 +13,8 @@ export function mapperActiveDevices(result: UAParser.IResult): ActiveDevice {
   return {
     deviceType,
     deviceModel:
-      deviceType !== "desktop"
-        ? (result.device.model ?? "Unknown device")
+      deviceType !== "desktop" && isValidDeviceModel(result.device.model)
+        ? result.device.model
         : undefined,
 
     browser: result.browser.name ?? "Unknown browser",

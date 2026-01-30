@@ -4,7 +4,14 @@ const ActiveDevices = () => {
 
   return (
     <div>
-      <div>Device – {deviceType === "desktop" ? "Desktop" : deviceModel}</div>
+      <div>
+        Device –{" "}
+        {deviceModel
+          ? deviceModel
+          : deviceType === "mobile"
+            ? "Android device"
+            : "Desktop"}
+      </div>
 
       <div>
         OS - {os.name} {os.version}
