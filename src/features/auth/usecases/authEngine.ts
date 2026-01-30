@@ -11,15 +11,7 @@ export interface AuthCredentials {
   email: string;
   password: string;
 }
-export type AuthType =
-  | "loginWithCredentials"
-  | "loginWithMagicLink"
-  | "loginWithGithub"
-  | "loginWithGoogle"
-  | "logout"
-  | "resetPassword"
-  | "registerAccount"
-  | "updatePassword";
+export type AuthType = AuthCommand["type"];
 
 export type AuthCommand =
   | { type: "loginWithCredentials"; payload: AuthCredentials }
@@ -34,30 +26,34 @@ export type AuthCommand =
   | { type: "registerAccount"; payload: AuthCredentials }
   | { type: "logout" };
 
-export function authenticate(cmd: AuthCommand) {
-  switch (cmd.type) {
-    case "loginWithCredentials":
-      return credentialsLogin(cmd.payload);
+export async function authenticate(cmd: AuthCommand) {
+  try {
+    switch (cmd.type) {
+      case "loginWithCredentials":
+        return await credentialsLogin(cmd.payload);
 
-    case "loginWithMagicLink":
-      return loginWithMagicLink(cmd.payload);
+      case "loginWithMagicLink":
+        return await loginWithMagicLink(cmd.payload);
 
-    case "loginWithGoogle":
-      return loginWithGoogle();
+      case "loginWithGoogle":
+        return await loginWithGoogle();
 
-    case "loginWithGithub":
-      return loginWithGithub();
+      case "loginWithGithub":
+        return await loginWithGithub();
 
-    case "resetPassword":
-      return resetPassword(cmd.payload);
+      case "resetPassword":
+        return await resetPassword(cmd.payload);
 
-    case "registerAccount":
-      return registerAccount(cmd.payload);
+      case "registerAccount":
+        return await registerAccount(cmd.payload);
 
-    case "updatePassword":
-      return updatePassword(cmd.payload);
+      case "updatePassword":
+        return await updatePassword(cmd.payload);
 
-    case "logout":
-      return logout();
+      case "logout":
+        return await logout();
+    }
+  } catch (error) {
+    return console.log(error);
   }
 }
