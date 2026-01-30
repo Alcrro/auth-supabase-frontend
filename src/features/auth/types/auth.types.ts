@@ -7,3 +7,13 @@ export type CurrentSessionVM = {
   createdAt: string;
   expiresAt: string;
 };
+
+export type ActiveDevice = {
+  deviceType: "desktop" | "mobile" | "tablet";
+  deviceModel?: string; // doar pe mobile
+  browser: string;
+  os: {
+    name: string;
+    version?: string;
+  };
+};

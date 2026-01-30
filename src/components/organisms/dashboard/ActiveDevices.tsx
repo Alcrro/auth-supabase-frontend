@@ -1,20 +1,15 @@
-import { UAParser } from "ua-parser-js";
+import { getCurrentDeviceInfo } from "../../../features/auth/services/getCurrentDeviceInfo";
 const ActiveDevices = () => {
-  const { browser, os, device } = new UAParser().getResult();
-  const result = new UAParser().getResult();
-  console.log(result);
+  const { os, deviceType, deviceModel, browser } = getCurrentDeviceInfo();
 
   return (
     <div>
-      <div>browser - {browser.name}</div>
+      <div>Device – {deviceType === "desktop" ? "Desktop" : deviceModel}</div>
+
       <div>
         OS - {os.name} {os.version}
       </div>
-      {device.model && (
-        <div>
-          device - {device.vendor} | `{device.type} | {device.model}
-        </div>
-      )}
+      <div>browser - {browser}</div>
     </div>
   );
 };
