@@ -5,12 +5,11 @@ import LoginGithubForm from "./LoginGithubForm";
 import LoginGoogleForm from "./LoginWithGoogleForm";
 import MagicLinkForm from "./MagicLinkForm";
 import { Divider } from "../molecules/Divider";
+import { useState } from "preact/hooks";
 
-interface Props {
-  method: AuthType;
-  onChange: (method: AuthType) => void;
-}
-const LoginMethodSwitcher = ({ method, onChange }: Props) => {
+const LoginMethodSwitcher = () => {
+  const [method, setMethod] = useState<AuthType>("loginWithCredentials");
+
   return (
     <div className="flex flex-col gap-2">
       {method === "loginWithCredentials" && <LoginForm />}
@@ -22,7 +21,7 @@ const LoginMethodSwitcher = ({ method, onChange }: Props) => {
         {method !== "loginWithCredentials" && (
           <DefaultButton
             variant="default"
-            onClick={() => onChange("loginWithCredentials")}
+            onClick={() => setMethod("loginWithCredentials")}
           >
             Email & Password
           </DefaultButton>
@@ -30,7 +29,7 @@ const LoginMethodSwitcher = ({ method, onChange }: Props) => {
         {method !== "loginWithMagicLink" && (
           <DefaultButton
             variant="default"
-            onClick={() => onChange("loginWithMagicLink")}
+            onClick={() => setMethod("loginWithMagicLink")}
           >
             Magic Link
           </DefaultButton>

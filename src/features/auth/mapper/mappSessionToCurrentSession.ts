@@ -4,16 +4,14 @@ import type { CurrentSessionVM } from "../types/auth.types";
 export function mapperSessionToCurrentSession(
   session: Session,
 ): CurrentSessionVM {
-  let currentProvider: "email" | "github" | "google";
+  let currentProvider;
 
   if (!session) {
     currentProvider = "email";
   } else if (session.provider_token) {
     // OAuth login
-    currentProvider = session.user.app_metadata.provider as
-      | "email"
-      | "github"
-      | "google";
+
+    currentProvider = session.user.identities?.at(-1)?.provider;
   } else {
     // Email / Magic link
     currentProvider = "email";

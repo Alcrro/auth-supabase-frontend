@@ -15,7 +15,6 @@ export const DashboardContent = ({
   session: Session | null;
 }) => {
   if (!session) return null;
-  console.log(tab);
 
   switch (tab) {
     case "current":

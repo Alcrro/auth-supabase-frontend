@@ -8,6 +8,9 @@ const CurrentSession = () => {
   const { session } = useAuthStore();
   if (!session) return null;
   const currentSession = mapperSessionToCurrentSession(session);
+
+  console.log(session.user);
+
   return (
     <div className={"flex flex-col justify-center mx-auto"}>
       {currentSession.image ? (
