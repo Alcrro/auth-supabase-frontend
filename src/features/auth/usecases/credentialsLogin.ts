@@ -19,6 +19,8 @@ export async function credentialsLogin(payload: AuthCredentials) {
     if (session) {
       const { error: errorHandler } = await supabase.rpc("record_login_audit", {
         device_type: deviceType,
+        os,
+        browser,
       });
 
       if (errorHandler) {
