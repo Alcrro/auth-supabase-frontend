@@ -4,6 +4,7 @@ import { isValidDeviceModel } from "../validation/iValidDeviceModel";
 export function mapperActiveDevices(result: UAParser.IResult): ActiveDevice {
   const rawType = result.device.type;
   let deviceType: ActiveDevice["deviceType"];
+  console.log(rawType);
 
   if (rawType === "mobile" || rawType === "tablet") {
     deviceType = rawType;
@@ -19,6 +20,6 @@ export function mapperActiveDevices(result: UAParser.IResult): ActiveDevice {
 
     browser: result.browser.name ?? "Unknown browser",
 
-    os: { name: result.os.name ?? "Unknown OS", version: result.os.version },
+    os: { name: result.os.name ?? "Unknown OS" },
   };
 }

@@ -22,6 +22,7 @@ export async function credentialsLogin(payload: AuthCredentials) {
         os,
         browser,
       });
+      console.log(errorHandler);
 
       if (errorHandler) {
         throw errorHandler;

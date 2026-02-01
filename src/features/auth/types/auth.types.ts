@@ -9,11 +9,12 @@ export type CurrentSessionVM = {
 };
 
 export type ActiveDevice = {
+  id: string;
   deviceType: "desktop" | "mobile" | "tablet";
   deviceModel?: string; // doar pe mobile
   browser: string;
-  os: {
-    name: string;
-    version?: string;
-  };
+  // os: string;
+  os: { name: string };
+  ip_address: string;
+  created_at: string;
 };
