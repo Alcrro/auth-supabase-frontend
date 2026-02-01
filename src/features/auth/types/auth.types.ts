@@ -10,7 +10,7 @@ export type CurrentSessionVM = {
 
 export type ActiveDevice = {
   id?: string;
-  deviceType: "desktop" | "mobile" | "tablet";
+  deviceType: ActiveDeviceType;
   deviceModel?: string; // doar pe mobile
   browser: string;
   // os: string;
@@ -18,3 +18,13 @@ export type ActiveDevice = {
   ip_address?: string;
   created_at?: string;
 };
+
+export type ActiveDeviceType =
+  | "desktop"
+  | "mobile"
+  | "tablet"
+  | "console"
+  | "embedded"
+  | "smarttv"
+  | "wearable"
+  | "xr";

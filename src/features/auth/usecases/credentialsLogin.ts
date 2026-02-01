@@ -5,8 +5,6 @@ import type { AuthCredentials } from "./authEngine";
 
 export async function credentialsLogin(payload: AuthCredentials) {
   try {
-    const { os, deviceType, browser } = getCurrentDeviceInfo();
-
     const { data, error } = await supabaseCredentialsLogin(payload);
 
     if (error) throw error;
@@ -17,6 +15,8 @@ export async function credentialsLogin(payload: AuthCredentials) {
     } = await supabase.auth.getSession();
 
     if (session) {
+      const { os, deviceType, browser } = getCurrentDeviceInfo();
+
       const { error: errorHandler } = await supabase.rpc("record_login_audit", {
         device_type: deviceType,
         os,

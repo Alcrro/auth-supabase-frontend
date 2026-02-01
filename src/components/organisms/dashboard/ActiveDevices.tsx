@@ -1,6 +1,6 @@
-import { useEffect, useState } from "preact/hooks";
-import { supabase } from "../../../shared/libs/supabase/supabaseinsta";
+import { useState } from "preact/hooks";
 import type { ActiveDevice } from "../../../features/auth/types/auth.types";
+import useGetActivityDevice from "../../../shared/hooks/useGetActivityDevice";
 
 const cardStyle = {
   border: "1px solid #e5e7eb",
@@ -22,36 +22,7 @@ const ActiveDevices = () => {
   const [activity, setActivity] = useState<ActiveDevice[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    async function load() {
-      const { data, error } = await supabase
-        .from("login_audit")
-        .select("*")
-        .order("created_at", { ascending: false });
-
-      if (error) {
-        console.error(error);
-        setLoading(false);
-        return;
-      }
-
-      if (data) {
-        const parsed = data.map((d) => {
-          let osParsed = d.os;
-          try {
-            osParsed = JSON.parse(d.os);
-          } catch {}
-          return { ...d, os: osParsed };
-        });
-
-        setActivity(parsed);
-      }
-
-      setLoading(false);
-    }
-
-    load();
-  }, []);
+  useGetActivityDevice(setLoading, setActivity);
 
   if (loading) {
     return <div>Loading devices…</div>;
@@ -60,6 +31,7 @@ const ActiveDevices = () => {
   if (!activity.length) {
     return <div>No device activity yet</div>;
   }
+  console.log(activity);
 
   return (
     <div>
@@ -79,7 +51,7 @@ const ActiveDevices = () => {
             </div>
 
             <div style={{ fontSize: "14px", marginTop: "6px", opacity: 0.8 }}>
-              OS: {a.os?.name ?? a.os}
+              OS: {a.os?.name}
             </div>
 
             <div style={{ fontSize: "14px", opacity: 0.8 }}>
@@ -94,7 +66,7 @@ const ActiveDevices = () => {
 
             {a.created_at && (
               <div style={{ fontSize: "12px", opacity: 0.5, marginTop: "4px" }}>
-                {new Date(a.created_at).toLocaleString()}
+                {a.created_at}
               </div>
             )}
           </div>
