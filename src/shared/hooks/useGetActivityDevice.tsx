@@ -1,10 +1,6 @@
 import { useEffect, type Dispatch } from "react";
 import { supabase } from "../libs/supabase/supabaseinsta";
-import {
-  mapperActiveDevices,
-  mapperDbActDev,
-  type LoginAuditProps,
-} from "../../features/auth/mapper/mapperActiveDevices";
+import { mapperDbActDev } from "../../features/auth/mapper/mapperActiveDevices";
 import type { ActiveDevice } from "../../features/auth/types/auth.types";
 import type { StateUpdater } from "preact/hooks";
 
