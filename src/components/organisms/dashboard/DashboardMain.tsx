@@ -9,13 +9,13 @@ const DashboardMain = () => {
 
   return (
     <div className="main flex-1 flex flex-col justify-center mx-auto">
-      <div>
+      <>
         {!hydrated ? (
           <CurrentSessionSkeleton />
         ) : (
           <DashboardContent tab={currentTab} session={session} />
         )}
-      </div>
+      </>
     </div>
   );
 };

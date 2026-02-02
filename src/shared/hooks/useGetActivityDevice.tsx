@@ -22,9 +22,15 @@ const useGetActivityDevice = (
       }
 
       if (data) {
-        console.log(data);
+        console.log({ data });
+        const currentSessionId = localStorage.getItem("session_id");
 
-        const mappedParsed = mapperDbActDev(data);
+        const mappedParsed = data.map((row) =>
+          mapperDbActDev({
+            ...row,
+            isCurrent: row.session_id === currentSessionId,
+          }),
+        );
 
         setActivity(mappedParsed);
       }

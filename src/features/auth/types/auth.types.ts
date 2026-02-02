@@ -10,6 +10,8 @@ export type CurrentSessionVM = {
 
 export type ActiveDevice = {
   id?: string;
+  session_id: string;
+  isCurrent: boolean;
   deviceType: ActiveDeviceType;
   deviceModel?: string; // doar pe mobile
   browser: string;
