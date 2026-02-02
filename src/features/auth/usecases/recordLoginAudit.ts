@@ -11,17 +11,16 @@ export async function recordLoginAudit() {
 
   if (!session) return; // safety
   if (!user) return; // safety
-  console.log({ session });
-  console.log({ user });
 
   const { os, device_type, browser } = getCurrentDeviceInfo();
   const sessionId = crypto.randomUUID();
 
   localStorage.setItem("session_id", sessionId);
+  const provider = localStorage.getItem("login_method");
 
   const { error } = await supabase.rpc("record_login_audit", {
     p_user_id: session.user.id ?? user.id,
-    p_provider: session.user.identities?.at(-1)?.provider,
+    p_provider: provider,
     p_session_id: sessionId,
     p_device_type: device_type,
     p_os: os,

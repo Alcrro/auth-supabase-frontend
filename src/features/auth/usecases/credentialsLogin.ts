@@ -7,6 +7,7 @@ export async function credentialsLogin(payload: AuthCredentials) {
     const { data, error } = await supabaseCredentialsLogin(payload);
 
     if (error) throw error;
+    localStorage.setItem("login_method", "password");
 
     await recordLoginAudit();
 
