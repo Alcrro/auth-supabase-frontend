@@ -1,7 +1,7 @@
 import { cardStyle } from "../../organisms/dashboard/ActiveDevices";
 
 export const SkeletonCard = () => (
-  <div style={cardStyle}>
+  <div style={cardStyle(true)}>
     <div
       style={{ display: "flex", justifyContent: "space-between", gap: ".5rem" }}
     >
