@@ -1,4 +1,4 @@
-import { cardStyle } from "../../organisms/dashboard/ActiveDevices";
+import { cardStyle } from "../../styles/activityDeviceStyle";
 
 export const SkeletonCard = () => (
   <div style={cardStyle(true)}>

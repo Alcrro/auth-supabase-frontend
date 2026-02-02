@@ -3,6 +3,7 @@ import { supabase } from "../libs/supabase/supabaseinsta";
 import { mapperDbActDev } from "../../features/auth/mapper/mapperActiveDevices";
 import type { ActiveDevice } from "../../features/auth/types/auth.types";
 import type { StateUpdater } from "preact/hooks";
+import { sortDevices } from "../utils/sortDevices";
 
 const useGetActivityDevice = (
   setLoading: (value: boolean) => void,
@@ -22,7 +23,6 @@ const useGetActivityDevice = (
       }
 
       if (data) {
-        console.log({ data });
         const currentSessionId = localStorage.getItem("session_id");
 
         const mappedParsed = data.map((row) =>
@@ -32,7 +32,7 @@ const useGetActivityDevice = (
           }),
         );
 
-        setActivity(mappedParsed);
+        setActivity(sortDevices(mappedParsed));
       }
 
       setLoading(false);

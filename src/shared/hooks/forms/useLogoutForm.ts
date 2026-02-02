@@ -16,6 +16,7 @@ export function useLogoutForm() {
 
     try {
       await authAction({ type: "logout" });
+      localStorage.removeItem("session_id");
     } catch (error) {
       console.warn("Logout failed, clearing local session anyway", error);
     } finally {

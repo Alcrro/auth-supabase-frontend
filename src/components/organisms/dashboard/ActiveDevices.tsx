@@ -3,23 +3,8 @@ import type { ActiveDevice } from "../../../features/auth/types/auth.types";
 import useGetActivityDevice from "../../../shared/hooks/useGetActivityDevice";
 import { SkeletonList } from "../../UI/skeletons/ActivDeviceSkeletonCard";
 import CurrentActiveDevice from "./CurrentActiveDevice";
-import type { CSSProperties } from "preact";
 import { BsArrowDownCircle, BsArrowUpCircle } from "react-icons/bs";
-
-export const cardStyle = (isCurrent: boolean): CSSProperties => {
-  console.log(isCurrent);
-
-  return {
-    border: "1px solid",
-
-    borderColor: isCurrent ? "#e5e7eb" : "#333",
-    color: isCurrent ? "#e5e7eb" : "#bbb",
-    borderRadius: "12px",
-    padding: "14px",
-    marginBottom: "10px",
-    boxShadow: "0 2px 6px rgba(0,0,0,0.05)",
-  };
-};
+import { cardStyle } from "../../styles/activityDeviceStyle";
 
 const ActiveDevices = () => {
   const [activity, setActivity] = useState<ActiveDevice[]>([]);
@@ -52,7 +37,6 @@ const ActiveDevices = () => {
 
     if (!expanded) {
       const first = children[0] as HTMLElement;
-      console.log(first);
 
       setMaxH(first.offsetHeight);
     } else {
@@ -68,7 +52,6 @@ const ActiveDevices = () => {
         ref={ref}
         style={{
           overflow: "hidden",
-
           maxHeight: `${maxH}px`,
           transition: "max-height 500ms ease-in-out, opacity 300ms ease",
           opacity: expanded ? 1 : 0.98,
@@ -111,19 +94,29 @@ const ActiveDevices = () => {
             </div>
           );
         })}
-        {activity.length > 1 && (
-          <div
-            className="expend absolute -bottom-10 left-1/2 -translate-x-1/2 z-20"
-            onClick={() => setExpanded((v) => !v)}
-          >
-            {!expanded ? (
-              <BsArrowDownCircle size={30} />
-            ) : (
-              <BsArrowUpCircle size={30} />
-            )}
-          </div>
-        )}
       </div>
+      {activity.length > 1 && (
+        <div
+          className={
+            expanded && activity.length > 3
+              ? "fixed bottom-4 left-1/2 -translate-x-1/2 z-50 cursor-pointer"
+              : "flex justify-center mt-4 cursor-pointer"
+          }
+          onClick={() => setExpanded((v) => !v)}
+        >
+          {!expanded ? (
+            <BsArrowDownCircle
+              size={30}
+              className={"text-white/60 hover:text-white"}
+            />
+          ) : (
+            <BsArrowUpCircle
+              size={30}
+              className={"text-white/60 hover:text-white"}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 };
