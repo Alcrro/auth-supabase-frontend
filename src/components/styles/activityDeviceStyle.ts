@@ -1,3 +1,5 @@
+import type { CSSProperties } from "preact";
+
 export const cardStyle = (isCurrent: boolean): CSSProperties => {
   return {
     border: "1px solid",
