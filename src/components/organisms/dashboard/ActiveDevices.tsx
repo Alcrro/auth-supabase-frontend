@@ -1,10 +1,11 @@
-import { useLayoutEffect, useRef, useState } from "preact/hooks";
+import { useRef, useState } from "preact/hooks";
 import type { ActiveDevice } from "../../../features/auth/types/auth.types";
 import useGetActivityDevice from "../../../shared/hooks/useGetActivityDevice";
 import { SkeletonList } from "../../UI/skeletons/ActivDeviceSkeletonCard";
 import CurrentActiveDevice from "./CurrentActiveDevice";
 import { BsArrowDownCircle, BsArrowUpCircle } from "react-icons/bs";
 import { cardStyle } from "../../styles/activityDeviceStyle";
+import useLayoutActivityDevice from "../../../shared/hooks/useLaoutActivityDevice";
 
 const ActiveDevices = () => {
   const [activity, setActivity] = useState<ActiveDevice[]>([]);
@@ -28,21 +29,7 @@ const ActiveDevices = () => {
     return <div>No device activity yet</div>;
   }
 
-  useLayoutEffect(() => {
-    if (!ref.current) return;
-
-    const children = ref.current.children;
-
-    if (!children.length) return;
-
-    if (!expanded) {
-      const first = children[0] as HTMLElement;
-
-      setMaxH(first.offsetHeight);
-    } else {
-      setMaxH(ref.current.scrollHeight);
-    }
-  }, [activity, expanded]);
+  useLayoutActivityDevice(ref, expanded, setMaxH, activity);
 
   return (
     <div className="activities relative z-10">
