@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, type RefObject } from "react";
+import { useEffect, type RefObject } from "react";
 import type { ActiveDevice } from "../../features/auth/types/auth.types";
 
 const useLayoutActivityDevice = (

@@ -24,8 +24,7 @@ const useGetActivityDevice = (
         .order("created_at", { ascending: false })
         .limit(limit);
 
-      const { data: totalRows, error: errorTotalRows } =
-        await supabase.rpc("get_login_total");
+      const { data: totalRows } = await supabase.rpc("get_login_total");
 
       if (error) {
         console.error(error);
