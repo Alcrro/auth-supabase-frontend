@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "preact/hooks";
+import { useRef, useState } from "preact/hooks";
 import type { ActiveDevice } from "../../../features/auth/types/auth.types";
 import useGetActivityDevice from "../../../shared/hooks/useGetActivityDevice";
 import { SkeletonList } from "../../UI/skeletons/ActivDeviceSkeletonCard";
