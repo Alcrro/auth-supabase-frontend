@@ -1,4 +1,4 @@
-import { useRef, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import type { ActiveDevice } from "../../../features/auth/types/auth.types";
 import useGetActivityDevice from "../../../shared/hooks/useGetActivityDevice";
 import { SkeletonList } from "../../UI/skeletons/ActivDeviceSkeletonCard";
@@ -6,15 +6,26 @@ import CurrentActiveDevice from "./CurrentActiveDevice";
 import { BsArrowDownCircle, BsArrowUpCircle } from "react-icons/bs";
 import { cardStyle } from "../../styles/activityDeviceStyle";
 import useLayoutActivityDevice from "../../../shared/hooks/useLaoutActivityDevice";
+import DefaultButton from "../../atoms/DefaultButton";
 
 const ActiveDevices = () => {
   const [activity, setActivity] = useState<ActiveDevice[]>([]);
   const [loading, setLoading] = useState(true);
-  const [expanded, setExpanded] = useState(false);
+  // const [expanded, setExpanded] = useState(false);
+  const [totalRows, setTotalRows] = useState<number>(0);
+  const [limit, setLimit] = useState<number>(1);
   const [maxH, setMaxH] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
 
-  useGetActivityDevice(setLoading, setActivity);
+  const addMoreItems = () => {
+    setLimit((prev) => {
+      if (prev === 1) return 5;
+      if (prev >= totalRows) return 5;
+      return prev + 5;
+    });
+  };
+
+  useGetActivityDevice(setLoading, setActivity, limit, setTotalRows);
 
   if (loading) {
     return (
@@ -29,19 +40,29 @@ const ActiveDevices = () => {
     return <div>No device activity yet</div>;
   }
 
-  useLayoutActivityDevice(ref, expanded, setMaxH, activity);
+  useLayoutActivityDevice(ref, setMaxH, activity, limit);
+  console.log({ limit });
+  console.log({ totalRows });
+  console.log({ maxH });
 
   return (
     <div className="activities relative z-10">
-      <h3 style={{ margin: "12px", textAlign: "center" }}>Active devices</h3>
+      <div className="title">
+        <h3
+          style={{ margin: "12px", textAlign: "center" }}
+          className={"font-semibold text-2xl"}
+        >
+          Active devices
+        </h3>
+        <div className={"text-right py-2"}>total visible: {limit}</div>
+      </div>
       <div
         className={"activity_list"}
         ref={ref}
         style={{
-          overflow: "hidden",
-          maxHeight: `${maxH}px`,
+          overflowY: limit > 5 ? "scroll" : "hidden",
+          maxHeight: `${768}px`,
           transition: "max-height 500ms ease-in-out, opacity 300ms ease",
-          opacity: expanded ? 1 : 0.98,
         }}
       >
         {activity.map((a, i) => {
@@ -82,16 +103,18 @@ const ActiveDevices = () => {
           );
         })}
       </div>
-      {activity.length > 1 && (
-        <div
-          className={
-            expanded && activity.length > 3
-              ? "fixed bottom-4 left-1/2 -translate-x-1/2 z-50 cursor-pointer"
-              : "flex justify-center mt-4 cursor-pointer"
-          }
-          onClick={() => setExpanded((v) => !v)}
+      {totalRows > 1 && (
+        <DefaultButton
+          variant="none"
+          className={`
+            ${
+              activity.length > 3
+                ? "fixed bottom-4 left-1/2 -translate-x-1/2 z-50 cursor-pointer"
+                : "flex justify-center mt-4 cursor-pointer mx-auto"
+            }`}
+          onClick={addMoreItems}
         >
-          {!expanded ? (
+          {totalRows > 5 ? (
             <BsArrowDownCircle
               size={30}
               className={"text-white/60 hover:text-white"}
@@ -102,7 +125,7 @@ const ActiveDevices = () => {
               className={"text-white/60 hover:text-white"}
             />
           )}
-        </div>
+        </DefaultButton>
       )}
     </div>
   );

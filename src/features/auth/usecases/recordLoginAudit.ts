@@ -1,7 +1,7 @@
 import { supabase } from "../../../shared/libs/supabase/supabaseinsta";
 import { getCurrentDeviceInfo } from "../services/getCurrentDeviceInfo";
 
-export async function recordLoginAudit() {
+export async function recordLoginAudit(method: "login" | "logout" = "login") {
   const {
     data: { session },
   } = await supabase.auth.getSession();
@@ -21,6 +21,7 @@ export async function recordLoginAudit() {
   const { error } = await supabase.rpc("record_login_audit", {
     p_user_id: session.user.id ?? user.id,
     p_provider: provider,
+    p_action: method,
     p_session_id: sessionId,
     p_device_type: device_type,
     p_os: os,

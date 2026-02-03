@@ -19,6 +19,7 @@ export type ActiveDevice = {
   os: { name: string };
   ip_address?: string;
   created_at?: string;
+  totalRows?: number;
 };
 
 export type ActiveDeviceType =

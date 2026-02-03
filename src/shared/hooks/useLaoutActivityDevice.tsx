@@ -1,27 +1,30 @@
-import { useLayoutEffect, type RefObject } from "react";
+import { useEffect, useLayoutEffect, type RefObject } from "react";
 import type { ActiveDevice } from "../../features/auth/types/auth.types";
 
 const useLayoutActivityDevice = (
   ref: RefObject<HTMLDivElement>,
-  expanded: boolean,
+
   setMaxH: (value: number) => void,
   activity: ActiveDevice[],
+  limit: number,
 ) => {
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!ref.current) return;
 
-    const children = ref.current.children;
+    const el = ref.current;
+    const children = el.children;
 
     if (!children.length) return;
 
-    if (!expanded) {
-      const first = children[0] as HTMLElement;
-
-      setMaxH(first.offsetHeight);
+    if (limit === 5) {
+      setMaxH(el.scrollHeight);
+    } else if (limit >= 5) {
+      setMaxH(el.scrollHeight);
     } else {
-      setMaxH(ref.current.scrollHeight);
+      const fist = children[0] as HTMLElement;
+      setMaxH(fist.scrollHeight);
     }
-  }, [activity, expanded]);
+  }, [activity.length, limit, setMaxH]);
 };
 
 export default useLayoutActivityDevice;

@@ -12,7 +12,12 @@ const outlineButton = `${baseButton} border border-gray-400 bg-transparent text-
 const linkButton =
   "bg-transparent p-0 text-blue-400 hover:underline focus-visible:outline-none pointer";
 
-export type ButtonVariant = "default" | "secondary" | "outline" | "link";
+export type ButtonVariant =
+  | "default"
+  | "secondary"
+  | "outline"
+  | "link"
+  | "none";
 
 type ToggleVariant = "toggle";
 
@@ -32,4 +37,5 @@ export const variantButtonMapper: Record<ButtonVariant, string> = {
   secondary: secondaryButton,
   outline: outlineButton,
   link: linkButton,
+  none: "",
 };

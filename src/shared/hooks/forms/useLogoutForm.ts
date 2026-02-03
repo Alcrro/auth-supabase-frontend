@@ -3,6 +3,7 @@ import { actionHandler } from "./actionHandler";
 import type { TargetedSubmitEvent } from "preact";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../../features/auth/store/useAuthStore";
+import { recordLoginAudit } from "../../../features/auth/usecases/recordLoginAudit";
 
 export function useLogoutForm() {
   const [loading, setLoading] = useState(false);
@@ -15,7 +16,9 @@ export function useLogoutForm() {
     setLoading(true);
 
     try {
+      await recordLoginAudit("logout");
       await authAction({ type: "logout" });
+
       localStorage.removeItem("session_id");
       localStorage.removeItem("login_method");
     } catch (error) {
