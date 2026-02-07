@@ -22,6 +22,7 @@ export async function getActivityDevice(
   if (filters?.action) {
     query = query.eq("action", filters.action);
   }
+
   const { data, error } = await query
     .order("created_at", { ascending: false })
     .range(page * pageSize, page * pageSize + pageSize - 1);

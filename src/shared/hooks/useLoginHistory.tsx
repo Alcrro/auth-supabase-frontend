@@ -12,7 +12,11 @@ const useLoginHistory = (
   useEffect(() => {
     async function load() {
       setLoading(true);
-      const { data, error } = await getActivityDevice({}, page, 30);
+      const { data, error } = await getActivityDevice(
+        { action: "login" },
+        page,
+        30,
+      );
 
       if (error) {
         console.error(error);
@@ -22,6 +26,8 @@ const useLoginHistory = (
 
       if (data) {
         const dataMapper = data.map(mapperLoginHistory);
+        console.log({ data });
+        console.log({ dataMapper });
 
         setLoginDevice((prev) => {
           const map = new Map(prev.map((x) => [x.id, x]));
@@ -32,7 +38,7 @@ const useLoginHistory = (
           return Array.from(map.values());
         });
 
-        // setActivity((prev) => [...prev, ...data]);
+        // setLoginDevice((prev) => [...prev, ...dataMapper]);
       }
       setLoading(false);
     }

@@ -20,6 +20,7 @@ const LoginHistoryPage = () => {
 
   if (loading) return <LoginHistorySkeleton />;
 
+  console.log(loginHistory);
   return (
     <Suspense fallback={<LoginHistorySkeleton />}>
       <UserLoginHistory loginHistories={loginHistory} />
