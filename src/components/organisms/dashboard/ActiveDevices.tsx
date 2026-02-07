@@ -36,9 +36,7 @@ const ActiveDevices = () => {
   );
 
   // fetching activity devices
-  useGetActivityDevice(setLoading, setActivity, activity, page, {
-    action: "login",
-  });
+  useGetActivityDevice(setLoading, setActivity, page);
 
   // fetching total rows of activity devices history
   useGetTotalRows(setTotalRows);
