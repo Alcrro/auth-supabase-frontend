@@ -1,27 +1,18 @@
 import { useEffect, type Dispatch } from "react";
-import type { StateUpdater } from "preact/hooks";
-import type {
-  ActivityFilters,
-  LoginAuditProps,
-} from "../../features/auth/types/auth.types";
 import { getActivityDevice } from "../../features/auth/services/getActivityDevice";
+import type { StateUpdater } from "preact/hooks";
+import type { LoginHistoryProps } from "../../features/auth/types/auth.types";
+import { mapperLoginHistory } from "../../features/auth/mapper/mapperLoginHistory";
 
-const PAGE_SIZE = 30;
-
-const useGetActivityDevice = (
+const useLoginHistory = (
   setLoading: (value: boolean) => void,
-  setActivity: Dispatch<StateUpdater<LoginAuditProps[]>>,
-  activity: LoginAuditProps[],
+  setLoginDevice: Dispatch<StateUpdater<LoginHistoryProps[]>>,
   page: number,
-  filters?: ActivityFilters,
 ) => {
   useEffect(() => {
     async function load() {
-      const { data, error } = await getActivityDevice(
-        { action: "login" },
-        page,
-        PAGE_SIZE,
-      );
+      setLoading(true);
+      const { data, error } = await getActivityDevice({}, page, 30);
 
       if (error) {
         console.error(error);
@@ -30,11 +21,11 @@ const useGetActivityDevice = (
       }
 
       if (data) {
-        console.log({ data });
+        const dataMapper = data.map(mapperLoginHistory);
 
-        setActivity((prev) => {
+        setLoginDevice((prev) => {
           const map = new Map(prev.map((x) => [x.id, x]));
-          for (const row of data) {
+          for (const row of dataMapper) {
             map.set(row.id, row);
           }
 
@@ -43,12 +34,11 @@ const useGetActivityDevice = (
 
         // setActivity((prev) => [...prev, ...data]);
       }
-
       setLoading(false);
     }
 
     load();
-  }, [page, setActivity]);
+  }, []);
 };
 
-export default useGetActivityDevice;
+export default useLoginHistory;

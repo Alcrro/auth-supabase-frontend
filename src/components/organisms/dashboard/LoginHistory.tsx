@@ -1,5 +1,7 @@
+import LoginHistoryPage from "../../../features/auth/pages/LoginHistoryPage";
+
 const LoginHistory = () => {
-  return <div>LoginHistory</div>;
+  return <LoginHistoryPage />;
 };
 
 export default LoginHistory;

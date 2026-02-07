@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../../shared/libs/supabase/supabaseinsta";
 import { recordLoginAudit } from "../usecases/recordLoginAudit";
+import LoadingSpinner from "../../../components/UI/LoadingSpinner";
 
 export default function OAuthCallback() {
   const navigate = useNavigate();
@@ -31,5 +32,7 @@ export default function OAuthCallback() {
     run();
   }, [navigate]);
 
-  return <p>Signing you in…</p>;
+  return (
+    <LoadingSpinner className="h-screen flex justify-center items-center size-14" />
+  );
 }

@@ -1,17 +1,5 @@
-import { maskIPv4 } from "../../../shared/hooks/maskIPv4";
-import type { ActiveDevice } from "../types/auth.types";
-
-export interface LoginAuditProps {
-  id?: string;
-  user_id?: string;
-  session_id: string;
-  device_type: ActiveDevice["deviceType"];
-  os: string;
-  browser: string;
-  ip_address?: string;
-  created_at: string;
-  isCurrent: boolean | false;
-}
+import { osDeviceParse } from "../../../shared/utils/osDeviceParse";
+import type { ActiveDevice, LoginAuditProps } from "../types/auth.types";
 
 export interface UAParserProps {
   device_type: ActiveDevice["deviceType"];
@@ -27,32 +15,24 @@ export function mapperActiveDevices(result: UAParser.IResult): UAParserProps {
   };
 }
 
-export function mapperDbActDev(result: LoginAuditProps): ActiveDevice {
+export function mapperDbActiveDevices(result: LoginAuditProps): ActiveDevice {
   // if (!result || result.length === 0) return [];
 
-  const {
-    device_type,
-    browser,
-    ip_address,
-    created_at,
-    id,
-    session_id,
-    isCurrent,
-  } = result;
-  const parsedOs: any = result.os
-    ? JSON.parse(result.os)
-    : { name: "Unknown OS" };
+  const { device_type, browser, ip_address, created_at, id, session_id, os } =
+    result;
 
   const created_atFormat = new Date(created_at).toUTCString();
+  const currentSessionId = localStorage.getItem("session_id");
+  // console.log(data);
 
   return {
     id: id,
     session_id: session_id,
     deviceType: device_type,
     browser: browser ?? "Unknown browser",
-    os: parsedOs,
-    ip_address: !ip_address ? "Unknown ip address" : maskIPv4(ip_address),
+    os: osDeviceParse(os),
+    ip_address: ip_address ?? "Unknown ip address",
     created_at: created_atFormat,
-    isCurrent,
+    isCurrent: session_id === currentSessionId,
   };
 }

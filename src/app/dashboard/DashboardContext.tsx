@@ -4,8 +4,8 @@ import AuditLogTable from "../../components/organisms/dashboard/auditLogTable/Au
 import CurrentSession from "../../components/organisms/dashboard/CurrentSession";
 import EmailVerified from "../../components/organisms/dashboard/EmailVerified";
 import LoginHistory from "../../components/organisms/dashboard/LoginHistory";
-
 import type { DashboardTab } from "../../shared/data/dashboard/dashboardTabsData";
+import DashboardErrorPage from "../../DashboardErrorPage";
 
 export const DashboardContent = ({
   tab,
@@ -27,7 +27,8 @@ export const DashboardContent = ({
       return <EmailVerified />;
     case "audit":
       return <AuditLogTable />;
+
     default:
-      return null;
+      return <DashboardErrorPage />;
   }
 };

@@ -31,3 +31,35 @@ export type ActiveDeviceType =
   | "smarttv"
   | "wearable"
   | "xr";
+
+export type LoginHistoryProps = {
+  id: string;
+  nrCrt: string;
+  created_at: string;
+  success: boolean;
+  action: string;
+  ip_address: string;
+  location?: string;
+  provider: string;
+  device: string;
+  os: string;
+  browser: string;
+};
+
+export interface LoginAuditProps {
+  id: string;
+  user_id?: string;
+  session_id: string;
+  device_type: ActiveDevice["deviceType"];
+  os: string;
+  browser: string;
+  provider: string;
+  ip_address?: string;
+  created_at: string;
+  isCurrent: boolean | false;
+  action: string;
+}
+
+export type ActivityFilters = {
+  action?: LoginAuditProps["action"];
+};

@@ -1,11 +1,11 @@
 import { useEffect, type RefObject } from "react";
-import type { ActiveDevice } from "../../features/auth/types/auth.types";
+import type { LoginAuditProps } from "../../features/auth/mapper/mapperActiveDevices";
 
 const useLayoutActivityDevice = (
   ref: RefObject<HTMLDivElement>,
 
   setMaxH: (value: number) => void,
-  activity: ActiveDevice[],
+  activity: LoginAuditProps[],
   limit: number,
 ) => {
   useEffect(() => {

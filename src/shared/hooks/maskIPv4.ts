@@ -1,7 +1,10 @@
-export function maskIPv4(ip: string | null) {
+export const maskIPv4 = (ip: string | null): string | undefined => {
   if (!ip) return undefined;
-  const parts = ip.split(".");
 
+  const parts = ip.split(".");
   if (parts.length !== 4) return ip;
-  return `***.***.***.${parts[3]}`;
-}
+
+  parts[3] = "xxx";
+
+  return parts.join(".");
+};

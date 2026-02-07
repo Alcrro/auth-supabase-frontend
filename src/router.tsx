@@ -10,10 +10,13 @@ import ResetPasswordPage from "./features/auth/pages/ResetPasswordPage";
 import OAuthCallback from "./features/auth/pages/OauthCallback";
 import { initAuth } from "./features/auth/store/auth.listener";
 
+import RouteErrorPage from "./RouteErrorPage";
+
 await initAuth();
 export const router = createBrowserRouter([
   {
     element: <App />,
+    errorElement: <RouteErrorPage />,
     children: [
       {
         path: "/",

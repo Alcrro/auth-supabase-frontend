@@ -5,4 +5,15 @@ export default [
   ...tseslint.configs.recommended,
 
   { ignores: ["dist/**", "build/**", ".vite/**", "node_modules/**"] },
+  {
+    rules: {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+        },
+      ],
+    },
+  },
 ];
