@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import DefaultButton from "../../../components/atoms/DefaultButton";
 import PasswordInputGroup from "../../../components/molecules/form/PasswordInputGroup";
 import LoginLayout from "../../../components/organisms/LoginLayout";
@@ -6,17 +7,24 @@ import useResetPasswordForm from "../../../shared/hooks/forms/useResetPasswordFo
 const ResetPasswordPage = () => {
   const { submitHandler } = useResetPasswordForm();
   return (
-    <LoginLayout description="Reset password">
-      <form
-        onSubmit={submitHandler}
-        className={"flex flex-col justify-center gap-2 py-2"}
-      >
-        <PasswordInputGroup />
-        <DefaultButton variant="default">
-          <span className={"text-md md:text-xl"}>Change password</span>
-        </DefaultButton>
-      </form>
-    </LoginLayout>
+    <>
+      <Helmet>
+        <title>Reset password | Alcrro</title>
+        <meta name="description" content={"Reset password"}></meta>
+        <meta name="robots" content={"noindex,nofollow"}></meta>
+      </Helmet>
+      <LoginLayout description="Reset password">
+        <form
+          onSubmit={submitHandler}
+          className={"flex flex-col justify-center gap-2 py-2"}
+        >
+          <PasswordInputGroup />
+          <DefaultButton variant="default">
+            <span className={"text-md md:text-xl"}>Change password</span>
+          </DefaultButton>
+        </form>
+      </LoginLayout>
+    </>
   );
 };
 

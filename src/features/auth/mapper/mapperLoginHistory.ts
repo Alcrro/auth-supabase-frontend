@@ -5,7 +5,7 @@ export function mapperLoginHistory(login: LoginAuditProps): LoginHistoryProps {
   return {
     id: login.id,
     nrCrt: "",
-    created_at: new Date(login.created_at).toLocaleDateString(),
+    created_at: new Date(login.created_at).toLocaleString(),
     success: false,
     action: login.action,
     ip_address: login.ip_address ?? "Unknown IP",

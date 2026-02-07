@@ -4,7 +4,10 @@ import { router } from "./router.tsx";
 import "./index.scss";
 
 import { createRoot } from "preact/compat/client";
+import { HelmetProvider } from "react-helmet-async";
 
 createRoot(document.getElementById("app")!).render(
-  <RouterProvider router={router} />,
+  <HelmetProvider>
+    <RouterProvider router={router} />,
+  </HelmetProvider>,
 );
