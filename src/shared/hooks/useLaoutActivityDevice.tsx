@@ -1,5 +1,5 @@
 import { useEffect, type RefObject } from "react";
-import type { LoginAuditProps } from "../../features/auth/mapper/mapperActiveDevices";
+import type { LoginAuditProps } from "../../features/auth/types/auth.types";
 
 const useLayoutActivityDevice = (
   ref: RefObject<HTMLDivElement>,

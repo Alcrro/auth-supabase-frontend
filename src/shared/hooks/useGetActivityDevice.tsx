@@ -1,9 +1,6 @@
 import { useEffect, type Dispatch } from "react";
 import type { StateUpdater } from "preact/hooks";
-import type {
-  ActivityFilters,
-  LoginAuditProps,
-} from "../../features/auth/types/auth.types";
+import type { LoginAuditProps } from "../../features/auth/types/auth.types";
 import { getActivityDevice } from "../../features/auth/services/getActivityDevice";
 
 const PAGE_SIZE = 30;
@@ -11,9 +8,7 @@ const PAGE_SIZE = 30;
 const useGetActivityDevice = (
   setLoading: (value: boolean) => void,
   setActivity: Dispatch<StateUpdater<LoginAuditProps[]>>,
-  activity: LoginAuditProps[],
   page: number,
-  filters?: ActivityFilters,
 ) => {
   useEffect(() => {
     async function load() {

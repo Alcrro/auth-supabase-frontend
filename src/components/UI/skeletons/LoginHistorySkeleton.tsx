@@ -36,7 +36,7 @@ const LoginHistorySkeleton = () => {
             <tr className={"max-md:hidden"}>
               <td colSpan={tableDocumentMap.length} className="h-2"></td>
             </tr>
-            {Array.from({ length: 3 }).map((row, i, arr) => (
+            {Array.from({ length: 3 }).map((_row, i, arr) => (
               <tr
                 key={i}
                 className={
