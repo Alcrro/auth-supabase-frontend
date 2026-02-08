@@ -12,7 +12,7 @@ const UserLoginHistory = ({
       <div className={` rounded-md overflow-hidden px-2`}>
         <table
           className={
-            "max-w-7xl w-full table-fixed border-separate border-spacing-y-0"
+            "max-w-5xl w-full table-fixed border-separate border-spacing-y-0"
           }
           aria-label={"login history"}
         >

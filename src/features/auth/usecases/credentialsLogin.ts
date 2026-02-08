@@ -1,3 +1,4 @@
+import { getGeolocation } from "../services/getGeolocation";
 import { supabaseCredentialsLogin } from "../services/supabaseCredentialsLogin";
 import type { AuthCredentials } from "./authEngine";
 import { recordLoginAudit } from "./recordLoginAudit";
@@ -10,6 +11,7 @@ export async function credentialsLogin(payload: AuthCredentials) {
     localStorage.setItem("login_method", "password");
 
     await recordLoginAudit();
+    await getGeolocation();
 
     return data;
   } catch (error) {

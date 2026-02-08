@@ -3,6 +3,7 @@ import useGetTotalRows from "../../../shared/hooks/useGetTotalRows";
 import type { LoginHistoryProps } from "../types/auth.types";
 import useLoginHistory from "../../../shared/hooks/useLoginHistory";
 import LoginHistorySkeleton from "../../../components/UI/skeletons/LoginHistorySkeleton";
+import { getGeolocation } from "../services/getGeolocation";
 
 const UserLoginHistory = React.lazy(
   () =>

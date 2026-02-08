@@ -1,5 +1,6 @@
 import { supabase } from "../../../shared/libs/supabase/supabaseinsta";
 import { getCurrentDeviceInfo } from "../services/getCurrentDeviceInfo";
+import { getGeolocation } from "../services/getGeolocation";
 
 export async function recordLoginAudit(method: "login" | "logout" = "login") {
   const {
@@ -18,6 +19,8 @@ export async function recordLoginAudit(method: "login" | "logout" = "login") {
   localStorage.setItem("session_id", sessionId);
   const provider = localStorage.getItem("login_method");
 
+  const geolocation = await getGeolocation();
+
   const { error } = await supabase.rpc("record_login_audit", {
     p_user_id: session.user.id ?? user.id,
     p_provider: provider,
@@ -26,6 +29,7 @@ export async function recordLoginAudit(method: "login" | "logout" = "login") {
     p_device_type: device_type,
     p_os: os,
     p_browser: browser,
+    p_country_code: geolocation.country_code,
   });
 
   if (error) throw error;

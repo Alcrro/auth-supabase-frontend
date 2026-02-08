@@ -3,13 +3,13 @@ import { tableDocumentMap } from "../../../shared/data/dashboard/loginHistoryDat
 const LoginHistorySkeleton = () => {
   return (
     <div className={"max-h-200 overflow-y-auto"}>
-      <div className="title text-2xl text-center py-1 text-transparent bg-gray-300 animate-pulse rounded-2xl w-fit mx-auto">
+      <div className="title text-2xl my-2 text-center py-1 text-transparent bg-gray-300 animate-pulse rounded-2xl w-fit mx-auto">
         Login History
       </div>
       <div className={`overflow-hidden rounded-2xl`}>
         <table
           className={
-            "max-w-240 w-full table-fixed border-separate border-spacing-0"
+            "max-w-5xl  w-full table-fixed border-separate border-spacing-0"
           }
           aria-label={"login history"}
         >
@@ -38,7 +38,7 @@ const LoginHistorySkeleton = () => {
             <tr className={"max-lg:hidden"}>
               <td colSpan={tableDocumentMap.length} className="h-2"></td>
             </tr>
-            {Array.from({ length: 3 }).map((_row, i, arr) => (
+            {Array.from({ length: 5 }).map((_row, i, arr) => (
               <tr
                 key={i}
                 className={
@@ -48,7 +48,7 @@ const LoginHistorySkeleton = () => {
                 {tableDocumentMap.map((h, colIndex) => (
                   <td
                     key={h.key}
-                    className={`p-2 ${h.key !== "ip_address" && "capitalize"} flex justify-between items-center lg:table-cell border-b border-gray-400 ${i === arr.length - 1 && colIndex === 0 ? "rounded-bl-md" : ""} ${i === arr.length - 1 && colIndex === tableDocumentMap.length - 1 ? "rounded-br-md" : ""} ${i === 0 && colIndex === 0 ? "rounded-tl-md" : ""} ${i === 0 && colIndex === tableDocumentMap.length - 1 ? "rounded-tr-md" : ""}`}
+                    className={`p-2 ${h.key !== "ip_address" && "capitalize"} h-16 flex justify-between items-center lg:table-cell border-b border-gray-400 ${i === arr.length - 1 && colIndex === 0 ? "rounded-bl-md" : ""} ${i === arr.length - 1 && colIndex === tableDocumentMap.length - 1 ? "rounded-br-md" : ""} ${i === 0 && colIndex === 0 ? "rounded-tl-md" : ""} ${i === 0 && colIndex === tableDocumentMap.length - 1 ? "rounded-tr-md" : ""}`}
                   >
                     <span
                       className={

@@ -5,7 +5,7 @@ export const tableDocumentMap = [
   { label: "status", key: "status", computed: true },
   { label: "action", key: "action" },
   { label: "device", key: "device" },
-  { label: "locatie", key: "locatie", computed: true },
+  { label: "locatie", key: "location", computed: true },
   { label: "provider", key: "provider" },
   { label: "browser", key: "browser" },
   { label: "IP", key: "ip_address" },
@@ -20,4 +20,4 @@ export interface TableDocumentMapProps {
 }
 
 type KeyType = keyof LoginHistoryProps;
-type ComputedKey = "locatie" | "status" | "action" | "provider" | "nr.crt";
+type ComputedKey = "status" | "action" | "provider" | "nr.crt";

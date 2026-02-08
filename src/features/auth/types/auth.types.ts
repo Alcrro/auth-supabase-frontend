@@ -56,6 +56,7 @@ export interface LoginAuditProps {
   provider: string;
   ip_address?: string;
   created_at: string;
+  country_code: string;
   isCurrent: boolean | false;
   action: string;
 }

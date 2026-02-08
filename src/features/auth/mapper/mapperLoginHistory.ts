@@ -9,7 +9,7 @@ export function mapperLoginHistory(login: LoginAuditProps): LoginHistoryProps {
     success: false,
     action: login.action,
     ip_address: login.ip_address ?? "Unknown IP",
-    location: "locatie",
+    location: login.country_code,
     provider: login.provider,
     device: login.device_type,
     os: osDeviceParse(login.os).name,
