@@ -1,4 +1,4 @@
-import { useEffect, type Dispatch } from "react";
+import { useEffect, useState, type Dispatch } from "react";
 import { getActivityDevice } from "../../features/auth/services/getActivityDevice";
 import type { StateUpdater } from "preact/hooks";
 import type { LoginHistoryProps } from "../../features/auth/types/auth.types";
@@ -6,8 +6,11 @@ import { mapperLoginHistory } from "../../features/auth/mapper/mapperLoginHistor
 
 const useLoginHistory = (
   setLoading: (value: boolean) => void,
-  setLoginDevice: Dispatch<StateUpdater<LoginHistoryProps[]>>,
+  loginHistories: LoginHistoryProps[],
+  setLoginHistory: Dispatch<StateUpdater<LoginHistoryProps[]>>,
   page: number,
+  setPage: Dispatch<StateUpdater<number>>,
+  limit: number,
 ) => {
   useEffect(() => {
     let mounted = true;
@@ -32,8 +35,12 @@ const useLoginHistory = (
       if (data) {
         const dataMapper = data.map(mapperLoginHistory);
 
-        setLoginDevice((prev) => {
+        if (loginHistories.length === data.length) {
+          setPage((prev) => prev + 1);
+        }
+        setLoginHistory((prev) => {
           const map = new Map(prev.map((x) => [x.id, x]));
+
           for (const row of dataMapper) {
             map.set(row.id, row);
           }
@@ -41,7 +48,7 @@ const useLoginHistory = (
           return Array.from(map.values());
         });
 
-        // setLoginDevice((prev) => [...prev, ...dataMapper]);
+        // setLoginHistory((prev) => [...prev, ...dataMapper]);
       }
       setLoading(false);
     }

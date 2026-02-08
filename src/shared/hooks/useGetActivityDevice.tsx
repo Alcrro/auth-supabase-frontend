@@ -1,13 +1,15 @@
 import { useEffect, type Dispatch } from "react";
 import type { StateUpdater } from "preact/hooks";
-import type { LoginAuditProps } from "../../features/auth/types/auth.types";
+import type { ActiveDevice } from "../../features/auth/types/auth.types";
 import { getActivityDevice } from "../../features/auth/services/getActivityDevice";
+import { sortDevices } from "../utils/sortDevices";
+import { mapperDbActiveDevices } from "../../features/auth/mapper/mapperActiveDevices";
 
 const PAGE_SIZE = 30;
 
 const useGetActivityDevice = (
   setLoading: (value: boolean) => void,
-  setActivity: Dispatch<StateUpdater<LoginAuditProps[]>>,
+  setActivity: Dispatch<StateUpdater<ActiveDevice[]>>,
   page: number,
 ) => {
   useEffect(() => {
@@ -25,11 +27,14 @@ const useGetActivityDevice = (
       }
 
       if (data) {
-        console.log({ data });
+        console.log(data);
+
+        const mapped = sortDevices(data).map(mapperDbActiveDevices);
 
         setActivity((prev) => {
           const map = new Map(prev.map((x) => [x.id, x]));
-          for (const row of data) {
+
+          for (const row of mapped) {
             map.set(row.id, row);
           }
 

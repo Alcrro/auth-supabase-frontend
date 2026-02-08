@@ -9,7 +9,7 @@ export type CurrentSessionVM = {
 };
 
 export type ActiveDevice = {
-  id?: string;
+  id: string;
   session_id: string;
   isCurrent: boolean;
   deviceType: ActiveDeviceType;

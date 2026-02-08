@@ -3,6 +3,7 @@ import useGetTotalRows from "../../../shared/hooks/useGetTotalRows";
 import type { LoginHistoryProps } from "../types/auth.types";
 import useLoginHistory from "../../../shared/hooks/useLoginHistory";
 import LoginHistorySkeleton from "../../../components/UI/skeletons/LoginHistorySkeleton";
+import Pagination from "../../../components/UI/pagination/Pagination";
 
 const UserLoginHistory = React.lazy(
   () =>
@@ -11,18 +12,39 @@ const UserLoginHistory = React.lazy(
 
 const LoginHistoryPage = () => {
   const [loginHistory, setLoginHistory] = useState<LoginHistoryProps[]>([]);
-  const [_totalRows, setTotalRows] = useState<number>(0);
+  const [totalRows, setTotalRows] = useState<number>(0);
   const [loading, setLoading] = useState(false);
-  const [page, _setPage] = useState(0);
+  const [page, setPage] = useState(0);
+  const [uiPage, setUiPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
-  useLoginHistory(setLoading, setLoginHistory, page);
-  useGetTotalRows(setTotalRows);
+  useLoginHistory(
+    setLoading,
+    loginHistory,
+    setLoginHistory,
+    page,
+    setPage,
+    limit,
+  );
+  useGetTotalRows(setTotalRows, "login");
 
   if (loading) return <LoginHistorySkeleton />;
+  console.log(limit * uiPage + 1);
+
+  const nextPage = uiPage > 1 ? uiPage * limit + 1 : limit;
+  const startPage = uiPage === 1 ? 0 : nextPage / 2;
+
+  const data = loginHistory.slice(startPage, nextPage);
 
   return (
     <Suspense fallback={<LoginHistorySkeleton />}>
-      <UserLoginHistory loginHistories={loginHistory} />
+      <UserLoginHistory loginHistories={data} />
+      <Pagination
+        limit={limit}
+        totalRows={totalRows}
+        setPage={setUiPage}
+        page={uiPage}
+      />
     </Suspense>
   );
 };

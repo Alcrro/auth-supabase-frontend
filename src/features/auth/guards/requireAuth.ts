@@ -8,7 +8,7 @@ export const requireAuth = () => {
   if (!hydrated) {
     throw new Error("Auth NOT hydrated before loader");
   }
-  if (!session) {
+  if (!session?.user) {
     throw redirect("/auth/login");
   }
 

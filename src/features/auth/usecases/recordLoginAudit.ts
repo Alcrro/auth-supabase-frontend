@@ -20,6 +20,7 @@ export async function recordLoginAudit(method: "login" | "logout" = "login") {
   const provider = localStorage.getItem("login_method");
 
   const geolocation = await getGeolocation();
+  console.log({ geolocation });
 
   const { error } = await supabase.rpc("record_login_audit", {
     p_user_id: session.user.id ?? user.id,

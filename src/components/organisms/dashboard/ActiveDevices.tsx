@@ -5,18 +5,17 @@ import useLayoutActivityDevice from "../../../shared/hooks/useLaoutActivityDevic
 import { useSearchParams } from "react-router-dom";
 import useAddItems from "../../../shared/hooks/useAddItems";
 import useGetTotalRows from "../../../shared/hooks/useGetTotalRows";
-import { sortDevices } from "../../../shared/utils/sortDevices";
-import { mapperDbActiveDevices } from "../../../features/auth/mapper/mapperActiveDevices";
 import Title from "../../molecules/activeDevices/Title";
 import ActiveDevicesCounter from "../../molecules/activeDevices/ActiveDevicesCounter";
 import ActiveDeviceLayout from "../../molecules/activeDevices/ActiveDeviceLayout";
 import ActiveDeviceCard from "./ActiveDeviceCard";
 import ExpendActiveDevicesButton from "../../UI/buttons/ExpendActiveDevicesButton";
-import type { LoginAuditProps } from "../../../features/auth/types/auth.types";
+import type { ActiveDevice } from "../../../features/auth/types/auth.types";
+import { sortDevices } from "../../../shared/utils/sortDevices";
 
 const ActiveDevices = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [activity, setActivity] = useState<LoginAuditProps[]>([]);
+  const [activity, setActivity] = useState<ActiveDevice[]>([]);
   const [loading, setLoading] = useState(true);
   const [totalRows, setTotalRows] = useState<number>(0);
   const initialLimit = Number(searchParams.get("limit") ?? 1);
@@ -26,6 +25,7 @@ const ActiveDevices = () => {
   const [_maxH, setMaxH] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
 
+  const data = activity.slice(0, limit);
   // extend limit to fetch more devices history
   const { addMoreItems } = useAddItems(
     setLimit,
@@ -40,8 +40,9 @@ const ActiveDevices = () => {
 
   // fetching total rows of activity devices history
   useGetTotalRows(setTotalRows);
-
   useLayoutActivityDevice(ref, setMaxH, activity, limit);
+
+  console.log({ activity });
 
   if (loading) {
     return (
@@ -56,13 +57,11 @@ const ActiveDevices = () => {
     return <div>No device activity yet</div>;
   }
 
-  const data = sortDevices(activity.map(mapperDbActiveDevices)).slice(0, limit);
-
   return (
     <div className="activities relative z-10">
       <div className="header">
         <Title />
-        <ActiveDevicesCounter limit={limit} />
+        <ActiveDevicesCounter rowsVisible={data.length} />
       </div>
       <ActiveDeviceLayout limit={limit} ref={ref}>
         {data.map((a, i) => {
@@ -81,6 +80,7 @@ const ActiveDevices = () => {
       </ActiveDeviceLayout>
       {totalRows > 1 && (
         <ExpendActiveDevicesButton
+          dataSliced={data.length}
           limit={limit}
           totalRows={totalRows}
           addMoreItems={addMoreItems}

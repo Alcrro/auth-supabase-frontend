@@ -1,6 +1,9 @@
-import type { ActiveDevice } from "../../features/auth/types/auth.types";
+import type {
+  ActiveDevice,
+  LoginAuditProps,
+} from "../../features/auth/types/auth.types";
 
-export function sortDevices(devices: ActiveDevice[]): ActiveDevice[] {
+export function sortDevices(devices: LoginAuditProps[]): LoginAuditProps[] {
   return [...devices].sort((a, b) => {
     //current device always first
     if (a.isCurrent && !b.isCurrent) return -1;

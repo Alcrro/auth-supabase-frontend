@@ -1,5 +1,22 @@
+import { useState } from "preact/hooks";
+import type { LoginAuditProps } from "../../../../features/auth/types/auth.types";
+import useAuditLogs from "../../../../shared/hooks/useAuditLogs";
+
 const AuditLogTable = () => {
-  return <div>AuditLogTable</div>;
+  const [auditLogs, setAuditLogs] = useState<LoginAuditProps[]>([]);
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useAuditLogs(auditLogs, setAuditLogs, page, setPage);
+  console.log({ auditLogs });
+
+  return (
+    <div>
+      {auditLogs.map((item) => (
+        <div>{item.action}</div>
+      ))}
+    </div>
+  );
 };
 
 export default AuditLogTable;

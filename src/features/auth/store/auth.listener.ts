@@ -9,6 +9,7 @@ export function initAuth() {
       const store = useAuthStore.getState();
 
       // prima sesiune (rehydrate)
+      console.log(session);
 
       if (event === "INITIAL_SESSION") {
         setSession(session);

@@ -3,15 +3,18 @@ import DefaultButton from "../../atoms/DefaultButton";
 import type { FC } from "preact/compat";
 
 interface ActiveDeviceButtonProps {
+  dataSliced: number;
   limit: number;
   addMoreItems: () => void;
   totalRows: number;
 }
 const ExpendActiveDevicesButton: FC<ActiveDeviceButtonProps> = ({
+  dataSliced,
   limit,
   addMoreItems,
   totalRows,
 }) => {
+  const more = limit < totalRows;
   return (
     <DefaultButton
       variant="none"
@@ -23,7 +26,7 @@ const ExpendActiveDevicesButton: FC<ActiveDeviceButtonProps> = ({
             }`}
       onClick={addMoreItems}
     >
-      {totalRows !== limit ? (
+      {more ? (
         <BsArrowDownCircle
           size={30}
           className={"text-white/60 hover:text-white"}
