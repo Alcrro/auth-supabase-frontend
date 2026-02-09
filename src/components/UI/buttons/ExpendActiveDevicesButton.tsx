@@ -9,7 +9,6 @@ interface ActiveDeviceButtonProps {
   totalRows: number;
 }
 const ExpendActiveDevicesButton: FC<ActiveDeviceButtonProps> = ({
-  dataSliced,
   limit,
   addMoreItems,
   totalRows,

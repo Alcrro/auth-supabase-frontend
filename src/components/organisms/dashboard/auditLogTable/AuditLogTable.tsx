@@ -7,8 +7,10 @@ const AuditLogTable = () => {
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState<boolean>(false);
 
-  useAuditLogs(auditLogs, setAuditLogs, page, setPage);
+  useAuditLogs(auditLogs, setAuditLogs, page, setPage, setLoading);
   console.log({ auditLogs });
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div>

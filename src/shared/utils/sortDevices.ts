@@ -1,7 +1,4 @@
-import type {
-  ActiveDevice,
-  LoginAuditProps,
-} from "../../features/auth/types/auth.types";
+import type { LoginAuditProps } from "../../features/auth/types/auth.types";
 
 export function sortDevices(devices: LoginAuditProps[]): LoginAuditProps[] {
   return [...devices].sort((a, b) => {

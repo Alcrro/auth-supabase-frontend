@@ -3,13 +3,15 @@ import { getActivityDevice } from "../../features/auth/services/getActivityDevic
 import type { LoginAuditProps } from "../../features/auth/types/auth.types";
 
 const useAuditLogs = (
-  auditLogs: LoginAuditProps[],
+  _auditLogs: LoginAuditProps[],
   setAuditLogs: Dispatch<SetStateAction<LoginAuditProps[]>>,
   page: number,
-  setPage: Dispatch<SetStateAction<number>>,
+  _setPage: Dispatch<SetStateAction<number>>,
+  setLoading: Dispatch<SetStateAction<boolean>>,
 ) => {
   useEffect(() => {
     async function load() {
+      setLoading(true);
       const { data, error } = await getActivityDevice({}, page, 30);
 
       if (error) {
@@ -23,6 +25,7 @@ const useAuditLogs = (
 
         setAuditLogs(data);
       }
+      setLoading(false);
     }
     load();
   }, []);

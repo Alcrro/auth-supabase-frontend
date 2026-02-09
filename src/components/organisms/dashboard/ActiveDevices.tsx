@@ -11,7 +11,6 @@ import ActiveDeviceLayout from "../../molecules/activeDevices/ActiveDeviceLayout
 import ActiveDeviceCard from "./ActiveDeviceCard";
 import ExpendActiveDevicesButton from "../../UI/buttons/ExpendActiveDevicesButton";
 import type { ActiveDevice } from "../../../features/auth/types/auth.types";
-import { sortDevices } from "../../../shared/utils/sortDevices";
 
 const ActiveDevices = () => {
   const [searchParams, setSearchParams] = useSearchParams();

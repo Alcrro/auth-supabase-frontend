@@ -16,16 +16,9 @@ const LoginHistoryPage = () => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [uiPage, setUiPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [limit, _setLimit] = useState(10);
 
-  useLoginHistory(
-    setLoading,
-    loginHistory,
-    setLoginHistory,
-    page,
-    setPage,
-    limit,
-  );
+  useLoginHistory(setLoading, loginHistory, setLoginHistory, page, setPage);
   useGetTotalRows(setTotalRows, "login");
 
   if (loading) return <LoginHistorySkeleton />;

@@ -1,4 +1,4 @@
-import { useEffect, useState, type Dispatch } from "react";
+import { useEffect, type Dispatch } from "react";
 import { getActivityDevice } from "../../features/auth/services/getActivityDevice";
 import type { StateUpdater } from "preact/hooks";
 import type { LoginHistoryProps } from "../../features/auth/types/auth.types";
@@ -10,7 +10,6 @@ const useLoginHistory = (
   setLoginHistory: Dispatch<StateUpdater<LoginHistoryProps[]>>,
   page: number,
   setPage: Dispatch<StateUpdater<number>>,
-  limit: number,
 ) => {
   useEffect(() => {
     let mounted = true;
