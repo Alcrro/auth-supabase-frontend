@@ -10,7 +10,7 @@ const AuditLogTable = () => {
   const [auditLogs, setAuditLogs] = useState<LoginHistoryProps[]>([]);
   const [page, setPage] = useState(0);
   const [uiPage, setUiPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [limit, _setLimit] = useState(10);
   const [totalRows, setTotalRows] = useState(0);
   const [loading, setLoading] = useState<boolean>(false);
 

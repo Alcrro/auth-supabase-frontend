@@ -1,3 +1,3 @@
-import type { LoginAuditProps, LoginHistoryProps } from "../types/auth.types";
+import type { LoginAuditProps } from "../types/auth.types";
 
-export function mapperAuditLogs(data: LoginAuditProps) {}
+export function mapperAuditLogs(_data: LoginAuditProps) {}

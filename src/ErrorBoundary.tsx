@@ -16,7 +16,7 @@ export default class ErrorBoundary extends Component<
     this.state = { hasError: false };
   }
 
-  componentDidCatch(error: any, errorInfo: ErrorInfo): void {
+  componentDidCatch(error: any, _errorInfo: ErrorInfo): void {
     console.error("caught by boundary: ", error);
     this.setState({ hasError: true });
   }
