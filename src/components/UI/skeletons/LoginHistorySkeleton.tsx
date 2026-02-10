@@ -3,11 +3,9 @@ import { tableDocumentMap } from "../../../shared/data/dashboard/loginHistoryDat
 const LoginHistorySkeleton = () => {
   return (
     <div className={"h-full"}>
-      <div className="title text-2xl text-center py-2">Login History</div>
-      <div className="block w-fit ml-auto p-3 py-2 mr-2 mb-1 text-black bg-blue-300 rounded-md">
-        <span
-          className={"p-2 py-1 bg-gray-400 rounded-2xl animate-pulse"}
-        ></span>
+      <div className="title py-2 w-30 h-10 mx-auto my-4 bg-gray-300 rounded-2xl animate-pulse"></div>
+      <div className="flex justify-center w-10 h-8 mx-2 ml-auto text-center mb-1 text-black bg-blue-300 rounded-md">
+        <span className={"p-2 bg-gray-400 rounded-2xl animate-pulse"}></span>
       </div>
       <div className={`rounded-md px-2 overflow-hidden`}>
         <div
