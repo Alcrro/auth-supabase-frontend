@@ -1,18 +1,18 @@
-import type { Dispatch } from "preact/hooks";
 import type { LoginHistoryProps } from "../../../../features/auth/types/auth.types";
+import Table from "../loginHistory/Table";
 import { tableDocumentMap } from "../../../../shared/data/dashboard/loginHistoryData";
 import Pagination from "../../../UI/pagination/Pagination";
-import Table from "./Table";
+import type { Dispatch } from "preact/hooks";
 import type { SetStateAction } from "preact/compat";
 
-const UserLoginHistory = ({
-  loginHistories,
+const UserLogsAudit = ({
+  auditLogs,
   limit,
   totalRows,
   setUiPage,
   uiPage,
 }: {
-  loginHistories: LoginHistoryProps[];
+  auditLogs: LoginHistoryProps[];
   limit: number;
   totalRows: number;
   setUiPage: Dispatch<SetStateAction<number>>;
@@ -20,20 +20,19 @@ const UserLoginHistory = ({
 }) => {
   return (
     <div className={""}>
-      <div className="title text-2xl text-center py-2">Login History</div>
-      <div className="loginHistoriesCounter text-end p-2">
+      <div className="title text-2xl text-center py-2"> History Logs</div>
+      <div className="loginHistoriesCounter text-end py-2">
         <span className={"text-black bg-blue-300 p-2 rounded-md"}>
-          {loginHistories.length}
+          {auditLogs.length}
         </span>
       </div>
-      <div className={`rounded-md px-2 overflow-hidden`}>
-        <div className={" min-h-full max-w-7xl min-w-full"}>
-          {loginHistories.length > 0 ? (
-            <Table dataBody={loginHistories} dataHeader={tableDocumentMap} />
-          ) : (
-            <div>No login history</div>
-          )}
-        </div>
+
+      <div className={"min-h-full max-w-7xl min-w-full rounded-xl"}>
+        {auditLogs.length > 0 ? (
+          <Table dataBody={auditLogs} dataHeader={tableDocumentMap} />
+        ) : (
+          <div>No login history</div>
+        )}
       </div>
       <Pagination
         limit={limit}
@@ -45,4 +44,4 @@ const UserLoginHistory = ({
   );
 };
 
-export default UserLoginHistory;
+export default UserLogsAudit;

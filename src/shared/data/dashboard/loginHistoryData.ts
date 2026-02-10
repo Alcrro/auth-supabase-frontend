@@ -1,7 +1,7 @@
 import type { LoginHistoryProps } from "../../../features/auth/types/auth.types";
 
 export const tableDocumentMap = [
-  { label: "nr.crt", key: "nr.crt", computed: true },
+  { label: "nr.crt", key: "nrCrt", computed: true },
   { label: "status", key: "status", computed: true },
   { label: "action", key: "action" },
   { label: "device", key: "device" },

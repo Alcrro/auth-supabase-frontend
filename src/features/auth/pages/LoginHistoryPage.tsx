@@ -22,7 +22,6 @@ const LoginHistoryPage = () => {
   useGetTotalRows(setTotalRows, "login");
 
   if (loading) return <LoginHistorySkeleton />;
-  console.log(limit * uiPage + 1);
 
   const nextPage = uiPage > 1 ? uiPage * limit + 1 : limit;
   const startPage = uiPage === 1 ? 0 : nextPage / 2;
@@ -31,12 +30,12 @@ const LoginHistoryPage = () => {
 
   return (
     <Suspense fallback={<LoginHistorySkeleton />}>
-      <UserLoginHistory loginHistories={data} />
-      <Pagination
+      <UserLoginHistory
+        loginHistories={data}
         limit={limit}
+        uiPage={uiPage}
+        setUiPage={setUiPage}
         totalRows={totalRows}
-        setPage={setUiPage}
-        page={uiPage}
       />
     </Suspense>
   );

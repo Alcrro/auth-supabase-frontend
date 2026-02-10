@@ -34,7 +34,7 @@ export type ActiveDeviceType =
 
 export type LoginHistoryProps = {
   id: string;
-  nrCrt: string;
+  nrCrt: number;
   created_at: string;
   success: boolean;
   action: string;

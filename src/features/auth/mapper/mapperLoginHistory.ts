@@ -1,10 +1,12 @@
 import { osDeviceParse } from "../../../shared/utils/osDeviceParse";
 import type { LoginAuditProps, LoginHistoryProps } from "../types/auth.types";
 
-export function mapperLoginHistory(login: LoginAuditProps): LoginHistoryProps {
+export function mapperLoginHistory(
+  login: LoginAuditProps & { nrCrt: number },
+): LoginHistoryProps {
   return {
     id: login.id,
-    nrCrt: "",
+    nrCrt: login.nrCrt,
     created_at: new Date(login.created_at).toLocaleString(),
     success: false,
     action: login.action,

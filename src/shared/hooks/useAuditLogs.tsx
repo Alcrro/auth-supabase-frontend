@@ -1,14 +1,18 @@
 import { useEffect, type Dispatch, type SetStateAction } from "react";
 import { getActivityDevice } from "../../features/auth/services/getActivityDevice";
-import type { LoginAuditProps } from "../../features/auth/types/auth.types";
+import type { LoginHistoryProps } from "../../features/auth/types/auth.types";
+import { mapperLoginHistory } from "../../features/auth/mapper/mapperLoginHistory";
 
 const useAuditLogs = (
-  _auditLogs: LoginAuditProps[],
-  setAuditLogs: Dispatch<SetStateAction<LoginAuditProps[]>>,
+  _auditLogs: LoginHistoryProps[],
+  setAuditLogs: Dispatch<SetStateAction<LoginHistoryProps[]>>,
   page: number,
   _setPage: Dispatch<SetStateAction<number>>,
   setLoading: Dispatch<SetStateAction<boolean>>,
+  limit: number,
 ) => {
+  console.log(limit);
+
   useEffect(() => {
     async function load() {
       setLoading(true);
@@ -21,9 +25,16 @@ const useAuditLogs = (
       }
 
       if (data) {
-        console.log({ data });
+        const mapper = data.map((item, i) => {
+          const mapped = mapperLoginHistory(item);
 
-        setAuditLogs(data);
+          return {
+            ...mapped,
+            nrCrt: page + i + 1,
+          };
+        });
+
+        setAuditLogs(mapper);
       }
       setLoading(false);
     }

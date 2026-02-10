@@ -32,7 +32,14 @@ const useLoginHistory = (
       }
 
       if (data) {
-        const dataMapper = data.map(mapperLoginHistory);
+        const dataMapper = data.map((item, i) => {
+          const mapped = mapperLoginHistory(item);
+
+          return {
+            ...mapped,
+            nrCrt: page + i + 1,
+          };
+        });
 
         if (loginHistories.length === data.length) {
           setPage((prev) => prev + 1);
