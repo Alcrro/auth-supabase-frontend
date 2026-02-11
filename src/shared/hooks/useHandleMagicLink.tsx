@@ -19,7 +19,7 @@ const useHandleMagicLink = (setSession: (session: Session | null) => void) => {
 
         setSession(data.session);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
     handleMagicLink();

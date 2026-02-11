@@ -3,7 +3,6 @@ import { useAuthStore } from "../store/useAuthStore";
 
 export const requireAuth = () => {
   const { session, hydrated } = useAuthStore.getState();
-  console.log({ hydrated });
 
   if (!hydrated) {
     throw new Error("Auth NOT hydrated before loader");

@@ -11,16 +11,12 @@ const useAuditLogs = (
   setLoading: Dispatch<SetStateAction<boolean>>,
   limit: number,
 ) => {
-  console.log(limit);
-
   useEffect(() => {
     async function load() {
       setLoading(true);
       const { data, error } = await getActivityDevice({}, page, 30);
 
       if (error) {
-        console.log(error);
-
         throw new Error(error.message);
       }
 

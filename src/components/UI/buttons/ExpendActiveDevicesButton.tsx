@@ -14,6 +14,7 @@ const ExpendActiveDevicesButton: FC<ActiveDeviceButtonProps> = ({
   totalRows,
 }) => {
   const more = limit < totalRows;
+
   return (
     <DefaultButton
       variant="none"

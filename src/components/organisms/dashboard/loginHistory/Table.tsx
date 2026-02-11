@@ -12,8 +12,6 @@ function Table<D extends { id: string | number }>({
   dataHeader,
   dataBody,
 }: TableDataProps<D>) {
-  console.log(dataBody);
-
   return (
     <table
       className={"w-full table-fixed border-separate border-spacing-y-0"}

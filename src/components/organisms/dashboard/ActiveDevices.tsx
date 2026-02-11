@@ -41,8 +41,6 @@ const ActiveDevices = () => {
   useGetTotalRows(setTotalRows);
   useLayoutActivityDevice(ref, setMaxH, activity, limit);
 
-  console.log({ activity });
-
   if (loading) return <ActiveDeviceSkeleton />;
 
   if (!activity.length) {

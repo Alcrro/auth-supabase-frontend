@@ -17,7 +17,6 @@ server.use(cookieParser());
 
 server.post("/api/v1/auth/login", async (req, res) => {
   const { email, password } = req.body;
-  console.log(req.body);
 
   if (!email || !password) return res.status(400).json("Fields re required!");
 
@@ -37,7 +36,6 @@ server.post("/api/v1/auth/login", async (req, res) => {
 
 server.post("/api/v1/auth/set-cookie", (req, res) => {
   const { accessToken, refreshToken } = req.body;
-  console.log(req.body);
 
   res.cookie("sb-access-token", accessToken, {
     httpOnly: true,

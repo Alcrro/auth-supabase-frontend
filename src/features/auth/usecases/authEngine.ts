@@ -54,6 +54,6 @@ export async function authenticate(cmd: AuthCommand) {
         return await logout();
     }
   } catch (error) {
-    return console.log(error);
+    return console.error(error);
   }
 }

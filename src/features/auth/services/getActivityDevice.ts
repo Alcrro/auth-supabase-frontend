@@ -6,8 +6,6 @@ export async function getActivityDevice(
   page: number,
   pageSize: number,
 ) {
-  console.log(page, pageSize);
-
   const {
     data: { session },
   } = await supabase.auth.getSession();

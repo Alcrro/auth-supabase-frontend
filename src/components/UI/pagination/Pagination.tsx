@@ -46,8 +46,6 @@ const PageNumber = ({
   currentPage: number;
   paginationHandler: () => void;
 }) => {
-  console.log({ currentPage }, { pageNumber });
-
   return (
     <div
       class={`inline-block text-center bg-blue-500 px-2 py-1 my-2 rounded-md ${currentPage === pageNumber && "font-medium"}`}

@@ -5,7 +5,7 @@ export async function registerAccount(payload: AuthCredentials) {
   const { data, error } = await supabaseWithEmail(payload);
 
   if (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
   return data;

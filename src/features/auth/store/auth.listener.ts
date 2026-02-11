@@ -8,9 +8,6 @@ export function initAuth() {
     supabase.auth.onAuthStateChange((event, session) => {
       const store = useAuthStore.getState();
 
-      // prima sesiune (rehydrate)
-      console.log(session);
-
       if (event === "INITIAL_SESSION") {
         setSession(session);
         setHydrated();

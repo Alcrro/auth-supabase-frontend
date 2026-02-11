@@ -12,10 +12,8 @@ const useResetPasswordForm = () => {
     const formData = new FormData(e.currentTarget);
     const password = formData.get("password") as string;
     const parsedEmail = updatePasswordSchema.safeParse({ password });
-    console.log(password);
 
     if (!parsedEmail.success) {
-      console.log(parsedEmail.error.flatten());
       const error = Object.values(parsedEmail.error.flatten().fieldErrors)
         .flat()
         .forEach((message) => {

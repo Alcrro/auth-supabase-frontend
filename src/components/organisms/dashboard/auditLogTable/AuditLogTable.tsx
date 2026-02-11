@@ -17,8 +17,6 @@ const AuditLogTable = () => {
   useAuditLogs(auditLogs, setAuditLogs, page, setPage, setLoading, limit);
   useGetTotalRows(setTotalRows);
 
-  console.log({ auditLogs });
-
   if (loading) return <LoginHistorySkeleton />;
   const nextPage = uiPage > 1 ? uiPage * limit + 1 : limit;
   const startPage = uiPage === 1 ? 0 : nextPage / 2;

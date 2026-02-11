@@ -6,7 +6,7 @@ export async function updatePassword(payload: {
 }) {
   const { data, error } = await supabaseUpdatePassword(payload);
   if (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
   return data;

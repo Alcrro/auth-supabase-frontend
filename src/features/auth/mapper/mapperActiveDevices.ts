@@ -23,7 +23,6 @@ export function mapperDbActiveDevices(result: LoginAuditProps): ActiveDevice {
 
   const created_atFormat = new Date(created_at).toUTCString();
   const currentSessionId = localStorage.getItem("session_id");
-  // console.log(data);
 
   return {
     id: id,
