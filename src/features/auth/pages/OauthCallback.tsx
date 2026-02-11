@@ -22,17 +22,12 @@ export default function OAuthCallback() {
       navigate("/dashboard");
     };
 
-    // oferă timp pentru INITIAL_SESSION
-
-    // const id = setTimeout(() => {
-    //   navigate("/dashboard", { replace: true });
-    // }, 0);
-
-    // return () => clearTimeout(id);
     run();
   }, [navigate]);
 
   return (
-    <LoadingSpinner className="h-screen flex justify-center items-center size-14" />
+    <div className={"h-screen flex justify-center items-center"}>
+      <LoadingSpinner className="size-14" />
+    </div>
   );
 }
