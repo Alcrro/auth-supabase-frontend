@@ -8,11 +8,37 @@ export const SkeletonCard = () => (
       <div style={skeletonLine("140px", "16px")} />
       <div style={skeletonLine("60px", "16px")} />
     </div>
-
-    <div style={{ marginTop: "8px", ...skeletonLine("120px") }} />
-    <div style={{ marginTop: "6px", ...skeletonLine("160px") }} />
-    <div style={{ marginTop: "6px", ...skeletonLine("100px") }} />
-    <div style={{ marginTop: "6px", ...skeletonLine("80px") }} />
+    <div
+      style={{
+        marginTop: "8px",
+        paddingBlock: "8px",
+        ...skeletonLine("120px"),
+      }}
+    />
+    <div
+      style={{
+        marginTop: "8px",
+        paddingBlock: "8px",
+        ...skeletonLine("160px"),
+      }}
+    />
+    <div
+      style={{
+        marginTop: "8px",
+        paddingBlock: "8px",
+        ...skeletonLine("100px"),
+      }}
+    />
+    <div
+      style={{ marginTop: "8px", paddingBlock: "8px", ...skeletonLine("80px") }}
+    />
+    <div
+      style={{
+        marginTop: "8px",
+        paddingBlock: "8px",
+        ...skeletonLine("220px"),
+      }}
+    />
   </div>
 );
 

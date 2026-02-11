@@ -1,6 +1,6 @@
 import { useRef, useState } from "preact/hooks";
 import useGetActivityDevice from "../../../shared/hooks/useGetActivityDevice";
-import { SkeletonList } from "../../UI/skeletons/ActivDeviceSkeletonCard";
+import { ActiveDeviceSkeleton } from "../../UI/skeletons/ActivDeviceSkeletonCard";
 import useLayoutActivityDevice from "../../../shared/hooks/useLaoutActivityDevice";
 import { useSearchParams } from "react-router-dom";
 import useAddItems from "../../../shared/hooks/useAddItems";
@@ -43,14 +43,7 @@ const ActiveDevices = () => {
 
   console.log({ activity });
 
-  if (loading) {
-    return (
-      <div>
-        <h3 style={{ marginBottom: "12px" }}>Active devices</h3>
-        <SkeletonList count={1} />
-      </div>
-    );
-  }
+  if (loading) return <ActiveDeviceSkeleton />;
 
   if (!activity.length) {
     return <div>No device activity yet</div>;
