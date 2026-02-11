@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import type { LoginHistoryProps } from "../../../../features/auth/types/auth.types";
 import useAuditLogs from "../../../../shared/hooks/useAuditLogs";
 import { Suspense } from "preact/compat";
@@ -14,12 +14,19 @@ const AuditLogTable = () => {
   const [totalRows, setTotalRows] = useState(0);
   const [loading, setLoading] = useState<boolean>(false);
 
-  useAuditLogs(auditLogs, setAuditLogs, page, setPage, setLoading);
+  const totalCounterRows = limit * uiPage;
+  useEffect(() => {
+    if (totalCounterRows >= auditLogs.length) {
+      setPage((p) => p + 1);
+    }
+  }, [uiPage]);
+
+  useAuditLogs(setAuditLogs, page, setLoading);
   useGetTotalRows(setTotalRows);
 
   if (loading) return <LoginHistorySkeleton />;
-  const nextPage = uiPage > 1 ? uiPage * limit + 1 : limit;
-  const startPage = uiPage === 1 ? 0 : nextPage / 2;
+  let startPage = (uiPage - 1) * limit;
+  let nextPage = startPage + limit;
 
   const data = auditLogs.slice(startPage, nextPage);
 

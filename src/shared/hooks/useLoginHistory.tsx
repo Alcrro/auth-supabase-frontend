@@ -6,24 +6,17 @@ import { mapperLoginHistory } from "../../features/auth/mapper/mapperLoginHistor
 
 const useLoginHistory = (
   setLoading: (value: boolean) => void,
-  loginHistories: LoginHistoryProps[],
   setLoginHistory: Dispatch<StateUpdater<LoginHistoryProps[]>>,
   page: number,
-  setPage: Dispatch<StateUpdater<number>>,
 ) => {
   useEffect(() => {
-    let mounted = true;
-
     async function load() {
-      if (!mounted) return;
-
       setLoading(true);
       const { data, error } = await getActivityDevice(
         { action: "login" },
         page,
         30,
       );
-      if (!mounted) return;
 
       if (error) {
         console.error(error);
@@ -41,28 +34,22 @@ const useLoginHistory = (
           };
         });
 
-        if (loginHistories.length === data.length) {
-          setPage((prev) => prev + 1);
-        }
-        setLoginHistory((prev) => {
-          const map = new Map(prev.map((x) => [x.id, x]));
+        // setLoginHistory((prev) => {
+        //   const map = new Map(prev.map((x) => [x.id, x]));
 
-          for (const row of dataMapper) {
-            map.set(row.id, row);
-          }
+        //   for (const row of dataMapper) {
+        //     map.set(row.id, row);
+        //   }
 
-          return Array.from(map.values());
-        });
+        //   return Array.from(map.values());
+        // });
 
-        // setLoginHistory((prev) => [...prev, ...dataMapper]);
+        setLoginHistory((prev) => [...prev, ...dataMapper]);
       }
       setLoading(false);
     }
 
     load();
-    return () => {
-      mounted = false;
-    };
   }, [page]);
 };
 

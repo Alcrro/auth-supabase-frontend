@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import useGetTotalRows from "../../../shared/hooks/useGetTotalRows";
 import type { LoginHistoryProps } from "../types/auth.types";
 import useLoginHistory from "../../../shared/hooks/useLoginHistory";
@@ -16,14 +16,21 @@ const LoginHistoryPage = () => {
   const [page, setPage] = useState(0);
   const [uiPage, setUiPage] = useState(1);
   const [limit, _setLimit] = useState(10);
+  const totalCounterRows = limit * uiPage;
 
-  useLoginHistory(setLoading, loginHistory, setLoginHistory, page, setPage);
+  useEffect(() => {
+    if (totalCounterRows >= loginHistory.length) {
+      setPage((p) => p + 1);
+    }
+  }, [uiPage]);
+
+  useLoginHistory(setLoading, setLoginHistory, page);
   useGetTotalRows(setTotalRows, "login");
 
   if (loading) return <LoginHistorySkeleton />;
 
-  const nextPage = uiPage > 1 ? uiPage * limit + 1 : limit;
-  const startPage = uiPage === 1 ? 0 : nextPage / 2;
+  let startPage = (uiPage - 1) * limit;
+  let nextPage = startPage + limit;
 
   const data = loginHistory.slice(startPage, nextPage);
 

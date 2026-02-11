@@ -4,10 +4,8 @@ import type { LoginHistoryProps } from "../../features/auth/types/auth.types";
 import { mapperLoginHistory } from "../../features/auth/mapper/mapperLoginHistory";
 
 const useAuditLogs = (
-  _auditLogs: LoginHistoryProps[],
   setAuditLogs: Dispatch<SetStateAction<LoginHistoryProps[]>>,
   page: number,
-  _setPage: Dispatch<SetStateAction<number>>,
   setLoading: Dispatch<SetStateAction<boolean>>,
 ) => {
   useEffect(() => {
@@ -25,16 +23,16 @@ const useAuditLogs = (
 
           return {
             ...mapped,
-            nrCrt: page + i + 1,
+            nrCrt: page * 30 + i + 1,
           };
         });
 
-        setAuditLogs(mapper);
+        setAuditLogs((prev) => [...prev, ...mapper]);
       }
       setLoading(false);
     }
     load();
-  }, []);
+  }, [page]);
 };
 
 export default useAuditLogs;
