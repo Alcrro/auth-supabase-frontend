@@ -9,7 +9,6 @@ const useAuditLogs = (
   page: number,
   _setPage: Dispatch<SetStateAction<number>>,
   setLoading: Dispatch<SetStateAction<boolean>>,
-  limit: number,
 ) => {
   useEffect(() => {
     async function load() {

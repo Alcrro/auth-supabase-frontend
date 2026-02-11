@@ -14,7 +14,7 @@ const AuditLogTable = () => {
   const [totalRows, setTotalRows] = useState(0);
   const [loading, setLoading] = useState<boolean>(false);
 
-  useAuditLogs(auditLogs, setAuditLogs, page, setPage, setLoading, limit);
+  useAuditLogs(auditLogs, setAuditLogs, page, setPage, setLoading);
   useGetTotalRows(setTotalRows);
 
   if (loading) return <LoginHistorySkeleton />;
