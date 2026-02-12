@@ -1,5 +1,4 @@
-import type { ButtonHTMLAttributes } from "preact";
-import type { FC, ReactNode } from "preact/compat";
+import { h, type JSX } from "preact";
 import { cn } from "../../shared/utils/cn";
 import {
   variantButtonMapper,
@@ -7,33 +6,34 @@ import {
   type VariantTypes,
 } from "../UI/buttons/styles/ButtonStyles";
 
-interface IButtonPropsAtr extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
+type ElementType = keyof JSX.IntrinsicElements;
+
+type BaseProps<T extends ElementType> = {
+  as?: T;
+  children: preact.ComponentChildren;
   className?: string;
-}
-
-interface IButtonProps extends IButtonPropsAtr {
   variant?: VariantTypes;
-}
+};
+type PolymorphicProps<T extends ElementType> = BaseProps<T> &
+  Omit<JSX.IntrinsicElements[T], keyof BaseProps<T>>;
 
-const DefaultButton: FC<IButtonProps> = ({
-  children,
-  variant = "default",
-  className,
-  ...props
-}) => {
-  return (
-    <button
-      {...props}
-      className={cn(
+const DefaultButton = <T extends ElementType = "button">(
+  props: PolymorphicProps<T>,
+) => {
+  const { as, children, variant = "default", className, ...rest } = props;
+  const tag = (as ?? "button") as ElementType;
+  return h(
+    tag,
+    {
+      ...rest,
+      className: cn(
         `${variant}_button`,
 
         variantButtonMapper[variant as ButtonVariant],
         className,
-      )}
-    >
-      {children}
-    </button>
+      ),
+    },
+    children,
   );
 };
 

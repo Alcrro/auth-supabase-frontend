@@ -5,19 +5,25 @@ import { Suspense } from "preact/compat";
 import useGetTotalRows from "../../../../shared/hooks/useGetTotalRows";
 import UserLogsAudit from "./UserLogTable";
 import LoginHistorySkeleton from "../../../UI/skeletons/LoginHistorySkeleton";
+import { useSearchParams } from "react-router-dom";
 
 const AuditLogTable = () => {
+  const [searchParams, _setSearchParams] = useSearchParams();
   const [auditLogs, setAuditLogs] = useState<LoginHistoryProps[]>([]);
   const [page, setPage] = useState(0);
-  const [uiPage, setUiPage] = useState(1);
+  const initialPage = Number(searchParams.get("page") ?? 1);
+  const [uiPage, setUiPage] = useState(initialPage);
   const [limit, _setLimit] = useState(10);
   const [totalRows, setTotalRows] = useState(0);
   const [loading, setLoading] = useState<boolean>(false);
 
   const totalCounterRows = limit * uiPage;
+
   useEffect(() => {
     if (totalCounterRows >= auditLogs.length) {
       setPage((p) => p + 1);
+    } else {
+      setPage(0);
     }
   }, [uiPage]);
 
@@ -25,8 +31,8 @@ const AuditLogTable = () => {
   useGetTotalRows(setTotalRows);
 
   if (loading) return <LoginHistorySkeleton />;
-  let startPage = (uiPage - 1) * limit;
-  let nextPage = startPage + limit;
+  const startPage = (uiPage - 1) * limit;
+  const nextPage = startPage + limit;
 
   const data = auditLogs.slice(startPage, nextPage);
 

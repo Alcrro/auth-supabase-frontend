@@ -11,11 +11,11 @@ const useTimer = (
       setTimer((t) => t - 1);
     }, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [setTimer]);
 
   useEffect(() => {
-    if (timer <= 0) navigate("/dashboard");
-  }, [timer]);
+    if (timer === 0) navigate("/dashboard");
+  }, [timer, navigate]);
 };
 
 export default useTimer;

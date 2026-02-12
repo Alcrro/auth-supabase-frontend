@@ -1,5 +1,6 @@
-import { useState } from "preact/hooks";
+import { useState } from "react";
 import useTimer from "./shared/hooks/useTimer";
+import { useRouteError } from "react-router-dom";
 
 type RouteErrorPageProps = {
   errorMessage?: string;
@@ -7,13 +8,17 @@ type RouteErrorPageProps = {
 const RouteErrorPage = ({ errorMessage }: RouteErrorPageProps) => {
   const [timer, setTimer] = useState(5);
 
+  const error = useRouteError();
   useTimer(timer, setTimer);
 
   return (
-    <div className={"h-screen flex flex-col justify-center items-center"}>
-      <div>{errorMessage}</div>
-      Ruta nu exista. Redirect la dashboard in {timer}
-    </div>
+    <>
+      <div>{(error as Error)?.message}</div>
+      <div className={"h-screen flex flex-col justify-center items-center"}>
+        <div>{errorMessage}</div>
+        Ruta nu exista. Redirect la dashboard in {timer}
+      </div>
+    </>
   );
 };
 

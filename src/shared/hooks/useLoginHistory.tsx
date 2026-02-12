@@ -3,6 +3,7 @@ import { getActivityDevice } from "../../features/auth/services/getActivityDevic
 import type { StateUpdater } from "preact/hooks";
 import type { LoginHistoryProps } from "../../features/auth/types/auth.types";
 import { mapperLoginHistory } from "../../features/auth/mapper/mapperLoginHistory";
+import { sortDevices } from "../utils/sortDevices";
 
 const useLoginHistory = (
   setLoading: (value: boolean) => void,
@@ -25,26 +26,27 @@ const useLoginHistory = (
       }
 
       if (data) {
-        const dataMapper = data.map((item, i) => {
-          const mapped = mapperLoginHistory(item);
+        const sorted = sortDevices(data);
+        const dataMapper = sorted.map((item, i) => {
+          const mapped = mapperLoginHistory({
+            ...item,
+            nrCrt: page * 30 + i + 1,
+          });
 
-          return {
-            ...mapped,
-            nrCrt: page + i + 1,
-          };
+          return mapped;
         });
 
-        // setLoginHistory((prev) => {
-        //   const map = new Map(prev.map((x) => [x.id, x]));
+        setLoginHistory((prev) => {
+          const map = new Map(prev.map((x) => [x.id, x]));
 
-        //   for (const row of dataMapper) {
-        //     map.set(row.id, row);
-        //   }
+          for (const row of dataMapper) {
+            map.set(row.id, row);
+          }
 
-        //   return Array.from(map.values());
-        // });
+          return Array.from(map.values());
+        });
 
-        setLoginHistory((prev) => [...prev, ...dataMapper]);
+        // setLoginHistory((prev) => [...prev, ...dataMapper]);
       }
       setLoading(false);
     }

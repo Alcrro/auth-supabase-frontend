@@ -16,13 +16,16 @@ export default class ErrorBoundary extends Component<
     this.state = { hasError: false };
   }
 
-  componentDidCatch(error: any, _errorInfo: ErrorInfo): void {
+  componentDidCatch(error: unknown, _errorInfo: ErrorInfo): void {
+    if (error instanceof Response) {
+      throw error;
+    }
     console.error("caught by boundary: ", error);
     this.setState({ hasError: true });
   }
   render() {
     if (this.state.hasError) {
-      return <RouteErrorPage errorMessage="A aparut o eroare" />;
+      return <RouteErrorPage />;
     }
 
     return this.props.children;

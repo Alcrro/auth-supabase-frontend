@@ -26,8 +26,8 @@ const UserLoginHistory = ({
           {loginHistories.length}
         </span>
       </div>
-      <div className={`rounded-md px-2 overflow-hidden`}>
-        <div className={" min-h-full max-w-7xl min-w-full"}>
+      <div className={`rounded-md px-2 overflow-hidden `}>
+        <div className={" min-h-full max-w-7xl min-w-full "}>
           {loginHistories.length > 0 ? (
             <Table dataBody={loginHistories} dataHeader={tableDocumentMap} />
           ) : (

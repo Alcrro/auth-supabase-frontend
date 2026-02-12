@@ -1,5 +1,6 @@
 import type { SetStateAction } from "preact/compat";
 import type { Dispatch } from "preact/hooks";
+import { useSearchParams } from "react-router-dom";
 
 const Pagination = ({
   limit,
@@ -13,9 +14,17 @@ const Pagination = ({
   setPage: Dispatch<SetStateAction<number>>;
 }) => {
   const pagesNumber = Math.ceil(totalRows / limit);
+  const [_searchParams, setSearchParams] = useSearchParams();
 
   const goTo = (pageNr: number) => {
     setPage(pageNr);
+
+    setSearchParams((p) => {
+      const mp = new URLSearchParams(p);
+      mp.set("limit", String(limit));
+      mp.set("page", String(pageNr));
+      return mp;
+    });
   };
 
   return (
@@ -48,7 +57,7 @@ const PageNumber = ({
 }) => {
   return (
     <div
-      class={`inline-block text-center bg-blue-500 px-2 py-1 my-2 rounded-md ${currentPage === pageNumber && "font-medium"}`}
+      class={`flex gap-2 justify-center items-center my-2 text-center bg-blue-500 px-2 py-1 cursor-pointer rounded-md ${currentPage === pageNumber && "font-medium text-xl"}`}
       onClick={paginationHandler}
     >
       {pageNumber}

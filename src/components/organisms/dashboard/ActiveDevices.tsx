@@ -26,6 +26,7 @@ const ActiveDevices = () => {
 
   const data = activity.slice(0, limit);
   // extend limit to fetch more devices history
+  //TODOS de reglat show more ,current arata de la 5 la 30 items si trebuie din 5 in 5
   const { addMoreItems } = useAddItems(
     setLimit,
     setPage,

@@ -9,8 +9,7 @@ const secondaryButton = `${baseButton} border border-transparent bg-gray-700 tex
 
 const outlineButton = `${baseButton} border border-gray-400 bg-transparent text-gray-200 hover:bg-gray-800 hover:border-[#646cff]`;
 
-const linkButton =
-  "bg-transparent p-0 text-blue-400 hover:underline focus-visible:outline-none pointer";
+const linkButton = `p-0 text-blue-400 hover:underline focus-visible:outline-none pointer border w-full py-2 rounded-xl`;
 
 export type ButtonVariant =
   | "default"

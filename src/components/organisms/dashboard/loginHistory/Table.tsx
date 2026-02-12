@@ -40,7 +40,7 @@ function Table<D extends { id: string | number }>({
         {dataBody.map((row, i, arr) => (
           <tr
             key={row.id}
-            className="block lg:table-row text-black odd:bg-white even:bg-blue-200 nth-of-type-[2]:rounded-t-2xl last:rounded-b-2xl"
+            className="block mb-2 lg:table-row text-black odd:bg-white even:bg-blue-200 nth-of-type-[2]:rounded-t-xl last:rounded-b-xl rounded-xl"
           >
             {dataHeader.map((h, colIndex) => (
               <td
@@ -61,7 +61,7 @@ function Table<D extends { id: string | number }>({
           Array.from({ length: 10 - dataBody.length }, (_, i) => (
             <tr
               key={i}
-              className="block lg:table-row nth-of-type-[2]:rounded-t-2xl last:rounded-b-2xl max-lg:hidden"
+              className={`block lg:table-row nth-of-type-[2]:rounded-t-xl last:rounded-b-xl max-lg:hidden ${dataBody.length - 1 === 3 && "text-red-500"}`}
             >
               {Array.from({ length: dataHeader.length }, (_, i) => (
                 <td

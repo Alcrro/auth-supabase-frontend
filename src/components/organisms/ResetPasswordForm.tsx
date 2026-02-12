@@ -1,4 +1,5 @@
 import { useAuthStore } from "../../features/auth/store/useAuthStore";
+import DefaultButton from "../atoms/DefaultButton";
 
 const ResetPasswordForm = () => {
   const { session, resetPassword } = useAuthStore((store) => store);
@@ -7,7 +8,7 @@ const ResetPasswordForm = () => {
   if (!session) return;
 
   return (
-    <div>
+    <DefaultButton variant="default">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -16,7 +17,7 @@ const ResetPasswordForm = () => {
       >
         <button>Reset password</button>
       </form>
-    </div>
+    </DefaultButton>
   );
 };
 
