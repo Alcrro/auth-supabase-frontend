@@ -22,28 +22,16 @@ const useAuditLogs = (
 
       if (data) {
         const sortLogs = sortDevices(data);
-        const mapper = sortLogs.map((item, i) => {
-          const mapped = mapperLoginHistory({
-            ...item,
-            nrCrt: page * 30 + i + 1,
-          });
-
-          // return {
-          //   ...mapped,
-          //   nrCrt: page * 30 + i + 1,
-          // };
-
-          return mapped;
-        });
 
         setAuditLogs((prev) => {
-          const map = new Map(prev.map((x) => [x.id, x]));
-
-          for (const row of mapper) {
-            map.set(row.id, row);
-          }
-
-          return Array.from(map.values());
+          const startIndex = prev.length;
+          const newRows = sortLogs.map((item, i) =>
+            mapperLoginHistory({
+              ...item,
+              nrCrt: startIndex + i + 1,
+            }),
+          );
+          return [...prev, ...newRows];
         });
       }
       setLoading(false);

@@ -19,14 +19,14 @@ const LoginHistoryPage = () => {
   const [page, setPage] = useState(0);
   const [uiPage, setUiPage] = useState(initialPage);
   const [limit, _setLimit] = useState(10);
-  const totalCounterRows = limit * uiPage;
 
   useEffect(() => {
-    if (totalCounterRows >= loginHistory.length) {
-      setPage((p) => p + 1);
+    const neededServerPage = Math.ceil((limit * uiPage) / 30);
+
+    if (page < neededServerPage) {
+      setPage(neededServerPage);
     }
   }, [uiPage]);
-
   useLoginHistory(setLoading, setLoginHistory, page);
   useGetTotalRows(setTotalRows, "login");
 
@@ -36,6 +36,8 @@ const LoginHistoryPage = () => {
   const nextPage = startPage + limit;
 
   const data = loginHistory.slice(startPage, nextPage);
+
+  console.log(page);
 
   return (
     <Suspense fallback={<LoginHistorySkeleton />}>

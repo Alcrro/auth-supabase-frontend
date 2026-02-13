@@ -1,8 +1,11 @@
-import type { LoginAuditProps } from "../../features/auth/types/auth.types";
-
-export function sortDevices(devices: LoginAuditProps[]): LoginAuditProps[] {
+type DeviceLike = {
+  isCurrent?: boolean;
+  created_at?: string | number | Date | null;
+};
+export function sortDevices<T extends DeviceLike>(devices: T[]): T[] {
   return [...devices].sort((a, b) => {
     //current device always first
+
     if (a.isCurrent && !b.isCurrent) return -1;
     if (!a.isCurrent && b.isCurrent) return 1;
 

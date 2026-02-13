@@ -27,26 +27,15 @@ const useLoginHistory = (
 
       if (data) {
         const sorted = sortDevices(data);
-        const dataMapper = sorted.map((item, i) => {
-          const mapped = mapperLoginHistory({
-            ...item,
-            nrCrt: page * 30 + i + 1,
-          });
-
-          return mapped;
-        });
 
         setLoginHistory((prev) => {
-          const map = new Map(prev.map((x) => [x.id, x]));
+          const startIndex = prev.length;
+          const newRows = sorted.map((item, i) =>
+            mapperLoginHistory({ ...item, nrCrt: startIndex + i + 1 }),
+          );
 
-          for (const row of dataMapper) {
-            map.set(row.id, row);
-          }
-
-          return Array.from(map.values());
+          return [...prev, ...newRows];
         });
-
-        // setLoginHistory((prev) => [...prev, ...dataMapper]);
       }
       setLoading(false);
     }

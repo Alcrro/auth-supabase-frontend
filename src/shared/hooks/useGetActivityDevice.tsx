@@ -27,7 +27,9 @@ const useGetActivityDevice = (
       }
 
       if (data) {
-        const mapped = sortDevices(data).map(mapperDbActiveDevices);
+        console.log(data);
+        const mapper = data.map(mapperDbActiveDevices);
+        const mapped = sortDevices(mapper);
 
         setActivity((prev) => {
           const map = new Map(prev.map((x) => [x.id, x]));

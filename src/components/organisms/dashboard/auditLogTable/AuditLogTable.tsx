@@ -17,16 +17,13 @@ const AuditLogTable = () => {
   const [totalRows, setTotalRows] = useState(0);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const totalCounterRows = limit * uiPage;
-
   useEffect(() => {
-    if (totalCounterRows >= auditLogs.length) {
-      setPage((p) => p + 1);
-    } else {
-      setPage(0);
+    const neededServerPage = Math.ceil((limit * uiPage) / 30);
+
+    if (page < neededServerPage) {
+      setPage(neededServerPage);
     }
   }, [uiPage]);
-
   useAuditLogs(setAuditLogs, page, setLoading);
   useGetTotalRows(setTotalRows);
 
