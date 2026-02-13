@@ -2,7 +2,6 @@
 
 # 3️⃣ `README.architecture.md` – ARHITECTURĂ (foarte curat)
 
-👉 **Scop**: colegi, tech leads, design review
 
 ```md
 # 🧱 System Architecture
