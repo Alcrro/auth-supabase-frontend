@@ -1,4 +1,4 @@
-
+```
 # 2️⃣ `README.security.md` – SECURITY DEEP DIVE (senior energy)
 ```md
 # 🔐 Security & Authentication Design
