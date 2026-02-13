@@ -4,7 +4,7 @@
 
 
 ```md
-# 🧱 System Architecture
+# Title:🧱 System Architecture
 
 This document describes the high-level architecture of the authentication system.
 
