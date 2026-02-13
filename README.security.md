@@ -1,6 +1,6 @@
-```
+
 # 2️⃣ `README.security.md` – SECURITY DEEP DIVE (senior energy)
-```md
+
 # 🔐 Security & Authentication Design
 
 This document explains the security decisions behind the authentication system.
