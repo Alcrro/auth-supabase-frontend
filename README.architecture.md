@@ -1,9 +1,4 @@
----
 
-# 3️⃣ `README.architecture.md` – ARHITECTURĂ (foarte curat)
-
-
-```md
 # Title:🧱 System Architecture
 
 This document describes the high-level architecture of the authentication system.
