@@ -22,12 +22,18 @@ const UserLoginHistory = ({
     <div className={""}>
       <div className="title text-2xl text-center py-2">Login History</div>
       <div className="loginHistoriesCounter text-end p-2">
-        <span className={"text-black bg-blue-300 p-2 rounded-md"}>
+        <span
+          className={"text-white bg-white/30 backdrop-blur-lg p-2 rounded-md"}
+        >
           {loginHistories.length}
         </span>
       </div>
       <div className={`rounded-md px-2 overflow-hidden `}>
-        <div className={" min-h-full max-w-7xl min-w-full "}>
+        <div
+          className={
+            "min-h-full max-w-7xl min-w-full rounded-md xl:bg-white/15 backdrop-blur-lg"
+          }
+        >
           {loginHistories.length > 0 ? (
             <Table dataBody={loginHistories} dataHeader={tableDocumentMap} />
           ) : (

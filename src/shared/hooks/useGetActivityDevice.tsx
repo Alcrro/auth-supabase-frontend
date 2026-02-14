@@ -29,16 +29,12 @@ const useGetActivityDevice = (
       if (data) {
         console.log(data);
         const mapper = data.map(mapperDbActiveDevices);
-        const mapped = sortDevices(mapper);
 
         setActivity((prev) => {
-          const map = new Map(prev.map((x) => [x.id, x]));
+          const newRows = data.map(mapperDbActiveDevices);
+          const sorted = sortDevices(newRows);
 
-          for (const row of mapped) {
-            map.set(row.id, row);
-          }
-
-          return Array.from(map.values());
+          return [...prev, ...sorted];
         });
 
         // setActivity((prev) => [...prev, ...data]);

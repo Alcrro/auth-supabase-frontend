@@ -4,7 +4,7 @@ const LoginHistorySkeleton = () => {
   return (
     <div className={"h-full"}>
       <div className="title py-2 w-30 h-10 mx-auto my-4 bg-gray-300 rounded-2xl animate-pulse"></div>
-      <div className="flex justify-center w-10 h-8 mx-2 ml-auto text-center mb-1 text-black bg-blue-300 rounded-md">
+      <div className="flex justify-center w-10 h-8 mx-2 ml-auto text-center mb-1 text-white bg-white/30 backdrop-blur-lg p-2 rounded-md">
         <span className={"p-2 bg-gray-400 rounded-2xl animate-pulse"}></span>
       </div>
       <div className={`rounded-md px-2 overflow-hidden`}>
@@ -17,12 +17,12 @@ const LoginHistorySkeleton = () => {
               aria-label={"login history"}
             >
               <thead className={"thead max-lg:hidden"}>
-                <tr className={""}>
+                <tr className="block xl:table-row bg-white/20 hover:bg-white/35 transition">
                   {tableDocumentMap.map((item) => (
                     <th
                       scope={"col"}
                       className={
-                        "capitalize text-transparent bg-blue-300 p-2 first:rounded-tl-md first:rounded-bl-md last:rounded-tr-md last:rounded-br-md"
+                        "sticky top-0 bg-white/30 backdrop-blur-md text-gray-900 p-3 text-sm font-semibold tracking-wide first:rounded-tl-md first:rounded-bl-md last:rounded-tr-md last:rounded-br-md capitalize"
                       }
                       data-label={item.label}
                     >
@@ -38,14 +38,14 @@ const LoginHistorySkeleton = () => {
                 </tr>
               </thead>
               <tbody className={"tbody"}>
-                <tr className={"max-lg:hidden"}>
+                <tr className={"max-xl:hidden bg-[#242424]"}>
                   <td colSpan={tableDocumentMap.length} className="h-2"></td>
                 </tr>
                 {Array.from({ length: 5 }).map((_row, i, arr) => (
                   <tr
                     key={i}
                     className={
-                      "text-center text-transparent odd:bg-white even:bg-blue-200 w-120 rounded-tl-2xl"
+                      "text-center text-transparent  bg-white/15 backdrop-blur-lg shadow-lg lg:hover:bg-white/30 w-120 rounded-tl-2xl"
                     }
                   >
                     {tableDocumentMap.map((h, colIndex) => (

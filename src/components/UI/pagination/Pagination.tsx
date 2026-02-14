@@ -28,7 +28,7 @@ const Pagination = ({
   };
 
   return (
-    <div className={"flex gap-1 justify-center"}>
+    <div className={"flex flex-wrap gap-2 justify-center items-center mt-4"}>
       {Array.from({ length: pagesNumber }, (_, i) => {
         const pageNumber = i + 1;
         return (
@@ -55,9 +55,15 @@ const PageNumber = ({
   currentPage: number;
   paginationHandler: () => void;
 }) => {
+  const active = currentPage === pageNumber;
+
   return (
     <div
-      class={`flex gap-2 justify-center items-center my-2 text-center bg-blue-500 px-2 py-1 cursor-pointer rounded-md ${currentPage === pageNumber && "font-medium text-xl"}`}
+      className={`flex justify-center items-center min-w-9 h-9 px-3 rounded-xl text-sm transition-all duration-150 backdrop-blur-md border ${
+        active
+          ? "bg-white/50 border-white/40 shadow font-semibold scale-105"
+          : "bg-white/20 border-white/25 hover:bg-white/35"
+      }`}
       onClick={paginationHandler}
     >
       {pageNumber}

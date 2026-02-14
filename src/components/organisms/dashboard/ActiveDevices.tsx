@@ -17,8 +17,8 @@ const ActiveDevices = () => {
   const [activity, setActivity] = useState<ActiveDevice[]>([]);
   const [loading, setLoading] = useState(true);
   const [totalRows, setTotalRows] = useState<number>(0);
-  const initialLimit = Number(searchParams.get("limit") ?? 1);
-  const [page, setPage] = useState(0);
+  const initialLimit = Number(searchParams.get("limit") ?? 5);
+  const [page, setPage] = useState(1);
   const [limit, setLimit] = useState<number>(initialLimit);
 
   const [_maxH, setMaxH] = useState(0);

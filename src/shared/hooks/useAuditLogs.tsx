@@ -21,17 +21,17 @@ const useAuditLogs = (
       }
 
       if (data) {
-        const sortLogs = sortDevices(data);
-
         setAuditLogs((prev) => {
           const startIndex = prev.length;
-          const newRows = sortLogs.map((item, i) =>
+          const newRows = data.map((item, i) =>
             mapperLoginHistory({
               ...item,
               nrCrt: startIndex + i + 1,
             }),
           );
-          return [...prev, ...newRows];
+          const sortLogs = sortDevices(newRows);
+
+          return [...prev, ...sortLogs];
         });
       }
       setLoading(false);

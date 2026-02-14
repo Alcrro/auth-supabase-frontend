@@ -26,15 +26,16 @@ const useLoginHistory = (
       }
 
       if (data) {
-        const sorted = sortDevices(data);
+        console.log({ data });
 
         setLoginHistory((prev) => {
           const startIndex = prev.length;
-          const newRows = sorted.map((item, i) =>
+          const newRows = data.map((item, i) =>
             mapperLoginHistory({ ...item, nrCrt: startIndex + i + 1 }),
           );
+          const sorted = sortDevices(newRows);
 
-          return [...prev, ...newRows];
+          return [...prev, ...sorted];
         });
       }
       setLoading(false);

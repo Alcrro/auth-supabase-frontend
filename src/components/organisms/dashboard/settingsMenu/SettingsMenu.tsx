@@ -25,7 +25,9 @@ const SettingsMenu = ({ isAuthenticated, onLogin }: SettingsMenuProps) => {
       onClick={showingMenu}
       ref={ref}
     >
-      <div>Settings</div>
+      <div className=" px-3 py-1.5 rounded-xl bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 transition select-none">
+        Settings
+      </div>
       {!isAuthenticated ? (
         <div
           onClick={onLogin}
@@ -35,7 +37,8 @@ const SettingsMenu = ({ isAuthenticated, onLogin }: SettingsMenuProps) => {
         </div>
       ) : (
         <div
-          className={`flex gap-2 absolute right-0.5 bg-[#251f25] rounded-md p-2 max-sm:right-1/2 max-sm:translate-x-1/2 text-nowrap text-center ${!active ? "hidden" : "flex"} group-hover:flex flex-col gap-1 shadow-xl`}
+          className={` absolute right-0 mt-2 min-w-44 rounded-2xl p-2 flex flex-col gap-1 bg-white/15 backdrop-blur-lg border border-white/25 shadow-xl transition-all duration-150 origin-top-right ${!active ? "opacity-0 scale-95 pointer-events-none" : "opacity-100 scale-100"} max-sm:right-1/2 max-sm:translate-x-1/2
+  `}
         >
           <ResetPassword />
           <LogoutForm>

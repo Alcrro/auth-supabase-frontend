@@ -31,7 +31,7 @@ export const DashboardHeader = () => {
   return (
     <div
       className={
-        "flex gap-2 justify-center bg-blue-400 p-2 max-sm:flex-col max-sm:text-center relative items-center w-full"
+        "flex gap-2 justify-center items-center p-2 rounded-3xl relative bg-white/15 backdrop-blur-lg border border-white/30 shadow-lg max-sm:flex-col max-sm:text-center"
       }
     >
       <div className="dashboard_menu hidden max-sm:block">
@@ -48,7 +48,7 @@ export const DashboardHeader = () => {
       </div>
 
       <div
-        className={`gap-2 justify-center bg-blue-400 max-sm:flex-col max-sm:text-center p-3 sm:flex ${active ? "flex max-sm:absolute sm:flex sm:relative z-20 max-sm:top-8 max-sm:left-1/2 max-sm:-translate-x-1/2" : "max-sm:hidden sm:flex  "} rounded-2xl`}
+        className={`gap-2 justify-center max-sm:flex-col max-sm:text-center p-3 sm:flex ${active ? "flex max-sm:absolute sm:flex sm:relative z-20 max-sm:top-8 max-sm:left-1/2 max-sm:-translate-x-1/2" : "max-sm:hidden sm:flex  "} rounded-2xl`}
         ref={ref}
       >
         <DashboardTabs currentTab={currentTab} onTabChange={handleTabChange} />

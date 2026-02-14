@@ -9,7 +9,7 @@ const ActiveDeviceLayout = forwardRef<HTMLDivElement, Props>(
   ({ limit, children }, ref) => {
     return (
       <div
-        className={"activity_list"}
+        className={"activity_list flex gap-4"}
         ref={ref}
         style={{
           overflowY: limit > 5 ? "scroll" : "hidden",
