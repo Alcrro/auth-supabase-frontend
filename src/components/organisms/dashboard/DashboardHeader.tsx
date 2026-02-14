@@ -31,16 +31,16 @@ export const DashboardHeader = () => {
   return (
     <div
       className={
-        "flex gap-2 justify-center items-center p-2 rounded-3xl relative bg-white/15 backdrop-blur-lg border border-white/30 shadow-lg max-sm:flex-col max-sm:text-center"
+        "flex gap-2 justify-center items-center p-2 rounded-3xl relative bg-white/15 backdrop-blur-lg border border-white/30 shadow-lg max-md:flex-col max-md:text-center"
       }
     >
-      <div className="dashboard_menu hidden max-sm:block">
+      <div className="dashboard_menu hidden max-md:block">
         <div
           className="dashboard_title relative inline"
           onClick={() => setActive((prev) => !prev)}
         >
           <DefaultButton variant="toggle">Dashboard</DefaultButton>
-          <div className={"sm:hidden absolute -right-6 top-3 -translate-y-1/2"}>
+          <div className={"md:hidden absolute -right-6 top-3 -translate-y-1/2"}>
             <BiCaretDown className={`${active && "hidden"}`} />
             <BiCaretUp className={`${!active && "hidden"}`} />
           </div>
@@ -48,7 +48,7 @@ export const DashboardHeader = () => {
       </div>
 
       <div
-        className={`gap-2 justify-center max-sm:flex-col max-sm:text-center p-3 sm:flex ${active ? "flex max-sm:absolute sm:flex sm:relative z-20 max-sm:top-8 max-sm:left-1/2 max-sm:-translate-x-1/2" : "max-sm:hidden sm:flex  "} rounded-2xl`}
+        className={`md:hidden gap-2 justify-center max-md:flex-col max-md:text-center p-3 ${active ? "flex max-md:absolute md:flex md:relative z-20 max-md:top-8 max-md:left-1/2 max-md:-translate-x-1/2" : "max-md:hidden md:flex"} rounded-2xl text-black bg-gray-300 opacity-100 font-semibold shadow-sm`}
         ref={ref}
       >
         <DashboardTabs currentTab={currentTab} onTabChange={handleTabChange} />

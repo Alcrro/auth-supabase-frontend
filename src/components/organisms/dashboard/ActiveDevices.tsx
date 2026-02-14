@@ -49,7 +49,7 @@ const ActiveDevices = () => {
   }
 
   return (
-    <div className="activities relative z-10">
+    <div className="activities">
       <div className="header">
         <Title />
         <ActiveDevicesCounter rowsVisible={data.length} />

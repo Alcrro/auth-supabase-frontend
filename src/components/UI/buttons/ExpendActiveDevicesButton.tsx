@@ -20,8 +20,8 @@ const ExpendActiveDevicesButton: FC<ActiveDeviceButtonProps> = ({
       variant="none"
       className={`
             ${
-              limit > 1
-                ? "fixed bottom-4 left-1/2 -translate-x-1/2 z-50 cursor-pointer"
+              limit > 5
+                ? "fixed bottom-4 left-1/2 translate-x-1/2 z-50 cursor-pointer"
                 : "flex justify-center mt-4 cursor-pointer mx-auto"
             }`}
       onClick={addMoreItems}

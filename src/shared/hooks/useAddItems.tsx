@@ -16,24 +16,12 @@ const useAddItems = (
       const maxAvailable = Math.min(fetchedCount, totalRows);
 
       let next: number;
-
-      if (prev === 1) {
-        // prima extindere → 5 sau cât există
-        next = Math.min(STEP, maxAvailable);
-      } else if (prev < maxAvailable) {
+      if (prev < maxAvailable) {
         //merge la restul
         next = maxAvailable;
       } else {
-        next = 1;
+        next = 5;
       }
-      // const next =
-      //   prev === totalRows
-      //     ? 1
-      //     : prev === 1
-      //       ? 5
-      //       : fetchedCount < prev
-      //         ? Math.min(prev + 5, totalRows)
-      //         : 5;
 
       // 🔹 trigger next DB page if needed
       if (next === maxAvailable && fetchedCount < totalRows) {

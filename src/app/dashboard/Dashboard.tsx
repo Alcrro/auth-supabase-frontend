@@ -16,12 +16,12 @@ const Dashboard = () => {
         </div>
         <div
           className={
-            "max-w-80 max-md:max-w-60 h-fit w-full p-2 bg-gray-300 text-black [grid-area:dashboardMenu] rounded-md "
+            "max-md:hidden max-w-80 max-md:max-w-60 h-fit w-full p-2 bg-gray-300 text-black md:[grid-area:dashboardMenu] rounded-md "
           }
         >
           <DashBoardMenu />
         </div>
-        <div className={"[grid-area:dashboardMain]"}>
+        <div className={"[grid-area:dashboardMain] w-full"}>
           <DashboardMain />
         </div>
       </DashboardLayout>
