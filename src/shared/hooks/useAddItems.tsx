@@ -2,7 +2,6 @@ import type { SetStateAction } from "preact/compat";
 import type { Dispatch } from "preact/hooks";
 import type { SetURLSearchParams } from "react-router-dom";
 
-const STEP = 5;
 const useAddItems = (
   setLimit: Dispatch<SetStateAction<number>>,
   setPage: Dispatch<SetStateAction<number>>,
