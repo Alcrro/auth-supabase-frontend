@@ -28,7 +28,6 @@ const useGetActivityDevice = (
 
       if (data) {
         console.log(data);
-        const mapper = data.map(mapperDbActiveDevices);
 
         setActivity((prev) => {
           const newRows = data.map(mapperDbActiveDevices);
