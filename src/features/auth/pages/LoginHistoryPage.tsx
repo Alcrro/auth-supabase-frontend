@@ -30,14 +30,12 @@ const LoginHistoryPage = () => {
   useLoginHistory(setLoading, setLoginHistory, page);
   useGetTotalRows(setTotalRows, "login");
 
-  if (!loading) return <LoginHistorySkeleton />;
+  if (loading) return <LoginHistorySkeleton />;
 
   const startPage = (uiPage - 1) * limit;
   const nextPage = startPage + limit;
 
   const data = loginHistory.slice(startPage, nextPage);
-
-  console.log(page);
 
   return (
     <Suspense fallback={<LoginHistorySkeleton />}>
