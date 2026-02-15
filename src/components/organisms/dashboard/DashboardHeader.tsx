@@ -13,20 +13,13 @@ export const DashboardHeader = () => {
   const ref = useRef(null);
   const navigate = useNavigate();
 
-  const currentTab = useCurrentDashboardTab();
   const { session, hydrated } = useAuthStore();
 
   const isAuthenticated = hydrated && Boolean(session);
 
-  const handleTabChange = (tabKey: string) => {
-    navigate(`/dashboard?tab=${tabKey}`);
-  };
-
   const handleLogin = () => {
     navigate("/auth/login");
   };
-
-  useToggleDiv({ ref, active, setActive });
 
   return (
     <div
@@ -48,10 +41,10 @@ export const DashboardHeader = () => {
       </div>
 
       <div
-        className={`md:hidden gap-2 justify-center max-md:flex-col max-md:text-center p-3 ${active ? "flex max-md:absolute md:flex md:relative z-20 max-md:top-8 max-md:left-1/2 max-md:-translate-x-1/2" : "max-md:hidden md:flex"} rounded-2xl text-black bg-gray-300 opacity-100 font-semibold shadow-sm`}
+        className={`md:hidden gap-2 justify-center max-md:flex-col max-md:text-center w-full max-w-60 p-3 ${active ? "flex max-md:absolute md:flex md:relative z-50 max-md:top-8 max-md:left-1/2 max-md:-translate-x-1/2" : "max-md:hidden md:flex"} rounded-2xl text-black bg-gray-300 opacity-100 font-semibold shadow-sm `}
         ref={ref}
       >
-        <DashboardTabs currentTab={currentTab} onTabChange={handleTabChange} />
+        <DashboardTabs modalTab={"header"} />
       </div>
       <SettingsMenu isAuthenticated={isAuthenticated} onLogin={handleLogin} />
     </div>

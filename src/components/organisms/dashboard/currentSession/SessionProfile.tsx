@@ -1,15 +1,18 @@
-const SessionProfile = ({ image }: { image: string }) => {
+import { cn } from "../../../../shared/utils/cn";
+
+const SessionProfile = ({
+  image,
+  className,
+}: {
+  image: string;
+  className?: string;
+}) => {
   return (
     <img
       src={image}
       alt={"profile"}
       referrerPolicy={"no-referrer"}
-      style={{
-        margin: "2rem auto",
-        width: 120,
-        height: 120,
-        borderRadius: "50%",
-      }}
+      className={`p-2 mx-auto w-30 h-30 rounded-full ${cn()}`}
     ></img>
   );
 };

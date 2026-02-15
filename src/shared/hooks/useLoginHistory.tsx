@@ -26,8 +26,6 @@ const useLoginHistory = (
       }
 
       if (data) {
-        console.log({ data });
-
         setLoginHistory((prev) => {
           const startIndex = prev.length;
           const newRows = data.map((item, i) =>

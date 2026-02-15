@@ -49,7 +49,7 @@ const ActiveDevices = () => {
   }
 
   return (
-    <div className="activities">
+    <div className="w-full">
       <div className="header">
         <Title />
         <ActiveDevicesCounter rowsVisible={data.length} />

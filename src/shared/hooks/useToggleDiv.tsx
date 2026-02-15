@@ -1,10 +1,10 @@
 import type { RefObject } from "preact";
-import { useEffect, type Dispatch, type StateUpdater } from "preact/hooks";
+import { useEffect } from "preact/hooks";
 
 interface ToggleProps<T extends HTMLElement> {
   ref: RefObject<T | null>;
   active: boolean;
-  setActive: Dispatch<StateUpdater<boolean>>;
+  setActive: () => void;
 }
 
 const useToggleDiv = <T extends HTMLElement>({
@@ -21,7 +21,7 @@ const useToggleDiv = <T extends HTMLElement>({
         event.target instanceof Node &&
         !ref.current.contains(event.target)
       ) {
-        setActive(false);
+        setActive();
       }
     }
     if (active) {

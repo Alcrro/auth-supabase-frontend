@@ -8,6 +8,18 @@ export type CurrentSessionVM = {
   expiresAt: string;
 };
 
+export type CurrentSessionVMTypes = keyof CurrentSessionVM;
+
+export const currentSessionMapper: Record<CurrentSessionVMTypes, string> = {
+  userId: "User ID",
+  email: "Email",
+  provider: "Provider",
+  createdAt: "Created At",
+  expiresAt: "Expires At",
+  image: "Image",
+  ip: "IP",
+};
+
 export type ActiveDevice = {
   id: string;
   session_id: string;

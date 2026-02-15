@@ -1,5 +1,5 @@
 import { useState } from "preact/hooks";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { redirect, useNavigate, useSearchParams } from "react-router-dom";
 import useTimer from "./shared/hooks/useTimer";
 
 const DashboardErrorPage = () => {
@@ -19,7 +19,7 @@ const DashboardErrorPage = () => {
         nu exista
       </p>
       <p>Te vei redirectiona la o pagina corecta in {timer}</p>
-      <button onClick={() => navigate("/dashboard")}>Mergi acum</button>
+      <button onClick={() => redirect("/dashboard")}>Mergi acum</button>
     </div>
   );
 };

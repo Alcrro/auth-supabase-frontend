@@ -28,7 +28,7 @@ const UserLoginHistory = ({
           {loginHistories.length}
         </span>
       </div>
-      <div className={`rounded-md px-2 overflow-hidden `}>
+      <div className={`rounded-md px-2 overflow-hidden relative -z-10`}>
         <div
           className={
             "min-h-full max-w-7xl min-w-full rounded-md xl:bg-white/15 backdrop-blur-lg"

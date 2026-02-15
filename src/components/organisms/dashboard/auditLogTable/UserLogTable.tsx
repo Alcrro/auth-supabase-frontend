@@ -29,7 +29,9 @@ const UserLogsAudit = ({
         </span>
       </div>
 
-      <div className={"min-h-full max-w-7xl min-w-full rounded-xl"}>
+      <div
+        className={"min-h-full max-w-7xl min-w-full rounded-xl relative -z-10"}
+      >
         {auditLogs.length > 0 ? (
           <Table dataBody={auditLogs} dataHeader={tableDocumentMap} />
         ) : (
