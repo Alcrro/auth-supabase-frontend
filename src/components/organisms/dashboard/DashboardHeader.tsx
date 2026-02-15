@@ -1,11 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../../features/auth/store/useAuthStore";
-import { useCurrentDashboardTab } from "../../../shared/hooks/currentDashboardTab";
 import SettingsMenu from "./settingsMenu/SettingsMenu";
 import DashboardTabs from "./DashboardTabs";
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
 import { useRef, useState } from "preact/hooks";
-import useToggleDiv from "../../../shared/hooks/useToggleDiv";
 import DefaultButton from "../../atoms/DefaultButton";
 
 export const DashboardHeader = () => {

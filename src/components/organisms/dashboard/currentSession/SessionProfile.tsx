@@ -12,7 +12,7 @@ const SessionProfile = ({
       src={image}
       alt={"profile"}
       referrerPolicy={"no-referrer"}
-      className={`p-2 mx-auto w-30 h-30 rounded-full ${cn()}`}
+      className={`p-2 mx-auto w-30 h-30 rounded-full ${cn(className)}`}
     ></img>
   );
 };
