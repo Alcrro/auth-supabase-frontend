@@ -1,5 +1,5 @@
 import { osDeviceParse } from "../../../shared/utils/osDeviceParse";
-import type { ActiveDevice, LoginAuditProps } from "../types/auth.types";
+import { type ActiveDevice, type LoginAuditProps } from "../types/auth.types";
 
 export interface UAParserProps {
   device_type: ActiveDevice["deviceType"];
@@ -23,6 +23,8 @@ export function mapperDbActiveDevices(result: LoginAuditProps): ActiveDevice {
 
   const created_atFormat = new Date(created_at).toUTCString();
   const currentSessionId = localStorage.getItem("session_id");
+
+  console.log(session_id === currentSessionId);
 
   return {
     id: id,

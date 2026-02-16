@@ -1,4 +1,4 @@
-import { useRef, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import useGetActivityDevice from "../../../shared/hooks/useGetActivityDevice";
 import { ActiveDeviceSkeleton } from "../../UI/skeletons/ActivDeviceSkeletonCard";
 import useLayoutActivityDevice from "../../../shared/hooks/useLaoutActivityDevice";
@@ -18,11 +18,19 @@ const ActiveDevices = () => {
   const [loading, setLoading] = useState(true);
   const [totalRows, setTotalRows] = useState<number>(0);
   const initialLimit = Number(searchParams.get("limit") ?? 5);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
+  const [uiPage, setUiPage] = useState(1);
   const [limit, setLimit] = useState<number>(initialLimit);
 
   const [_maxH, setMaxH] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const neededServerPage = Math.ceil((limit * uiPage) / 30);
+
+    if (page < neededServerPage) {
+      setPage(neededServerPage);
+    }
+  }, [uiPage]);
 
   const data = activity.slice(0, limit);
   // extend limit to fetch more devices history

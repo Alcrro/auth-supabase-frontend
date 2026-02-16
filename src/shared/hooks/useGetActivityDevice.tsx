@@ -1,6 +1,9 @@
 import { useEffect, type Dispatch } from "react";
 import type { StateUpdater } from "preact/hooks";
-import type { ActiveDevice } from "../../features/auth/types/auth.types";
+import type {
+  ActiveDevice,
+  LoginAuditProps,
+} from "../../features/auth/types/auth.types";
 import { getActivityDevice } from "../../features/auth/services/getActivityDevice";
 import { sortDevices } from "../utils/sortDevices";
 import { mapperDbActiveDevices } from "../../features/auth/mapper/mapperActiveDevices";
@@ -30,8 +33,10 @@ const useGetActivityDevice = (
         console.log(data);
 
         setActivity((prev) => {
-          const newRows = data.map(mapperDbActiveDevices);
-          const sorted = sortDevices(newRows);
+          const sorted = sortDevices<LoginAuditProps>(data).map(
+            mapperDbActiveDevices,
+          );
+          console.log({ sorted });
 
           return [...prev, ...sorted];
         });

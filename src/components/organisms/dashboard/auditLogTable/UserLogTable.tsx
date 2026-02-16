@@ -22,19 +22,21 @@ const UserLogsAudit = ({
     <div className={""}>
       <div className="title text-2xl text-center py-2"> History Logs</div>
       <div className="loginHistoriesCounter text-end py-2 relative">
-        <span
-          className={"text-white bg-white/30 backdrop-blur-lg p-2 rounded-md"}
-        >
-          {auditLogs.length}
-        </span>
+        <span className={" p-2 rounded-md"}>{auditLogs.length}</span>
       </div>
 
-      <div className={"min-h-full max-w-7xl min-w-full rounded-xl relative"}>
-        {auditLogs.length > 0 ? (
-          <Table dataBody={auditLogs} dataHeader={tableDocumentMap} />
-        ) : (
-          <div>No login history</div>
-        )}
+      <div className={`rounded-md px-2 overflow-hidden`}>
+        <div
+          className={
+            "min-h-full max-w-7xl min-w-full rounded-md xl:bg-white/15 backdrop-blur-lg"
+          }
+        >
+          {auditLogs.length > 0 ? (
+            <Table dataBody={auditLogs} dataHeader={tableDocumentMap} />
+          ) : (
+            <div>No login history</div>
+          )}
+        </div>
       </div>
       <Pagination
         limit={limit}
