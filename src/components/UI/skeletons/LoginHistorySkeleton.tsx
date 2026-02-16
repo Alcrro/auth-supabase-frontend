@@ -8,71 +8,67 @@ const LoginHistorySkeleton = () => {
         <span className={"p-2 bg-gray-400 rounded-2xl animate-pulse"}></span>
       </div>
       <div className={`rounded-md px-2 overflow-hidden`}>
-        <div
-          className={"h-160 min-h-full max-w-7xl min-w-full overflow-y-auto"}
-        >
-          <div className={`overflow-hidden rounded-2xl`}>
-            <table
-              className={"w-full table-fixed border-separate border-spacing-0"}
-              aria-label={"login history"}
-            >
-              <thead className={"thead max-xl:hidden xl:table-header-group"}>
-                <tr className="block xl:table-row bg-white/20 hover:bg-white/35 transition">
-                  {tableDocumentMap.map((item) => (
-                    <th
-                      scope={"col"}
+        <div className={"min-h-full max-w-7xl min-w-full overflow-y-auto"}>
+          <table
+            className={"w-full table-fixed border-separate border-spacing-0"}
+            aria-label={"login history"}
+          >
+            <thead className={"w-full max-xl:hidden xl:table-header-group"}>
+              <tr className="block xl:table-row bg-white/20 hover:bg-white/35 transition">
+                {tableDocumentMap.map((item) => (
+                  <th
+                    scope={"col"}
+                    className={
+                      "sticky top-0 bg-white/30 backdrop-blur-md text-gray-900 p-3 text-sm font-semibold tracking-wide first:rounded-tl-md first:rounded-bl-md last:rounded-tr-md last:rounded-br-md capitalize"
+                    }
+                    data-label={item.label}
+                  >
+                    <span
                       className={
-                        "sticky top-0 bg-white/30 backdrop-blur-md text-gray-900 p-3 text-sm font-semibold tracking-wide first:rounded-tl-md first:rounded-bl-md last:rounded-tr-md last:rounded-br-md capitalize"
+                        "text-transparent bg-gray-400 rounded-2xl animate-pulse"
                       }
-                      data-label={item.label}
+                    >
+                      {item.label}
+                    </span>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className={"tbody"}>
+              <tr className={"max-xl:hidden bg-[#242424]"}>
+                <td colSpan={tableDocumentMap.length} className="h-2"></td>
+              </tr>
+              {Array.from({ length: 5 }).map((_row, i, arr) => (
+                <tr
+                  key={i}
+                  className={
+                    "text-center text-transparent xl:table-row bg-white/15 backdrop-blur-lg shadow-lg lg:hover:bg-white/30 w-120 rounded-tl-2xl"
+                  }
+                >
+                  {tableDocumentMap.map((h, colIndex) => (
+                    <td
+                      key={h.key}
+                      className={`p-2 ${h.key !== "ip_address" && "capitalize"} h-16 flex justify-between items-center xl:table-cell border-b border-gray-400 ${i === arr.length - 1 && colIndex === 0 ? "rounded-bl-md" : ""} ${i === arr.length - 1 && colIndex === tableDocumentMap.length - 1 ? "rounded-br-md" : ""} ${i === 0 && colIndex === 0 ? "rounded-tl-md" : ""} ${i === 0 && colIndex === tableDocumentMap.length - 1 ? "rounded-tr-md" : ""}`}
                     >
                       <span
                         className={
-                          "text-transparent bg-gray-400 rounded-2xl animate-pulse"
+                          "font-medium p-1 bg-gray-400 animate-pulse rounded-md"
                         }
                       >
-                        {item.label}
+                        {h.label}
                       </span>
-                    </th>
+
+                      <span
+                        className={
+                          "w-20 h-10 bg-gray-400 animate-pulse rounded-md"
+                        }
+                      ></span>
+                    </td>
                   ))}
                 </tr>
-              </thead>
-              <tbody className={"tbody"}>
-                <tr className={"max-xl:hidden bg-[#242424]"}>
-                  <td colSpan={tableDocumentMap.length} className="h-2"></td>
-                </tr>
-                {Array.from({ length: 5 }).map((_row, i, arr) => (
-                  <tr
-                    key={i}
-                    className={
-                      "text-center text-transparent xl:table-row bg-white/15 backdrop-blur-lg shadow-lg lg:hover:bg-white/30 w-120 rounded-tl-2xl"
-                    }
-                  >
-                    {tableDocumentMap.map((h, colIndex) => (
-                      <td
-                        key={h.key}
-                        className={`p-2 ${h.key !== "ip_address" && "capitalize"} h-16 flex justify-between items-center xl:table-row border-b border-gray-400 ${i === arr.length - 1 && colIndex === 0 ? "rounded-bl-md" : ""} ${i === arr.length - 1 && colIndex === tableDocumentMap.length - 1 ? "rounded-br-md" : ""} ${i === 0 && colIndex === 0 ? "rounded-tl-md" : ""} ${i === 0 && colIndex === tableDocumentMap.length - 1 ? "rounded-tr-md" : ""}`}
-                      >
-                        <span
-                          className={
-                            "font-medium p-1 bg-gray-400 animate-pulse rounded-md"
-                          }
-                        >
-                          {h.label}
-                        </span>
-
-                        <span
-                          className={
-                            "w-20 h-10 bg-gray-400 animate-pulse rounded-md"
-                          }
-                        ></span>
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
