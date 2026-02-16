@@ -15,7 +15,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   if (!session) return navigate("/auth/login");
   const currentSession = mapperSessionToCurrentSession(session);
-  const { isToggled, removeToggle } = useToggleElementStore((store) => store);
+  const { isToggled } = useToggleElementStore((store) => store);
 
   const isShowing = isToggled["currentTab"];
   return (

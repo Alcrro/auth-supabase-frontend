@@ -18,7 +18,7 @@ const CurrentSessionRow = ({
 
       <div className="w-2 h-2 rounded-full bg-gray-400 opacity-70 max-sm:hidden" />
 
-      <div className="sm:flex-1 text-left sm:break-all">{sessionTag}</div>
+      <div className="sm:flex-1 text-center sm:break-all">{sessionTag}</div>
     </div>
   );
 };

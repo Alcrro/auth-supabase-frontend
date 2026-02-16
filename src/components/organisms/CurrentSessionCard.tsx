@@ -5,14 +5,12 @@ import {
   type CurrentSessionVM,
 } from "../../features/auth/types/auth.types";
 import SessionProfile from "./dashboard/currentSession/SessionProfile";
-import { useCurrentDashboardTab } from "../../shared/hooks/currentDashboardTab";
 import useToggleDiv from "../../shared/hooks/useToggleDiv";
 
 const CurrentSessionCard = ({ session }: { session: CurrentSessionVM }) => {
   const { isToggled, removeToggle } = useToggleElementStore((store) => store);
 
   const ref = useRef(null);
-  const currentTab = useCurrentDashboardTab();
 
   const isShowing = isToggled["currentTab"];
   useToggleDiv({
