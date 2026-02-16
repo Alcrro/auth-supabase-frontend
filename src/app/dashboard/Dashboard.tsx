@@ -8,6 +8,7 @@ import { useAuthStore } from "../../features/auth/store/useAuthStore";
 import { mapperSessionToCurrentSession } from "../../features/auth/mapper/mappSessionToCurrentSession";
 import CurrentSessionCard from "../../components/organisms/CurrentSessionCard";
 import { useToggleElementStore } from "../../features/auth/store/useToggleEleStore";
+import { useCurrentDashboardTab } from "../../shared/hooks/currentDashboardTab";
 
 const Dashboard = () => {
   const { session } = useAuthStore();
@@ -17,6 +18,8 @@ const Dashboard = () => {
   const { isToggled } = useToggleElementStore((store) => store);
 
   const isShowing = isToggled["currentTab"];
+  const currentTab = useCurrentDashboardTab();
+
   return (
     <>
       <Helmet>
@@ -26,15 +29,17 @@ const Dashboard = () => {
         <div className={"[grid-area:header] m-2"}>
           <DashboardHeader />
         </div>
-
         <div
           className={`max-md:hidden max-w-80 max-md:max-w-60 h-fit w-full p-2 bg-gray-300 text-black md:[grid-area:dashboardMenu] rounded-md relative ${isShowing ? "delay-200 rounded-r-none" : "delay-200 rounded-r-md"}`}
         >
-          {currentSession.image && (
-            <div className={`profile ${isShowing ? "invisible" : "delay-200"}`}>
-              <SessionProfile image={currentSession.image} />
-            </div>
-          )}
+          {currentTab === "current" ||
+            (currentSession.image && (
+              <div
+                className={`profile ${isShowing ? "invisible" : "delay-200"}`}
+              >
+                <SessionProfile image={currentSession.image} />
+              </div>
+            ))}
           <DashBoardMenu />
           <CurrentSessionCard session={currentSession} />
         </div>

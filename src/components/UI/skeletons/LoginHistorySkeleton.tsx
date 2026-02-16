@@ -16,7 +16,7 @@ const LoginHistorySkeleton = () => {
               className={"w-full table-fixed border-separate border-spacing-0"}
               aria-label={"login history"}
             >
-              <thead className={"thead max-lg:hidden"}>
+              <thead className={"thead max-xl:hidden xl:table-header-group"}>
                 <tr className="block xl:table-row bg-white/20 hover:bg-white/35 transition">
                   {tableDocumentMap.map((item) => (
                     <th
@@ -45,13 +45,13 @@ const LoginHistorySkeleton = () => {
                   <tr
                     key={i}
                     className={
-                      "text-center text-transparent  bg-white/15 backdrop-blur-lg shadow-lg lg:hover:bg-white/30 w-120 rounded-tl-2xl"
+                      "text-center text-transparent xl:table-row bg-white/15 backdrop-blur-lg shadow-lg lg:hover:bg-white/30 w-120 rounded-tl-2xl"
                     }
                   >
                     {tableDocumentMap.map((h, colIndex) => (
                       <td
                         key={h.key}
-                        className={`p-2 ${h.key !== "ip_address" && "capitalize"} h-16 flex justify-between items-center lg:table-cell border-b border-gray-400 ${i === arr.length - 1 && colIndex === 0 ? "rounded-bl-md" : ""} ${i === arr.length - 1 && colIndex === tableDocumentMap.length - 1 ? "rounded-br-md" : ""} ${i === 0 && colIndex === 0 ? "rounded-tl-md" : ""} ${i === 0 && colIndex === tableDocumentMap.length - 1 ? "rounded-tr-md" : ""}`}
+                        className={`p-2 ${h.key !== "ip_address" && "capitalize"} h-16 flex justify-between items-center xl:table-row border-b border-gray-400 ${i === arr.length - 1 && colIndex === 0 ? "rounded-bl-md" : ""} ${i === arr.length - 1 && colIndex === tableDocumentMap.length - 1 ? "rounded-br-md" : ""} ${i === 0 && colIndex === 0 ? "rounded-tl-md" : ""} ${i === 0 && colIndex === tableDocumentMap.length - 1 ? "rounded-tr-md" : ""}`}
                       >
                         <span
                           className={

@@ -19,16 +19,16 @@ const UserLoginHistory = ({
   uiPage: number;
 }) => {
   return (
-    <div className={""}>
-      <div className="title text-2xl text-center py-2">Login History</div>
-      <div className="loginHistoriesCounter text-end p-2">
+    <>
+      <div className="title text-2xl py-2">Login History</div>
+      <div className="ml-auto p-2">
         <span
           className={"text-white bg-white/30 backdrop-blur-lg p-2 rounded-md"}
         >
           {loginHistories.length}
         </span>
       </div>
-      <div className={`rounded-md px-2 overflow-hidden relative -z-10`}>
+      <div className={`rounded-md px-2 overflow-hidden`}>
         <div
           className={
             "min-h-full max-w-7xl min-w-full rounded-md xl:bg-white/15 backdrop-blur-lg"
@@ -47,7 +47,7 @@ const UserLoginHistory = ({
         setPage={setUiPage}
         page={uiPage}
       />
-    </div>
+    </>
   );
 };
 

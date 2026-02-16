@@ -31,7 +31,7 @@ const Pagination = ({
   return (
     <div
       className={
-        "flex flex-wrap gap-2 justify-center items-center mt-4 relative z-20"
+        "flex flex-wrap gap-2 justify-center items-center mt-4 relative"
       }
     >
       {Array.from({ length: pagesNumber }, (_, i) => {

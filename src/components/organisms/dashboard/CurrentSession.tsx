@@ -19,7 +19,7 @@ const CurrentSession = () => {
         {currentSession.image ? (
           <SessionProfile image={currentSession.image} />
         ) : (
-          <div className="size-30 bg-gray-400  rounded-full mb-8 flex items-center justify-center ">
+          <div className="size-30 bg-gray-400 rounded-full mb-8 flex items-center justify-center ">
             <BsPersonCircle className={"text-gray-200 size-30"} />
           </div>
         )}

@@ -27,7 +27,7 @@ const SettingsMenu = ({ isAuthenticated, onLogin }: SettingsMenuProps) => {
 
   return (
     <div
-      className={`dashboard_settings_menu relative px-4 cursor-pointer group max-sm:relative md:ml-auto  ${isActive ? "active" : ""} `}
+      className={`dashboard_settings_menu relative z-50 px-4 cursor-pointer group max-sm:relative md:ml-auto  ${isActive ? "active" : ""} `}
       onClick={showingMenu}
       ref={ref}
     >
@@ -37,13 +37,13 @@ const SettingsMenu = ({ isAuthenticated, onLogin }: SettingsMenuProps) => {
       {!isAuthenticated ? (
         <div
           onClick={onLogin}
-          className={`group-hover:block ${isToggled ? "hidden" : "flex"}`}
+          className={`group-hover:block ${isActive ? "hidden" : "flex"}`}
         >
           Login
         </div>
       ) : (
         <div
-          className={`absolute right-0 z-30 mt-2 min-w-44 rounded-2xl p-2 flex flex-col gap-1 bg-[#242424] md:bg-white/15 backdrop-blur-lg border border-white/25 shadow-xl transition-all duration-150 origin-top-right ${!isActive ? "opacity-0 scale-95 pointer-events-none" : "opacity-100 scale-100"} max-md:right-1/2 max-md:translate-x-1/2
+          className={`absolute right-0 z-9999 mt-2 min-w-44 rounded-2xl p-2 flex flex-col gap-1 bg-[#242424] md:bg-white/15 backdrop-blur-lg border border-white/25 shadow-xl transition-all duration-150 origin-top-right ${!isActive ? "opacity-0 scale-95 pointer-events-none" : "opacity-100 scale-100"} max-md:right-1/2 max-md:translate-x-1/2
   `}
         >
           <ResetPassword />

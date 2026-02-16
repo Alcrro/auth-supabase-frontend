@@ -21,7 +21,7 @@ const UserLogsAudit = ({
   return (
     <div className={""}>
       <div className="title text-2xl text-center py-2"> History Logs</div>
-      <div className="loginHistoriesCounter text-end py-2">
+      <div className="loginHistoriesCounter text-end py-2 relative">
         <span
           className={"text-white bg-white/30 backdrop-blur-lg p-2 rounded-md"}
         >
@@ -29,9 +29,7 @@ const UserLogsAudit = ({
         </span>
       </div>
 
-      <div
-        className={"min-h-full max-w-7xl min-w-full rounded-xl relative -z-10"}
-      >
+      <div className={"min-h-full max-w-7xl min-w-full rounded-xl relative"}>
         {auditLogs.length > 0 ? (
           <Table dataBody={auditLogs} dataHeader={tableDocumentMap} />
         ) : (

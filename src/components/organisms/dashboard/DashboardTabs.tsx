@@ -15,7 +15,9 @@ const DashboardTabs = ({ modalTab }: { modalTab: string }) => {
 
   const handleTabChange = (tabKey: string) => {
     if (tabKey === "current" && modalTab !== "header") {
-      setIsToggled("currentTab");
+      if (currentTab !== "current") {
+        setIsToggled("currentTab");
+      }
     } else {
       removeToggle("currentTab");
       navigate(`/dashboard?tab=${tabKey}`);
@@ -30,7 +32,7 @@ const DashboardTabs = ({ modalTab }: { modalTab: string }) => {
       <div
         key={key}
         onClick={() => handleTabChange(key)}
-        className={`relative z-50 cursor-pointer select-none px-3 py-1.5 rounded-xl transition-all duration-150 flex gap-2 items-center ${
+        className={`cursor-pointer select-none px-3 py-1.5 rounded-xl transition-all duration-150 flex gap-2 items-center ${
           key === "current" && isToggled["currentTab"]
             ? "bg-white/80 backdrop-blur font-semibold shadow-sm"
             : active
