@@ -5,15 +5,14 @@ import { Helmet } from "react-helmet-async";
 import DashBoardMenu from "../../components/organisms/dashboard/DashBoardMenu";
 import SessionProfile from "../../components/organisms/dashboard/currentSession/SessionProfile";
 import { useAuthStore } from "../../features/auth/store/useAuthStore";
-import { useNavigate } from "react-router-dom";
 import { mapperSessionToCurrentSession } from "../../features/auth/mapper/mappSessionToCurrentSession";
 import CurrentSessionCard from "../../components/organisms/CurrentSessionCard";
 import { useToggleElementStore } from "../../features/auth/store/useToggleEleStore";
 
 const Dashboard = () => {
   const { session } = useAuthStore();
-  const navigate = useNavigate();
-  if (!session) return navigate("/auth/login");
+
+  if (!session) return null;
   const currentSession = mapperSessionToCurrentSession(session);
   const { isToggled } = useToggleElementStore((store) => store);
 
