@@ -1,7 +1,8 @@
 import { SkeletonCard } from "./ActivityDeviceSkeletonCard";
+import style from "../../styles/activeDeviceCardStyle.module.scss";
 
-export const ActiveDeviceSkeleton = ({ count = 1 }) => (
-  <>
+export const ActiveDeviceSkeleton = ({ count = 5 }) => (
+  <div className={"w-full"}>
     <div
       className={
         "my-2 text-2xl w-fit mx-auto text-transparent bg-gray-300 rounded-md"
@@ -17,12 +18,15 @@ export const ActiveDeviceSkeleton = ({ count = 1 }) => (
       </div>
       <div className={"size-6 bg-gray-300 animate-pulse rounded-xl"}></div>
     </div>
-    {Array.from({ length: count }).map((_, i) => (
-      <SkeletonCard key={i} />
-    ))}
+
+    <div className={style.cardStyle}>
+      {Array.from({ length: count }).map((_, i) => (
+        <SkeletonCard key={i} />
+      ))}
+    </div>
 
     <div
       className={"size-8 mx-auto my-4 bg-gray-300 rounded-2xl animate-pulse"}
     ></div>
-  </>
+  </div>
 );
