@@ -15,16 +15,17 @@ export function mapperActiveDevices(result: UAParser.IResult): UAParserProps {
   };
 }
 
-export function mapperDbActiveDevices(result: LoginAuditProps): ActiveDevice {
+export function mapperDbActiveDevices(
+  result: LoginAuditProps,
+  currentSessionId: string | null,
+): ActiveDevice {
   // if (!result || result.length === 0) return [];
 
   const { device_type, browser, ip_address, created_at, id, session_id, os } =
     result;
 
   const created_atFormat = new Date(created_at).toUTCString();
-  const currentSessionId = localStorage.getItem("session_id");
-
-  console.log(session_id === currentSessionId);
+  console.log(id);
 
   return {
     id: id,

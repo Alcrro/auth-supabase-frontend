@@ -22,7 +22,11 @@ const UserLogsAudit = ({
     <div className={""}>
       <div className="title text-2xl text-center py-2"> History Logs</div>
       <div className="loginHistoriesCounter text-end py-2 relative">
-        <span className={" p-2 rounded-md"}>{auditLogs.length}</span>
+        <span
+          className={"text-white bg-white/30 backdrop-blur-lg p-2 rounded-md"}
+        >
+          {auditLogs.length}
+        </span>
       </div>
 
       <div className={`rounded-md px-2 overflow-hidden`}>

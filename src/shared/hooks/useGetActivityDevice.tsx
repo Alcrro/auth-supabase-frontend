@@ -7,6 +7,7 @@ import type {
 import { getActivityDevice } from "../../features/auth/services/getActivityDevice";
 import { sortDevices } from "../utils/sortDevices";
 import { mapperDbActiveDevices } from "../../features/auth/mapper/mapperActiveDevices";
+import { supabase } from "../libs/supabase/supabaseinsta";
 
 const PAGE_SIZE = 30;
 
@@ -19,7 +20,7 @@ const useGetActivityDevice = (
     async function load() {
       const { data, error } = await getActivityDevice(
         { action: "login" },
-        page,
+        0,
         PAGE_SIZE,
       );
 
@@ -31,15 +32,21 @@ const useGetActivityDevice = (
 
       if (data) {
         console.log(data);
+        const { data: session } = await supabase.auth.getSession();
+        const currentSession = session?.session;
+        if (!currentSession) return;
 
-        setActivity((prev) => {
-          const sorted = sortDevices<LoginAuditProps>(data).map(
-            mapperDbActiveDevices,
-          );
-          console.log({ sorted });
+        const payload = JSON.parse(
+          atob(currentSession?.access_token.split(".")[1]),
+        );
 
-          return [...prev, ...sorted];
-        });
+        const sessionId = payload.session_id;
+
+        setActivity(
+          sortDevices<LoginAuditProps>(data).map((device) =>
+            mapperDbActiveDevices(device, sessionId),
+          ),
+        );
 
         // setActivity((prev) => [...prev, ...data]);
       }

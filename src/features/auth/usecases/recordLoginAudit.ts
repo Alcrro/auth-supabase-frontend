@@ -14,7 +14,13 @@ export async function recordLoginAudit(method: "login" | "logout" = "login") {
   if (!user) return; // safety
 
   const { os, device_type, browser } = getCurrentDeviceInfo();
-  const sessionId = crypto.randomUUID();
+
+  if (!session) return;
+  const currentSession = session;
+
+  const payload = JSON.parse(atob(currentSession?.access_token.split(".")[1]));
+
+  const sessionId = payload.session_id;
 
   localStorage.setItem("session_id", sessionId);
   const provider = localStorage.getItem("login_method");
