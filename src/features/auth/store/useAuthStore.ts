@@ -15,7 +15,6 @@ interface AuthStore {
   setHydrated: () => void;
   setAuthEvent: (event: AuthEvent) => void;
   clearAuthEvent: () => void;
-
   logout: () => Promise<void>;
   updatePassword: (newPassword: string) => Promise<void>;
   resetPassword: (email: string) => Promise<void>;

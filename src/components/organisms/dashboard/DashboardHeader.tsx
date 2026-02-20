@@ -45,7 +45,6 @@ export const DashboardHeader = () => {
           </div>
         </div>
       </div>
-
       <div
         className={`md:hidden relative z-9999 p-2 justify-center max-md:flex-col max-md:text-center w-full max-w-60 ${isShowing ? "flex max-md:absolute md:flex md:relative max-md:top-8 max-md:left-1/2 max-md:-translate-x-1/2" : "max-md:hidden md:flex"} rounded-2xl text-black bg-gray-300 opacity-100 font-semibold shadow-sm `}
         ref={ref}

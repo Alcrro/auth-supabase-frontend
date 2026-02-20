@@ -6,6 +6,7 @@ import EmailVerified from "../../components/organisms/dashboard/EmailVerified";
 import LoginHistory from "../../components/organisms/dashboard/LoginHistory";
 import type { DashboardTab } from "../../shared/data/dashboard/dashboardTabsData";
 import DashboardErrorPage from "../../DashboardErrorPage";
+import SettingsMenu from "../../components/organisms/SettingsMenu";
 
 export const DashboardContent = ({
   tab,
@@ -27,6 +28,8 @@ export const DashboardContent = ({
       return <EmailVerified />;
     case "audit":
       return <AuditLogTable />;
+    case "settings":
+      return <SettingsMenu />;
 
     default:
       return <DashboardErrorPage />;

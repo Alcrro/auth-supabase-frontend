@@ -1,7 +1,7 @@
 const Title = () => {
   return (
     <h3
-      style={{ margin: "12px", textAlign: "center" }}
+      style={{ marginBottom: "1rem", textAlign: "center" }}
       className={"font-semibold text-2xl"}
     >
       Active devices

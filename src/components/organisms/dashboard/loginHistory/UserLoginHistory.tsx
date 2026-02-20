@@ -20,7 +20,7 @@ const UserLoginHistory = ({
 }) => {
   return (
     <>
-      <div className="title text-2xl py-2">Login History</div>
+      <div className="title text-2xl pb-2">Login History</div>
       <div className="ml-auto p-2">
         <span
           className={"text-white bg-white/30 backdrop-blur-lg p-2 rounded-md"}
@@ -28,7 +28,7 @@ const UserLoginHistory = ({
           {loginHistories.length}
         </span>
       </div>
-      <div className={`rounded-md px-2 overflow-hidden`}>
+      <div className={`rounded-md pr-2 overflow-hidden`}>
         <div
           className={
             "min-h-full max-w-7xl min-w-full rounded-md xl:bg-white/15 backdrop-blur-lg"

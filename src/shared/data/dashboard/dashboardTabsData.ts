@@ -3,6 +3,7 @@ import {
   History,
   MailCheck,
   Monitor,
+  Settings2Icon,
   Smartphone,
   type LucideIcon,
 } from "lucide-react";
@@ -12,7 +13,8 @@ export type DashboardTab =
   | "devices"
   | "history"
   | "email"
-  | "audit";
+  | "audit"
+  | "settings";
 
 interface TabProp {
   key: DashboardTab;
@@ -32,4 +34,5 @@ export const tabsIconMap: Record<DashboardTab, LucideIcon> = {
   history: History,
   email: MailCheck,
   audit: ClipboardList,
+  settings: Settings2Icon,
 };

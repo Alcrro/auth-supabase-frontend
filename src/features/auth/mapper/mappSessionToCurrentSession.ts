@@ -11,7 +11,7 @@ export function mapperSessionToCurrentSession(
     provider: provider ?? "unknown",
     image: session.user.user_metadata.avatar_url,
     ip: undefined,
-    createdAt: session.user.created_at,
+    createdAt: new Date(session.user.created_at).toDateString(),
     expiresAt: session.expires_at
       ? new Date(Date.now() + session.expires_in).toDateString()
       : "",

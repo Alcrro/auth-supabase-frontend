@@ -3,45 +3,40 @@ import Table from "../loginHistory/Table";
 import { tableDocumentMap } from "../../../../shared/data/dashboard/loginHistoryData";
 import Pagination from "../../../UI/pagination/Pagination";
 import type { Dispatch } from "preact/hooks";
-import type { SetStateAction } from "preact/compat";
+import type { FC, SetStateAction } from "preact/compat";
+import Title from "../../../atoms/Title";
+import ItemsCounter from "../../../atoms/TotalItems";
+import EmptyState from "../../../atoms/EmptyState";
+import TableContainer from "../../TableContainer";
+import TotalItems from "../../../atoms/TotalItems";
 
-const UserLogsAudit = ({
-  auditLogs,
-  limit,
-  totalRows,
-  setUiPage,
-  uiPage,
-}: {
+type UserLogsAuditProps = {
   auditLogs: LoginHistoryProps[];
   limit: number;
   totalRows: number;
   setUiPage: Dispatch<SetStateAction<number>>;
   uiPage: number;
+};
+const UserLogsAudit: FC<UserLogsAuditProps> = ({
+  auditLogs,
+  limit,
+  totalRows,
+  setUiPage,
+  uiPage,
 }) => {
+  const hasLogs = auditLogs.length > 0;
+
   return (
     <div className={""}>
-      <div className="title text-2xl text-center py-2"> History Logs</div>
-      <div className="loginHistoriesCounter text-end py-2 relative">
-        <span
-          className={"text-white bg-white/30 backdrop-blur-lg p-2 rounded-md"}
-        >
-          {auditLogs.length}
-        </span>
-      </div>
-
-      <div className={`rounded-md px-2 overflow-hidden`}>
-        <div
-          className={
-            "min-h-full max-w-7xl min-w-full rounded-md xl:bg-white/15 backdrop-blur-lg"
-          }
-        >
-          {auditLogs.length > 0 ? (
-            <Table dataBody={auditLogs} dataHeader={tableDocumentMap} />
-          ) : (
-            <div>No login history</div>
-          )}
-        </div>
-      </div>
+      <Title description="History Logs" />
+      <TotalItems items={totalRows} />
+      <TableContainer>
+        {hasLogs ? (
+          <Table dataBody={auditLogs} dataHeader={tableDocumentMap} />
+        ) : (
+          <EmptyState message="No login activity recorded yet." />
+        )}
+      </TableContainer>
       <Pagination
         limit={limit}
         totalRows={totalRows}

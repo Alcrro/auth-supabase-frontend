@@ -57,20 +57,22 @@ function Table<D extends { id: string | number }>({
             ))}
           </tr>
         ))}
-        {dataBody.length < 10 &&
-          Array.from({ length: 10 - dataBody.length }, (_, i) => (
-            <tr
-              key={i}
-              className={`block xl:table-row nth-of-type-[2]:rounded-t-md last:rounded-b-md max-lg:hidden ${dataBody.length - 1 === 3 && "text-red-500"}`}
-            >
-              {Array.from({ length: dataHeader.length }, (_, i) => (
-                <td
-                  key={i}
-                  className={`p-2 h-16 flex justify-between items-center lg:table-cell text-center max-lg:not-last:border-b max-lg:border-gray-400`}
-                ></td>
-              ))}
-            </tr>
-          ))}
+        <div className={"max-xl:hidden"}>
+          {dataBody.length < 10 &&
+            Array.from({ length: 10 - dataBody.length }, (_, i) => (
+              <tr
+                key={i}
+                className={`block xl:table-row nth-of-type-[2]:rounded-t-md last:rounded-b-md max-lg:hidden ${dataBody.length - 1 === 3 && "text-red-500"}`}
+              >
+                {Array.from({ length: dataHeader.length }, (_, i) => (
+                  <td
+                    key={i}
+                    className={`p-2 h-16 flex justify-between items-center lg:table-cell text-center max-lg:not-last:border-b max-lg:border-gray-400`}
+                  ></td>
+                ))}
+              </tr>
+            ))}
+        </div>
       </tbody>
     </table>
   );

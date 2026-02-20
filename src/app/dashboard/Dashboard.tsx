@@ -9,6 +9,7 @@ import { mapperSessionToCurrentSession } from "../../features/auth/mapper/mappSe
 import CurrentSessionCard from "../../components/organisms/CurrentSessionCard";
 import { useToggleElementStore } from "../../features/auth/store/useToggleEleStore";
 import { useCurrentDashboardTab } from "../../shared/hooks/currentDashboardTab";
+import SettingsMenuSidebar from "../../components/organisms/dashboard/settingsMenu/SettingsMenuSidebar";
 
 const Dashboard = () => {
   const { session } = useAuthStore();
@@ -29,19 +30,22 @@ const Dashboard = () => {
         <div className={"[grid-area:header] m-2"}>
           <DashboardHeader />
         </div>
-        <div
-          className={`max-md:hidden max-w-80 max-md:max-w-60 h-fit w-full p-2 bg-gray-300 text-black md:[grid-area:dashboardMenu] rounded-md relative ${isShowing ? "delay-200 rounded-r-none" : "delay-200 rounded-r-md"}`}
-        >
-          {currentTab === "current" ||
-            (currentSession.image && (
-              <div
-                className={`profile ${isShowing ? "invisible" : "delay-200"}`}
-              >
-                <SessionProfile image={currentSession.image} />
-              </div>
-            ))}
-          <DashBoardMenu />
-          <CurrentSessionCard session={currentSession} />
+        <div className="container flex flex-col gap-2">
+          <div
+            className={`max-md:hidden max-w-80 max-md:max-w-60 h-fit w-full p-2 bg-gray-300 text-black md:[grid-area:dashboardMenu] rounded-md relative ${isShowing ? "delay-200 rounded-r-none" : "delay-200 rounded-r-md"}`}
+          >
+            {currentTab === "current" ||
+              (currentSession.image && (
+                <div
+                  className={`profile ${isShowing ? "invisible" : "delay-200"}`}
+                >
+                  <SessionProfile image={currentSession.image} />
+                </div>
+              ))}
+            <DashBoardMenu />
+            <CurrentSessionCard session={currentSession} />
+          </div>
+          <SettingsMenuSidebar />
         </div>
         <div className={"flex [grid-area:dashboardMain] w-full h-full"}>
           <DashboardMain />
