@@ -8,7 +8,7 @@ const SettingsMenu = () => {
     const stored = localStorage.getItem("theme");
     return stored ? JSON.parse(stored) : false;
   });
-  const { setIsToggled, isToggled } = useToggleElementStore((store) => store);
+  const { isToggled } = useToggleElementStore((store) => store);
   const isActive = isToggled["toggleTheme"];
 
   const switchTheme = () => {

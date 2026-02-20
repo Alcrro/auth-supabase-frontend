@@ -5,7 +5,6 @@ import Pagination from "../../../UI/pagination/Pagination";
 import type { Dispatch } from "preact/hooks";
 import type { FC, SetStateAction } from "preact/compat";
 import Title from "../../../atoms/Title";
-import ItemsCounter from "../../../atoms/TotalItems";
 import EmptyState from "../../../atoms/EmptyState";
 import TableContainer from "../../TableContainer";
 import TotalItems from "../../../atoms/TotalItems";
