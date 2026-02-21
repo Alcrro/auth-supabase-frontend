@@ -1,7 +1,9 @@
 import { cardStyle } from "../../styles/activityDeviceStyle";
 
 export const SkeletonCard = () => (
-  <div style={cardStyle(true)}>
+  <div
+    className={`p-2 rounded-xl bg-(--background-container-color) text-black`}
+  >
     <div
       style={{ display: "flex", justifyContent: "space-between", gap: ".5rem" }}
     >
@@ -44,7 +46,7 @@ export const SkeletonCard = () => (
 
 const skeletonPulse = {
   animation: "pulse 1.5s ease-in-out infinite",
-  background: "#e5e7eb",
+  background: "#333",
   borderRadius: "6px",
 };
 

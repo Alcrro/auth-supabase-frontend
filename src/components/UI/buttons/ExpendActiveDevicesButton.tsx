@@ -14,17 +14,20 @@ const ExpendActiveDevicesButton: FC<ActiveDeviceButtonProps> = ({
   totalRows,
 }) => {
   const more = limit < totalRows;
+  console.log(limit);
+  console.log(totalRows === limit);
 
   return (
     <DefaultButton
       variant="none"
+      disabled={limit === totalRows}
       className={`
             ${
               limit > 5
                 ? "fixed bottom-4 left-1/2 translate-x-1/2 z-50 cursor-pointer"
                 : "flex justify-center mt-4 cursor-pointer mx-auto"
             }`}
-      onClick={addMoreItems}
+      onClick={limit < totalRows ? addMoreItems : undefined}
     >
       {more ? (
         <BsArrowDownCircle

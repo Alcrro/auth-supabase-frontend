@@ -1,6 +1,5 @@
 import CurrentActiveDevice from "./CurrentActiveDevice";
 import ActiveDeviceRow from "../../molecules/activeDevices/ActiveDeviceRow";
-import { cardStyle } from "../../styles/activityDeviceStyle";
 import type { FC } from "preact/compat";
 import type { ActiveDevice } from "../../../features/auth/types/auth.types";
 
@@ -18,7 +17,9 @@ const ActiveDeviceCard: FC<ILoginAuditProps> = ({ ...props }) => {
   } = props;
 
   return (
-    <div style={cardStyle(isCurrent)}>
+    <div
+      className={`p-2 rounded-xl ${isCurrent ? "bg-(--background-container-color) text-black" : "bg-(--background-container-color)/20"}`}
+    >
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <strong>{deviceLabel}</strong>
 

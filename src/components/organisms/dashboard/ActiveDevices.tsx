@@ -32,7 +32,6 @@ const ActiveDevices = () => {
     }
   }, [uiPage]);
 
-  const data = activity.slice(0, limit);
   // extend limit to fetch more devices history
   //TODOS de reglat show more ,current arata de la 5 la 30 items si trebuie din 5 in 5
   const { addMoreItems } = useAddItems(
@@ -47,8 +46,11 @@ const ActiveDevices = () => {
   useGetActivityDevice(setLoading, setActivity, page);
 
   // fetching total rows of activity devices history
-  useGetTotalRows(setTotalRows);
+  useGetTotalRows(setTotalRows, "login");
   useLayoutActivityDevice(ref, setMaxH, activity, limit);
+  console.log({ limit });
+
+  const data = activity.slice(0, limit);
 
   if (loading) return <ActiveDeviceSkeleton />;
 
@@ -60,7 +62,7 @@ const ActiveDevices = () => {
     <div className="w-full">
       <div className="header">
         <Title />
-        <ActiveDevicesCounter rowsVisible={data.length} />
+        <ActiveDevicesCounter rowsVisible={totalRows} />
       </div>
       <ActiveDeviceLayout limit={limit} ref={ref}>
         {data.map((a, i) => {
@@ -77,7 +79,7 @@ const ActiveDevices = () => {
           );
         })}
       </ActiveDeviceLayout>
-      {totalRows > 1 && (
+      {limit < totalRows && (
         <ExpendActiveDevicesButton
           dataSliced={data.length}
           limit={limit}

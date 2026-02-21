@@ -16,6 +16,7 @@ const useHandleMagicLink = (setSession: (session: Session | null) => void) => {
           await supabase.auth.exchangeCodeForSession(code);
 
         if (error) throw error;
+        localStorage.setItem("login_method", "password");
 
         setSession(data.session);
       } catch (error) {

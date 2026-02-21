@@ -30,7 +30,7 @@ export const DashboardHeader = () => {
   return (
     <div
       className={
-        "flex gap-2 justify-center items-center p-2 rounded-3xl relative z-1000 bg-white/15 backdrop-blur-lg border border-white/30 shadow-lg max-md:flex-col max-md:text-center"
+        "flex gap-2 justify-center items-center p-2 rounded-3xl relative z-1000 bg-white/15 backdrop-blur-lg border border-white/30 shadow-[0_8px_16px_rgba(0,0,0,0.15),0_2px_4px_rgba(0,0,0,0.08)] max-md:flex-col max-md:text-center"
       }
     >
       <div className="dashboard_menu hidden max-md:block">

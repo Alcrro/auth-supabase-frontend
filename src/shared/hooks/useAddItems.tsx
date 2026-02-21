@@ -9,21 +9,16 @@ const useAddItems = (
   totalRows: number,
   setSearchParams: SetURLSearchParams,
 ) => {
+  console.log(totalRows);
+
   const addMoreItems = () => {
     setLimit((prev) => {
-      // cât putem arăta maxim din ce avem deja
-      const maxAvailable = Math.min(fetchedCount, totalRows);
+      if (!totalRows || prev >= totalRows) return prev;
 
-      let next: number;
-      if (prev < maxAvailable) {
-        //merge la restul
-        next = maxAvailable;
-      } else {
-        next = 5;
-      }
+      const next = Math.min(prev + 10, totalRows);
 
-      // 🔹 trigger next DB page if needed
-      if (next === maxAvailable && fetchedCount < totalRows) {
+      // dacă avem nevoie să mai luăm din DB
+      if (next > fetchedCount && fetchedCount < totalRows) {
         setPage((p) => p + 1);
       }
 
