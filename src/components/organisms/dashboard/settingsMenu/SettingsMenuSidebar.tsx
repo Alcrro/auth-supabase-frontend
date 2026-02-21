@@ -11,7 +11,7 @@ const SettingsMenuSidebar = () => {
   return (
     <div
       className={
-        "flex flex-col gap-2 px-3 py-1.5 rounded-lg text-black bg-white/80"
+        "flex flex-col gap-2 px-3 py-1.5 rounded-lg text-black bg-(--background-container-color)"
       }
     >
       <div
