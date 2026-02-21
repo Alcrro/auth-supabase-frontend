@@ -5,5 +5,6 @@ export async function loginWithMagicLink(payload: { email: string }) {
 
   if (error) throw error;
 
+  localStorage.setItem("login_method", "password");
   return data;
 }

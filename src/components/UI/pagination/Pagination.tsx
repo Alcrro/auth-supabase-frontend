@@ -64,7 +64,7 @@ const PageNumber = ({
 
   return (
     <div
-      className={`flex justify-center items-center min-w-9 h-9 px-3 rounded-xl text-sm transition-all duration-150 backdrop-blur-md border ${
+      className={`cursor-pointer flex justify-center items-center min-w-9 h-9 px-3 rounded-xl text-sm transition-all duration-150 backdrop-blur-md border ${
         active
           ? "bg-white/50 border-white/40 shadow font-semibold scale-105"
           : "bg-white/20 border-white/25 hover:bg-white/35"

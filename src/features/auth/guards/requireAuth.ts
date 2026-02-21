@@ -19,7 +19,8 @@ export const requireAuth = async () => {
     await waitForHydration();
     // throw new Error("Auth NOT hydrated before loader");
   }
-  if (!session?.user) {
+  const token = localStorage.getItem("token");
+  if (!session?.user && !token) {
     throw redirect("/auth/login");
   }
 

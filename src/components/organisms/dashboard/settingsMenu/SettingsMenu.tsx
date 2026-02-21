@@ -43,7 +43,7 @@ const SettingsMenu = ({ isAuthenticated, onLogin }: SettingsMenuProps) => {
         </div>
       ) : (
         <div
-          className={`absolute right-0 z-9999 mt-2 min-w-44 rounded-2xl p-2 flex flex-col gap-1 bg-[#242424] md:bg-white/65 backdrop-blur-lg border border-white/25 shadow-xl transition-all duration-150 origin-top-right ${!isActive ? "opacity-0 scale-95 pointer-events-none" : "opacity-100 scale-100"} max-md:right-1/2 max-md:translate-x-1/2
+          className={`absolute right-0 z-9999 mt-2 min-w-44 rounded-2xl p-2 flex flex-col gap-1 bg-[#ffffff] md:bg-white backdrop-blur-lg border border-white/25 shadow-xl transition-all duration-150 origin-top-right ${!isActive ? "opacity-0 scale-95 pointer-events-none" : "opacity-100 scale-100"} max-md:right-1/2 max-md:translate-x-1/2
   `}
         >
           <ResetPassword />

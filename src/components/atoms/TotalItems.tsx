@@ -5,7 +5,7 @@ interface ITotalItemsProps {
 }
 const TotalItems: FC<ITotalItemsProps> = ({ items }) => {
   return (
-    <div className="text-end py-2 relative">
+    <div className="text-end pb-2 relative">
       <span
         className={"text-white bg-white/30 backdrop-blur-lg p-2 rounded-md"}
       >

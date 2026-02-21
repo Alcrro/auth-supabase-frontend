@@ -1,4 +1,6 @@
 import { supabase } from "../../../shared/libs/supabase/supabaseinsta";
+import { getGeolocation } from "../services/getGeolocation";
+import { recordLoginAudit } from "../usecases/recordLoginAudit";
 import { useAuthStore } from "./useAuthStore";
 
 export function initAuth() {
@@ -23,13 +25,23 @@ export function initAuth() {
         return;
       }
 
-      if (event === "SIGNED_IN") {
+      if (event === "SIGNED_IN" && session?.user) {
         const prevSession = store.session;
         store.setSession(session);
+
+        // 🔥 Rulează doar dacă NU exista sesiune înainte
+        if (store.hydrated && !prevSession && session) {
+          useAuthStore.setState({ authEvent: "SIGNED_IN" });
+
+          // 👇 pune aici
+          recordLoginAudit();
+          getGeolocation();
+        }
 
         if (store.hydrated && !prevSession) {
           useAuthStore.setState({ authEvent: "SIGNED_IN" });
         }
+
         return;
       }
 

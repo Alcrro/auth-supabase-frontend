@@ -7,7 +7,7 @@ const ResetPassword = () => {
     <DefaultButton
       variant={"link"}
       onClick={() => navigate("/auth/reset-password")}
-      className={"default_button border-0"}
+      className={"default_button border-0 cursor-pointer"}
     >
       Reset password
     </DefaultButton>
