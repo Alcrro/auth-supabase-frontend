@@ -1,5 +1,3 @@
-import { cardStyle } from "../../styles/activityDeviceStyle";
-
 export const SkeletonCard = () => (
   <div
     className={`p-2 rounded-xl bg-(--background-container-color) text-black`}
