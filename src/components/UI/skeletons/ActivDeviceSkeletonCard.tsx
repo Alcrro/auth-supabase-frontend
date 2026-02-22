@@ -2,7 +2,7 @@ import { SkeletonCard } from "./ActivityDeviceSkeletonCard";
 import style from "../../styles/activeDeviceCardStyle.module.scss";
 
 export const ActiveDeviceSkeleton = ({ count = 5 }) => (
-  <div className={"w-full"}>
+  <div className="w-full h-full bg-(--background-container) text-(--text-primary) rounded-2xl p-2">
     <div
       className={
         "my-2 text-2xl w-fit mx-auto text-transparent bg-gray-300 rounded-md"

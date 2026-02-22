@@ -34,7 +34,7 @@ const CurrentSessionCard = ({ session }: { session: CurrentSessionVM }) => {
       ref={ref}
     >
       <div
-        className={`flex flex-col gap-2 bg-gray-300 w-70 h-full rounded-r-md transition-all duration-500 ease-out ${isShowing ? "opacity-100 scale-100" : "opacity-0 scale-95"}
+        className={`flex flex-col gap-2 bg-(--background-color) w-70 h-full rounded-r-md transition-all duration-500 ease-out ${isShowing ? "opacity-100 scale-100 shadow-md" : "opacity-0 scale-95"}
 `}
       >
         {currentTab === "current" ? null : (

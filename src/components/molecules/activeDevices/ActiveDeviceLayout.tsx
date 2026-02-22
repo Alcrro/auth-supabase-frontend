@@ -9,7 +9,7 @@ const ActiveDeviceLayout = forwardRef<HTMLDivElement, Props>(
   ({ limit, children }, ref) => {
     return (
       <div
-        className={"activity_list relative px-2"}
+        className={"activity_list relative"}
         ref={ref}
         style={{
           display: "grid",
@@ -17,6 +17,9 @@ const ActiveDeviceLayout = forwardRef<HTMLDivElement, Props>(
           gap: "1rem",
           overflowY: limit > 5 ? "scroll" : "hidden",
           maxHeight: `${860}px`,
+          background: "var(--background-color)",
+          borderRadius: "1rem",
+          padding: ".5rem",
           transition: "max-height 500ms ease-in-out, opacity 300ms ease",
         }}
       >

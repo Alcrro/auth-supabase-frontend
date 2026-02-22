@@ -1,7 +1,5 @@
 export const SkeletonCard = () => (
-  <div
-    className={`p-2 rounded-xl bg-(--background-container-color) text-black`}
-  >
+  <div className={`p-2 rounded-xl bg-(--background-container)`}>
     <div
       style={{ display: "flex", justifyContent: "space-between", gap: ".5rem" }}
     >
@@ -44,7 +42,7 @@ export const SkeletonCard = () => (
 
 const skeletonPulse = {
   animation: "pulse 1.5s ease-in-out infinite",
-  background: "#333",
+  background: "var(--text-secondary)",
   borderRadius: "6px",
 };
 

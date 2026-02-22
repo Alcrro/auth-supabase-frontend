@@ -16,7 +16,7 @@ const SettingsMenu = () => {
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
   return (
-    <div className="container h-full bg-(--background-container-color) p-3 rounded-xl">
+    <div className="container h-full bg-(--background-container) text-(--text-primary) p-3 rounded-xl">
       <Title description="Settings" />
       <div className="toggle_theme flex justify-between bg-(--background-color) text-(--text-primary) p-3 rounded-2xl shadow-md">
         <div className="description">Theme</div>

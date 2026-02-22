@@ -24,7 +24,7 @@ function Table<D extends { id: string | number }>({
               key={item.key}
               scope={"col"}
               className={
-                "sticky top-0 bg-white/30 backdrop-blur-md text-gray-900 p-3 text-sm font-semibold tracking-wide first:rounded-tl-md first:rounded-bl-md last:rounded-tr-md last:rounded-br-md capitalize"
+                "sticky top-0 bg-white/30 backdrop-blur-md  p-3 text-sm font-semibold tracking-wide first:rounded-tl-md first:rounded-bl-md last:rounded-tr-md last:rounded-br-md capitalize"
               }
               data-label={item.label}
             >
@@ -34,7 +34,7 @@ function Table<D extends { id: string | number }>({
         </tr>
       </thead>
       <tbody className={"tbody"}>
-        <tr className={"max-xl:hidden bg-[#242424]"}>
+        <tr className={"max-xl:hidden bg-(--background-container)"}>
           <td colSpan={tableDocumentMap.length} className="h-2"></td>
         </tr>
         {dataBody.map((row, i, arr) => (

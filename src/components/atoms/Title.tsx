@@ -5,7 +5,7 @@ interface TitleProps {
 }
 const Title: FC<TitleProps> = ({ description }) => {
   return (
-    <div className="title text-2xl text-center pb-2 text-black">
+    <div className="title text-2xl text-center pb-2 text-(--text-primary)">
       {description}
     </div>
   );

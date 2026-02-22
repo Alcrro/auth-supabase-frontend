@@ -22,7 +22,7 @@ const UserLoginHistory = ({
   uiPage: number;
 }) => {
   return (
-    <div>
+    <div className={"bg-(--background-container) p-2 rounded-2xl"}>
       <Title description="Login History" />
       <TotalItems items={totalRows} />
       <TableContainer>

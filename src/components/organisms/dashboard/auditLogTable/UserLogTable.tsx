@@ -26,7 +26,7 @@ const UserLogsAudit: FC<UserLogsAuditProps> = ({
   const hasLogs = auditLogs.length > 0;
 
   return (
-    <div className={""}>
+    <div className={"bg-(--background-container) rounded-md p-2"}>
       <Title description="History Logs" />
       <TotalItems items={totalRows} />
       <TableContainer>

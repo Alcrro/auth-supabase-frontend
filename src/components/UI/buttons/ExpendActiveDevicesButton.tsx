@@ -32,12 +32,12 @@ const ExpendActiveDevicesButton: FC<ActiveDeviceButtonProps> = ({
       {more ? (
         <BsArrowDownCircle
           size={30}
-          className={"text-white/60 hover:text-white"}
+          className={"text-(--text-primary)/60 hover:text-black"}
         />
       ) : (
         <BsArrowUpCircle
           size={30}
-          className={"text-white/60 hover:text-white"}
+          className={"text-(--text-primary)/60 hover:text-black"}
         />
       )}
     </DefaultButton>

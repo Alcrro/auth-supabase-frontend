@@ -48,7 +48,6 @@ const ActiveDevices = () => {
   // fetching total rows of activity devices history
   useGetTotalRows(setTotalRows, "login");
   useLayoutActivityDevice(ref, setMaxH, activity, limit);
-  console.log({ limit });
 
   const data = activity.slice(0, limit);
 
@@ -59,7 +58,7 @@ const ActiveDevices = () => {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full h-full bg-(--background-container) text-(--text-primary) rounded-2xl p-2">
       <div className="header">
         <Title />
         <ActiveDevicesCounter rowsVisible={totalRows} />

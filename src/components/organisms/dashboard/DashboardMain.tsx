@@ -8,7 +8,7 @@ const DashboardMain = () => {
   const currentTab = useCurrentDashboardTab();
 
   return (
-    <div className="main flex-1 flex flex-col  items-center">
+    <div className="main flex-1 flex flex-col items-center">
       <>
         {!hydrated ? (
           <CurrentSessionSkeleton />

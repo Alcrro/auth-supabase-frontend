@@ -32,11 +32,11 @@ const DashboardTabs = ({ modalTab }: { modalTab: string }) => {
       <div
         key={key}
         onClick={() => handleTabChange(key)}
-        className={`cursor-pointer select-none px-3 py-1.5 rounded-xl transition-all duration-150 flex gap-2 items-center ${
+        className={`cursor-pointer select-none px-3 py-1.5 rounded-xl transition-all duration-150 flex gap-2 items-center  ${
           key === "current" && isToggled["currentTab"]
-            ? "bg-white/80 backdrop-blur font-semibold shadow-sm"
+            ? "bg-white/80 backdrop-blur font-semibold shadow-sm text-black "
             : active
-              ? ` ${isToggled["currentTab"] ? "bg-white/60" : "bg-white/80"} backdrop-blur font-semibold shadow-sm `
+              ? `text-black ${isToggled["currentTab"] ? "bg-white/60" : "bg-white/80"} backdrop-blur font-semibold shadow-sm `
               : "hover:bg-white/20"
         }`}
       >

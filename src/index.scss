@@ -3,43 +3,51 @@
   line-height: 1.5;
   font-weight: 400;
 
-  /* Backgrounds */
-  --background-color: #f1f5f9;
-  --background-container-color: #4646463d;
+  /* Layout */
+  --background-color: #f8fafc; /* fundal general */
+  --background-container: #ffffff; /* card */
+  --background-subtle: #f1f5f9; /* sidebar / hover */
 
   /* Text */
-  --text-primary: #0f172a;
-  --text-secondary: #64748b;
+  --text-primary: #0f172a; /* titluri */
+  --text-secondary: #64748b; /* descrieri */
+  --text-muted: #94a3b8;
 
   /* Borders */
   --border-color: #e2e8f0;
 
   /* Inputs */
-  --borderInput: #cbd5e1;
-  --bgInput: #ffffff;
+  --input-bg: #ffffff;
+  --input-border: #cbd5e1;
 
   /* Accent */
-  --primary-color: #6366f1;
-  --success-color: #22c55e;
-  --error-color: #ef4444;
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+
+  /* Status */
+  --success: #22c55e;
+  --error: #ef4444;
 }
 
 html.dark {
   --background-color: #0f172a;
-  // --background-container-color: #1e293b;
-  --background-container-color: #d1d5dc;
+  --background-container: #1e293b;
+  --background-subtle: #334155;
 
   --text-primary: #f1f5f9;
   --text-secondary: #94a3b8;
+  --text-muted: #64748b;
 
   --border-color: #334155;
 
-  --borderInput: #475569;
-  --bgInput: #1e293b;
+  --input-bg: #1e293b;
+  --input-border: #475569;
 
-  --primary-color: #818cf8;
-  --success-color: #4ade80;
-  --error-color: #f87171;
+  --primary: #818cf8;
+  --primary-hover: #6366f1;
+
+  --success: #4ade80;
+  --error: #f87171;
 }
 
 a {

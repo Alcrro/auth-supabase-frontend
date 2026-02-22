@@ -32,7 +32,7 @@ const Dashboard = () => {
         </div>
         <div className="max-md:hidden container flex flex-col gap-2">
           <div
-            className={` max-w-80 max-md:max-w-60 h-fit w-full p-2 bg-(--background-container-color) text-black md:[grid-area:dashboardMenu] rounded-md relative ${isShowing ? "delay-200 rounded-r-none" : "delay-200 rounded-r-md"}`}
+            className={`max-w-80 max-md:max-w-60 h-fit w-full p-2 bg-(--background-container) text-(--text-primary) md:[grid-area:dashboardMenu] rounded-md relative ${isShowing ? "delay-200 rounded-r-none" : "delay-200 rounded-r-md"}`}
           >
             {currentTab === "current" ||
               (currentSession.image && (

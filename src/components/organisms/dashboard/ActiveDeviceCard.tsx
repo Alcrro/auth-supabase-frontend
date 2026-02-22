@@ -18,7 +18,7 @@ const ActiveDeviceCard: FC<ILoginAuditProps> = ({ ...props }) => {
 
   return (
     <div
-      className={`p-2 rounded-xl ${isCurrent ? "bg-(--background-container-color) text-black" : "bg-(--background-container-color)/20"}`}
+      className={`p-2 rounded-xl shadow-xl ${isCurrent ? "bg-(--background-container) text-(--text-primary)" : "bg-(--background-container)/20 border-(--border-color)"}`}
     >
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <strong>{deviceLabel}</strong>
