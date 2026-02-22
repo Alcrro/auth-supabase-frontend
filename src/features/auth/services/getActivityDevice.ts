@@ -6,6 +6,8 @@ export async function getActivityDevice(
   page: number,
   pageSize: number,
 ) {
+  console.log(page);
+
   const {
     data: { session },
   } = await supabase.auth.getSession();
@@ -25,7 +27,7 @@ export async function getActivityDevice(
 
   const { data, error } = await query
     .order("created_at", { ascending: false })
-    .range(page * pageSize, page * pageSize + pageSize - 1);
+    .range((page - 1) * pageSize, (page - 1) * pageSize + pageSize - 1);
 
   return { data, error };
 }

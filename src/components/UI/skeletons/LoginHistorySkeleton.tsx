@@ -41,12 +41,12 @@ const LoginHistorySkeleton = () => {
             {Array.from({ length: 5 }).map((_row, i, arr) => (
               <tr
                 key={i}
-                className={`text-center text-transparent xl:table-row bg-white/15 backdrop-blur-lg shadow-lg lg:hover:bg-white/30 w-120  ${i === 0 ? "rounded-tl-md" : ""}`}
+                className={`block mb-2 text-transparent xl:table-row bg-white/15 backdrop-blur-lg shadow-lg lg:hover:bg-white/30 w-full  ${i === 0 ? "rounded-tl-md" : ""}`}
               >
                 {tableDocumentMap.map((h, colIndex) => (
                   <td
                     key={h.key}
-                    className={`p-2 ${h.key !== "ip_address" && "capitalize"} h-16 flex justify-between items-center xl:table-cell ${i === arr.length - 1 && colIndex === 0 ? "rounded-bl-md" : ""} ${i === arr.length - 1 && colIndex === 5 - 1 ? "rounded-br-md" : ""} ${i === 0 && colIndex === 0 ? "rounded-tl-md" : ""} ${i === 0 && colIndex === tableDocumentMap.length - 1 ? "rounded-tr-md" : ""}`}
+                    className={`p-2 ${h.key !== "ip_address" ? "capitalize" : ""} h-12 flex justify-between items-center xl:table-cell ${i === arr.length - 1 && colIndex === 0 ? "rounded-bl-md" : ""} ${i === arr.length - 1 && colIndex === 5 - 1 ? "rounded-br-md" : ""} ${i === 0 && colIndex === 0 ? "rounded-tl-md" : ""} ${i === 0 && colIndex === tableDocumentMap.length - 1 ? "rounded-tr-md" : ""}`}
                   >
                     <span
                       className={
@@ -58,28 +58,27 @@ const LoginHistorySkeleton = () => {
 
                     <span
                       className={
-                        "w-20 h-10 bg-gray-400 animate-pulse rounded-md"
+                        "w-20 h-8 bg-gray-400 animate-pulse rounded-md"
                       }
                     ></span>
                   </td>
                 ))}
               </tr>
             ))}
-            <div className={"max-xl:hidden"}>
-              {Array.from({ length: 5 }, (_, i) => (
-                <tr
-                  key={i}
-                  className={`block xl:table-row nth-of-type-[2]:rounded-t-md last:rounded-b-md max-lg:hidden ${tableDocumentMap.length - 1 === 3 && "text-red-500"}`}
-                >
-                  {Array.from({ length: tableDocumentMap.length }, (_, i) => (
-                    <td
-                      key={i}
-                      className={`p-2 h-16 flex justify-between items-center lg:table-cell text-center max-lg:not-last:border-b max-lg:border-gray-400`}
-                    ></td>
-                  ))}
-                </tr>
-              ))}
-            </div>
+
+            {Array.from({ length: 5 }, (_, i) => (
+              <tr
+                key={i}
+                className={`block max-xl:hidden xl:table-row nth-of-type-[2]:rounded-t-md last:rounded-b-md max-lg:hidden ${tableDocumentMap.length - 1 === 3 ? "text-red-500" : ""}`}
+              >
+                {Array.from({ length: tableDocumentMap.length }, (_, i) => (
+                  <td
+                    key={i}
+                    className={`p-2 h-16 flex justify-between items-center lg:table-cell text-center max-lg:not-last:border-b max-lg:border-gray-400`}
+                  ></td>
+                ))}
+              </tr>
+            ))}
           </tbody>
         </table>
       </TableContainer>

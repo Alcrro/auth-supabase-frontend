@@ -9,7 +9,7 @@ const PasswordInputGroup = () => {
         placeholder={"Add a password"}
         type="password"
         name={"password"}
-        className={"bg-(--bgInput) border-(--borderInput) rounded-lg p-2"}
+        className={"bg-(--input-bg) border-(--input-border) rounded-lg p-2"}
       />
     </div>
   );

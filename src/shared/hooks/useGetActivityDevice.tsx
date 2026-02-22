@@ -20,7 +20,7 @@ const useGetActivityDevice = (
     async function load() {
       const { data, error } = await getActivityDevice(
         { action: "login" },
-        0,
+        page,
         PAGE_SIZE,
       );
 

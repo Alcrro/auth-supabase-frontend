@@ -4,8 +4,6 @@ import type { SetURLSearchParams } from "react-router-dom";
 
 const useAddItems = (
   setLimit: Dispatch<SetStateAction<number>>,
-  setPage: Dispatch<SetStateAction<number>>,
-  fetchedCount: number,
   totalRows: number,
   setSearchParams: SetURLSearchParams,
 ) => {
@@ -16,11 +14,6 @@ const useAddItems = (
       if (!totalRows || prev >= totalRows) return prev;
 
       const next = Math.min(prev + 10, totalRows);
-
-      // dacă avem nevoie să mai luăm din DB
-      if (next > fetchedCount && fetchedCount < totalRows) {
-        setPage((p) => p + 1);
-      }
 
       setSearchParams((p) => {
         const np = new URLSearchParams(p);

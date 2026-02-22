@@ -2,7 +2,7 @@ import DashboardTabs from "./DashboardTabs";
 
 const DashBoardMenu = () => {
   return (
-    <div className={"flex flex-col gap-4 justify-center"}>
+    <div className={"flex flex-col gap-4 justify-center "}>
       <DashboardTabs modalTab="menuTabs" />
     </div>
   );

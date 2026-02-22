@@ -9,7 +9,7 @@ const EmailInputGroup = () => {
         placeholder={"Add an email"}
         type="email"
         name={"email"}
-        className={"bg-(--bgInput) border-(--borderInput) rounded-lg p-2"}
+        className={"bg-(--input-bg) border-(--input-border) rounded-lg p-2"}
       />
     </div>
   );

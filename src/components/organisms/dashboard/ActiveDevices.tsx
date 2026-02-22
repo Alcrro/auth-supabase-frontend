@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "preact/hooks";
+import { useRef, useState } from "preact/hooks";
 import useGetActivityDevice from "../../../shared/hooks/useGetActivityDevice";
 import { ActiveDeviceSkeleton } from "../../UI/skeletons/ActivDeviceSkeletonCard";
 import useLayoutActivityDevice from "../../../shared/hooks/useLaoutActivityDevice";
@@ -11,6 +11,8 @@ import ActiveDeviceLayout from "../../molecules/activeDevices/ActiveDeviceLayout
 import ActiveDeviceCard from "./ActiveDeviceCard";
 import ExpendActiveDevicesButton from "../../UI/buttons/ExpendActiveDevicesButton";
 import type { ActiveDevice } from "../../../features/auth/types/auth.types";
+import useClientPagination from "../../../shared/hooks/useClientPagination";
+import { useServerPage } from "../../../shared/hooks/useServerPagination";
 
 const ActiveDevices = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,32 +20,19 @@ const ActiveDevices = () => {
   const [loading, setLoading] = useState(true);
   const [totalRows, setTotalRows] = useState<number>(0);
   const initialLimit = Number(searchParams.get("limit") ?? 5);
-  const [page, setPage] = useState(0);
   const [uiPage, _setUiPage] = useState(1);
   const [limit, setLimit] = useState<number>(initialLimit);
 
   const [_maxH, setMaxH] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const neededServerPage = Math.ceil((limit * uiPage) / 30);
-
-    if (page < neededServerPage) {
-      setPage(neededServerPage);
-    }
-  }, [uiPage]);
+  const serverPage = useServerPage(uiPage, limit, 30);
 
   // extend limit to fetch more devices history
   //TODOS de reglat show more ,current arata de la 5 la 30 items si trebuie din 5 in 5
-  const { addMoreItems } = useAddItems(
-    setLimit,
-    setPage,
-    activity.length,
-    totalRows,
-    setSearchParams,
-  );
+  const { addMoreItems } = useAddItems(setLimit, totalRows, setSearchParams);
 
   // fetching activity devices
-  useGetActivityDevice(setLoading, setActivity, page);
+  useGetActivityDevice(setLoading, setActivity, serverPage);
 
   // fetching total rows of activity devices history
   useGetTotalRows(setTotalRows, "login");
@@ -51,6 +40,7 @@ const ActiveDevices = () => {
 
   const data = activity.slice(0, limit);
 
+  const dataPaginated = useClientPagination(activity, uiPage, limit, 30);
   if (loading) return <ActiveDeviceSkeleton />;
 
   if (!activity.length) {
@@ -58,13 +48,13 @@ const ActiveDevices = () => {
   }
 
   return (
-    <div className="w-full h-full bg-(--background-container) text-(--text-primary) rounded-2xl p-2">
+    <div className="w-full h-full bg-(--background-container) text-(--text-primary) rounded-md p-2">
       <div className="header">
         <Title />
         <ActiveDevicesCounter rowsVisible={totalRows} />
       </div>
       <ActiveDeviceLayout limit={limit} ref={ref}>
-        {data.map((a, i) => {
+        {dataPaginated.map((a, i) => {
           const deviceLabel =
             a.deviceModel ||
             (a.deviceType === "mobile" ? "📱 Mobile device" : "💻 Desktop");
