@@ -11,9 +11,7 @@ function Table<D extends { id: string | number }>({
 }: TableDataProps<D>) {
   return (
     <table
-      className={
-        "w-full table-fixed border-separate border-spacing-y-0 bg-(--table-bg)"
-      }
+      className={"w-full table-fixed border-collapse border-spacing-y-0 "}
       aria-label={"login history"}
     >
       <thead
@@ -21,13 +19,13 @@ function Table<D extends { id: string | number }>({
           "thead max-xl:hidden xl:table-header-group bg-(--table-header)"
         }
       >
-        <tr className="block xl:table-row bg-(--table-row) hover:bg-(--table-row-hover) transition">
+        <tr className="block xl:table-row  hover:bg-(--table-row-hover) transition">
           {dataHeader.map((item) => (
             <th
               key={item.key}
               scope={"col"}
               className={
-                "sticky top-0 bg-white/30 backdrop-blur-md  p-3 text-sm font-semibold tracking-wide first:rounded-tl-md first:rounded-bl-md last:rounded-tr-md last:rounded-br-md capitalize"
+                "sticky top-0 bg-(--table-header) backdrop-blur-md  p-3 text-sm font-semibold tracking-wide first:rounded-tl-md first:rounded-bl-md last:rounded-tr-md last:rounded-br-md capitalize"
               }
               data-label={item.label}
             >
@@ -37,13 +35,14 @@ function Table<D extends { id: string | number }>({
         </tr>
       </thead>
       <tbody className={"tbody "}>
-        <tr className={"max-xl:hidden"}>
+        <tr className={"max-xl:hidden bg-(--background-color)"}>
           <td colSpan={dataHeader.length} className="h-2"></td>
         </tr>
+
         {dataBody.map((row, i, arr) => (
           <tr
             key={row.id}
-            className=" flex-col gap-2 mb-2 xl:table-row nth-of-type-[2]:rounded-t-md last:rounded-b-md bg-(--table-row) hover:bg-(--table-row-hover) backdrop-blur-lg  lg:hover:rounded-md cursor-default max-xl:rounded-md"
+            className="mb-2 xl:table-row nth-of-type-[2]:rounded-t-md last:rounded-b-md bg-(--background-subtle) hover:bg-(--table-row) backdrop-blur-lg  lg:hover:rounded-md cursor-default max-xl:rounded-md"
           >
             {dataHeader.map((h, colIndex) => (
               <td

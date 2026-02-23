@@ -34,14 +34,13 @@ const Dashboard = () => {
           <div
             className={`max-w-80 max-md:max-w-60 h-fit w-full p-2 bg-(--background-container) text-(--text-primary) md:[grid-area:dashboardMenu] rounded-md relative ${isShowing ? "delay-200 rounded-r-none" : "delay-200 rounded-r-md"}`}
           >
-            {currentTab === "current" ||
-              (currentSession.image && (
-                <div
-                  className={`profile ${isShowing ? "invisible" : "delay-200"}`}
-                >
-                  <SessionProfile image={currentSession.image} />
-                </div>
-              ))}
+            {currentTab === "current" && currentSession.image && (
+              <div
+                className={`profile ${isShowing ? "invisible" : "delay-200"}`}
+              >
+                <SessionProfile image={currentSession.image} />
+              </div>
+            )}
             <DashBoardMenu />
             <CurrentSessionCard session={currentSession} />
           </div>

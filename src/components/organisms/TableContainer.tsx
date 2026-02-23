@@ -5,7 +5,7 @@ const TableContainer = ({ children }: { children: ReactNode }) => {
     <div className={`rounded-md overflow-hidden`}>
       <div
         className={
-          "min-h-full max-w-7xl min-w-full rounded-md xl:bg-white/15 backdrop-blur-lg"
+          "min-h-full max-w-7xl min-w-full rounded-md xl:bg-white/15 backdrop-blur-lg bg-(--table-bg) text-(--table-text)"
         }
       >
         {children}

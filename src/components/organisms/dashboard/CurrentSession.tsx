@@ -12,7 +12,7 @@ const CurrentSession = () => {
   return (
     <div
       className={
-        "flex flex-col justify-center bg-gray-300 text-black rounded-md min-h-full w-full"
+        "flex flex-col justify-center bg-(--background-container) text-(--text-primary) rounded-md min-h-full w-full"
       }
     >
       <div className="w-full max-w-xl mx-auto">
