@@ -16,8 +16,8 @@ export function useLogoutForm() {
     setLoading(true);
 
     try {
-      await recordLoginAudit("logout");
       await authAction({ type: "logout" });
+      await recordLoginAudit("logout");
 
       localStorage.removeItem("session_id");
       localStorage.removeItem("login_method");

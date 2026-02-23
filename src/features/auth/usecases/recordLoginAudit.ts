@@ -15,7 +15,6 @@ export async function recordLoginAudit(method: "login" | "logout" = "login") {
 
   const { os, device_type, browser } = getCurrentDeviceInfo();
 
-  if (!session) return;
   const currentSession = session;
 
   const payload = JSON.parse(atob(currentSession?.access_token.split(".")[1]));
@@ -32,11 +31,35 @@ export async function recordLoginAudit(method: "login" | "logout" = "login") {
     p_provider: provider,
     p_action: method,
     p_session_id: sessionId,
-    p_device_type: device_type,
+    p_country_code: geolocation.country_code,
     p_os: os,
     p_browser: browser,
-    p_country_code: geolocation.country_code,
+    p_device_type: device_type,
   });
-
   if (error) throw error;
+
+  const { data: deviceId, error: errorRecordDevices } = await supabase.rpc(
+    "record_devices",
+    {
+      p_user_id: session.user.id,
+      p_os: os,
+      p_browser: browser,
+      p_device_type: device_type,
+    },
+  );
+
+  if (errorRecordDevices || !deviceId)
+    throw errorRecordDevices ?? new Error("Device not recorded");
+
+  console.log(deviceId);
+
+  const { error: errorDeviceSession } = await supabase.rpc(
+    "record_device_sessions",
+    {
+      p_device_id: deviceId,
+      p_session_id: sessionId,
+    },
+  );
+
+  if (errorDeviceSession) throw errorDeviceSession;
 }
